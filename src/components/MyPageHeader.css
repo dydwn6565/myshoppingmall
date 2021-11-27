@@ -1,0 +1,12 @@
+.my_page_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.my_page_header > button {
+  color: black;
+  border: 1px solid black;
+  width: 15%;
+  margin-top: 5px;
+}
