@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Member.css";
+import { useNavigate } from "react-router-dom";
 function Member() {
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const login = (e) => {
     e.preventDefault();
+    alert(`${id} and ${password}`);
   };
 
   const loginWithGoogle = () => {};
 
-  const signUp = () => {};
+  const signUp = () => {
+    navigate("/signin");
+  };
 
   const findId = () => {};
 
@@ -15,8 +22,16 @@ function Member() {
   return (
     <div className="member">
       <form>
-        <input type="text" placeholder="Please type the id" />
-        <input type="text" placeholder="Please type the password" />
+        <input
+          type="text"
+          placeholder="Please type the id"
+          onChange={(e) => setId(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Please type the password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button className="member_login_button" onClick={login}>
           Login{" "}
         </button>
