@@ -9,7 +9,7 @@ function MyPageHeader() {
   };
   return (
     <div className="my_page_header">
-      <Button className="login" onClick={moveLoginPage}>
+      <Button className="my_page_header_login" onClick={moveLoginPage}>
         Login
       </Button>
       <p>My page</p>

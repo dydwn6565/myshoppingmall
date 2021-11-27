@@ -8,19 +8,29 @@ function Member() {
   const loginWithGoogle = () => {};
 
   const signUp = () => {};
+
+  const findId = () => {};
+
+  const findPw = () => {};
   return (
     <div className="member">
       <form>
         <input type="text" placeholder="Please type the id" />
         <input type="text" placeholder="Please type the password" />
-        <button onClick={login}>Login </button>
+        <button className="member_login_button" onClick={login}>
+          Login{" "}
+        </button>
       </form>
       <div className="login_extra_features">
         <span>autoLogin</span>
         <div className="find_id_and_pw">
-          <span className="find_id">Find Id</span>
+          <span onClick={findId} className="find_id">
+            Find Id
+          </span>
           <span>|</span>
-          <span className="find_pw">Find password</span>
+          <span onClick={findPw} className="find_pw">
+            Find password
+          </span>
         </div>
       </div>
       <button onClick={loginWithGoogle} className="login_with_google">

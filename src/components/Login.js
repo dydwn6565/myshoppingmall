@@ -1,15 +1,44 @@
 import Button from "@mui/material/Button";
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import Member from "./Member";
+import NonMember from "./NonMember";
 
 function Login() {
+  const [member, setMember] = useState(true);
+
   return (
     <div className="login">
       <h3>Login</h3>
-      <Button className="button gray">Member</Button>
-      <Button className="button">Not Member</Button>
-      <Member />
+
+      {member ? (
+        <>
+          {" "}
+          <Button
+            onClick={(e) => setMember(true)}
+            className="member_button white"
+          >
+            Member
+          </Button>
+          <Button onClick={(e) => setMember(false)} className="nomember_button">
+            Not Member
+          </Button>
+          <Member />
+        </>
+      ) : (
+        <>
+          <Button onClick={(e) => setMember(true)} className="member_button">
+            Member
+          </Button>
+          <Button
+            onClick={(e) => setMember(false)}
+            className="nomember_button white"
+          >
+            Not Member
+          </Button>
+          <NonMember />
+        </>
+      )}
     </div>
   );
 }

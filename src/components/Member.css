@@ -8,7 +8,7 @@
   border-radius: 7px;
 }
 
-.member > form > button,
+.member > form > .member_login_button,
 .login_with_google {
   width: 60%;
   height: 40px;

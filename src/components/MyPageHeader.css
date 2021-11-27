@@ -4,7 +4,7 @@
   justify-content: space-evenly;
 }
 
-.my_page_header > button {
+.my_page_header > .my_page_header_login {
   color: black;
   border: 1px solid black;
   width: 15%;
