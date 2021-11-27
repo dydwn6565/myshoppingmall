@@ -8,7 +8,8 @@
   border-radius: 7px;
 }
 
-.member > form > button {
+.member > form > button,
+.login_with_google {
   width: 60%;
   height: 40px;
   margin-top: 4%;
@@ -19,16 +20,29 @@
 .login_extra_features {
   display: flex;
   justify-content: space-evenly;
-
-  margin-left: 65px;
+  margin-left: 10%;
   margin-top: 2%;
 }
-
-.login_extra_features > .find_pw {
-  /* float: right; */
-  margin-right: 80px;
+.find_id_and_pw {
+  margin-left: 5%;
+  width: 50%;
+}
+.find_id {
+  margin-right: 5%;
+}
+.find_pw {
+  margin-left: 5%;
 }
 
-.login_extra_features > .find_id {
-  margin-left: 25px;
+.login_with_google {
+  background-color: white !important;
+  color: black !important;
+}
+
+.sign_up {
+  margin-top: 30px;
+}
+
+.sign_up > span {
+  margin-right: 5%;
 }

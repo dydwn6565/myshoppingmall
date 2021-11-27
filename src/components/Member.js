@@ -4,6 +4,10 @@ function Member() {
   const login = (e) => {
     e.preventDefault();
   };
+
+  const loginWithGoogle = () => {};
+
+  const signUp = () => {};
   return (
     <div className="member">
       <form>
@@ -12,9 +16,19 @@ function Member() {
         <button onClick={login}>Login </button>
       </form>
       <div className="login_extra_features">
-        <p>autoLogin</p>
-        <p className="find_id">Find Id</p>
-        <p className="find_pw">Find password</p>
+        <span>autoLogin</span>
+        <div className="find_id_and_pw">
+          <span className="find_id">Find Id</span>
+          <span>|</span>
+          <span className="find_pw">Find password</span>
+        </div>
+      </div>
+      <button onClick={loginWithGoogle} className="login_with_google">
+        Login with google
+      </button>
+      <div className="sign_up">
+        <span>Get 15% discount when you sing up</span>
+        <button onClick={signUp}>Sign up</button>
       </div>
     </div>
   );
