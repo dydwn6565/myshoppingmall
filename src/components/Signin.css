@@ -12,3 +12,18 @@
 
   background-color: gray;
 }
+
+.form_control {
+  margin-bottom: 20px;
+}
+
+.shopping_mall_name {
+  padding: 5%;
+}
+.error {
+  color: lightcoral;
+}
+
+.sucess_name {
+  color: lightblue;
+}

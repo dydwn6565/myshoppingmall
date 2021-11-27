@@ -36,21 +36,26 @@ import { useFormik } from "formik";
 const validate = (values) => {
   const errors = {};
 
-  if (!values.firstName) {
-    errors.firstName = "Required";
-  } else if (4 > values.firstName.length > 12) {
-    errors.firstName = "Must be between 5 characters to 11";
+  if (!values.id) {
+    errors.id = "Required";
+  } else if (4 > values.id.length || values.id.length > 12) {
+    errors.id = "Must be between 5 characters to 11";
+  } else {
+    errors.idSuccess = "you are able to use it";
   }
 
   if (!values.password) {
     errors.password = "Required";
-  } else if (7 > values.password.length > 21) {
+  } else if (7 > values.password.length || values.password.length > 21) {
     errors.password = "Must be between 8 characters to 20";
   }
 
-  if (!values.password) {
+  if (!values.confirmPassword) {
     errors.confirmPassword = "Required";
-  } else if (7 > values.confirmPassword.length > 21) {
+  } else if (
+    7 > values.confirmPassword.length ||
+    values.confirmPassword.length < 21
+  ) {
     errors.confirmPassword = "Must be between 8 characters to 20";
   }
 
@@ -62,11 +67,11 @@ const validate = (values) => {
 
   return errors;
 };
-
 const Signin = () => {
   const formik = useFormik({
     initialValues: {
-      firstName: "",
+      id: "",
+      idSuccess: "",
       password: "",
       confirmPassword: "",
       email: "",
@@ -76,54 +81,73 @@ const Signin = () => {
       alert(JSON.stringify(values, null, 2));
     },
   });
+
   return (
     <div className="signin">
+      <h3 className="shopping_mall_name">Yongju mall</h3>
       <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="firstName">First Name</label>
-        <input
-          id="firstName"
-          name="firstName"
-          type="text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.firstName}
-        />
-        {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+        <div className="form_control">
+          <label htmlFor="id">Id</label>
+          <input
+            id="id"
+            name="id"
+            type="text"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.id}
+          />
+          {formik.errors.id ? (
+            <div className="error">{formik.errors.id}</div>
+          ) : null}{" "}
+          {formik.errors.idSuccess ? (
+            <div className="sucess_name">{formik.errors.idSuccess}</div>
+          ) : null}
+        </div>
 
-        <label htmlFor="password">Last Name</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.password}
-        />
-        {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+        <div className="form_control">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+          />
+          {formik.errors.password ? (
+            <div className="error">{formik.errors.password}</div>
+          ) : null}
+        </div>
 
-        <label htmlFor="confimPassword">Confirm Password</label>
-        <input
-          id="confimPassword"
-          name="confimPassword"
-          type="confimPassword"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.confimPassword}
-        />
-        {formik.errors.confimPassword ? (
-          <div>{formik.errors.confimPassword}</div>
-        ) : null}
+        <div className="form_control">
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.confirmPassword}
+          />
+          {formik.errors.confirmPassword ? (
+            <div className="error">{formik.errors.confirmPassword}</div>
+          ) : null}
+        </div>
 
-        <label htmlFor="email">Email Address</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.email}
-        />
-        {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+        <div className="form_control">
+          <label htmlFor="email">Email Address</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+          />
+          {formik.errors.email ? (
+            <div className="error">{formik.errors.email}</div>
+          ) : null}
+        </div>
 
         <button type="submit">Submit</button>
       </form>
