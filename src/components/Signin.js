@@ -32,6 +32,7 @@
 import React from "react";
 import "./Signin.css";
 import { useFormik } from "formik";
+import { Link } from "react-router-dom";
 
 const validate = (values) => {
   const errors = {};
@@ -52,11 +53,8 @@ const validate = (values) => {
 
   if (!values.confirmPassword) {
     errors.confirmPassword = "Required";
-  } else if (
-    7 > values.confirmPassword.length ||
-    values.confirmPassword.length < 21
-  ) {
-    errors.confirmPassword = "Must be between 8 characters to 20";
+  } else if (values.confirmPassword !== values.password) {
+    errors.confirmPassword = "confirmed Password does not match";
   }
 
   if (!values.email) {
@@ -149,6 +147,68 @@ const Signin = () => {
           ) : null}
         </div>
 
+        <div className="form_control">
+          <input
+            type="radio"
+            name="radio_all"
+            id="radio_all"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <label htmlFor="sellect_all">Sellect All</label>
+        </div>
+
+        <div className="form_control">
+          <input
+            type="radio"
+            name="radio_toa"
+            id="radio_toa"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <div className="term_of_agree">
+            Term of Agreemenet <Link to="/signin/tog">Term</Link>
+          </div>
+        </div>
+
+        <div className="form_control">
+          <input
+            type="radio"
+            name="radio_ayi"
+            id="radio_ayi"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <label htmlFor="agree_your_info">
+            Agreement of using your personal info{" "}
+            <Link to="/signin/ayi">Term</Link>
+          </label>
+        </div>
+        <div className="form_control">
+          <input
+            type="radio"
+            name="radio_aous"
+            id="radio_aous"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <label htmlFor="agree_of_using_store">
+            Agreement of using the store <Link to="/signin/aous">Term</Link>
+          </label>
+        </div>
+
+        <div className="form_control">
+          <input
+            type="radio"
+            name="radio_aora"
+            id="radio_aora"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <label htmlFor="agree_of_receiving_ad">
+            Agreement of receiving Ad <Link to="/signin/aora">Term</Link>
+          </label>
+        </div>
         <button type="submit">Submit</button>
       </form>
     </div>

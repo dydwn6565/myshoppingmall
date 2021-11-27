@@ -4,6 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Signin from "./components/Signin";
+import Aora from "./components/terms/Aora";
+import Aous from "./components/terms/Aous";
+import Ayi from "./components/terms/Ayi";
+import Tog from "./components/terms/Tog";
 function App() {
   return (
     <div className="App">
@@ -12,6 +16,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/signin/aora" element={<Aora />} />
+          <Route path="/signin/aous" element={<Aous />} />
+          <Route path="/signin/ayi" element={<Ayi />} />
+          <Route path="/signin/tog" element={<Tog />} />
         </Routes>
       </BrowserRouter>
     </div>

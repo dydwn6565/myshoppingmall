@@ -2,7 +2,7 @@
   text-align: center;
   align-items: center;
 
-  width: 55%;
+  width: 50%;
   padding: 10px;
   height: 500px;
 
@@ -15,10 +15,23 @@
 
 .form_control {
   margin-bottom: 20px;
+  text-align: left;
+  margin-left: 30%;
+}
+.form_control > label {
+  display: block;
+  margin-bottom: 3%;
+}
+
+.form_control > [type="text"],
+.form_control > [type="password"],
+.form_control > [type="email"] {
+  width: 60%;
+  height: 30px;
 }
 
 .shopping_mall_name {
-  padding: 5%;
+  padding: 3%;
 }
 .error {
   color: lightcoral;
@@ -26,4 +39,12 @@
 
 .sucess_name {
   color: lightblue;
+}
+
+/* radio button */
+
+.form_control > [type="radio"] {
+  float: left;
+  margin-top: 2%;
+  margin-right: 2%;
 }
