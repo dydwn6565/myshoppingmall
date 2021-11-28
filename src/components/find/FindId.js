@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 function FindId() {
   return (
     <div className="find_id">
-      <h2>FInd Id</h2>
       <input type="radio" name="find_id_cell_phone" id="find_id_cell_phone" />
       <label htmlFor="find_id_cell_phone">Cell Phone</label>
       <input type="radio" name="find_id_email" id="find_id_email" />
