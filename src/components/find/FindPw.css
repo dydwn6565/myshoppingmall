@@ -1,4 +1,5 @@
 .find_pw > [type="text"],
+.find_pw > [type="email"],
 .find_pw > .verification > [type="number"] {
   width: 60%;
   height: 30px;
