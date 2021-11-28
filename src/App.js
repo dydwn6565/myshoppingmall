@@ -8,6 +8,7 @@ import Aora from "./components/terms/Aora";
 import Aous from "./components/terms/Aous";
 import Aypi from "./components/terms/Aypi";
 import Tog from "./components/terms/Tog";
+import FindIdPw from "./components/FindIdPw";
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,7 @@ function App() {
           <Route path="/signin/aous" element={<Aous />} />
           <Route path="/signin/aypi" element={<Aypi />} />
           <Route path="/signin/tog" element={<Tog />} />
+          <Route path="/findIdPw" element={<FindIdPw />} />
         </Routes>
       </BrowserRouter>
     </div>

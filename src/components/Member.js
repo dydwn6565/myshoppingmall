@@ -16,9 +16,13 @@ function Member() {
     navigate("/signin");
   };
 
-  const findId = () => {};
+  const findId = () => {
+    navigate("/findIdPw");
+  };
 
-  const findPw = () => {};
+  const findPw = () => {
+    navigate("/findIdPw");
+  };
   return (
     <div className="member">
       <form>
