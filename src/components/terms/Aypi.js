@@ -1,7 +1,7 @@
 import React from "react";
 
-function Ayi() {
+function Aypi() {
   return <div></div>;
 }
 
-export default Ayi;
+export default Aypi;

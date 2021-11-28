@@ -1,48 +1,16 @@
-// import React from "react";
-// import "./Signin.css";
-// function Signin() {
-//   return (
-//     <div className="signin">
-//       <form>
-//         <h3>Id</h3>
-//         <input type="text" placeholder="type id(5 to 11 characters" />
-//         <h3>Password</h3>
-//         <input
-//           type="password"
-//           placeholder="password( mix with number, character, special character(at least 8)"
-//         />
-//         <h3>Email</h3>
-//         <input type="email" placeholder="email" />
-//         <h3>Referal</h3>
-//         <input type="text" placeholder="referal id" />
-//         <input type="radio" /> <h6>agree all statements</h6>
-//         <input type="radio" />
-//         <h5>agree with collecting your personal info(require)</h5>
-//         <input type="radio" />
-//         <h5>agree with YongJu mall's use statement</h5>
-//         <input type="radio" />
-//         <h5>agree with receving info about marketing and ad</h5>
-//         <input type="radio" />
-//         <h5>are you over 14 years old?(requried)</h5>
-//       </form>
-//     </div>
-//   );
-// }
-
-import React from "react";
+import React, { useState } from "react";
 import "./Signin.css";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 const validate = (values) => {
   const errors = {};
 
   if (!values.id) {
     errors.id = "Required";
-  } else if (4 > values.id.length || values.id.length > 12) {
+  } else if (4 >= values.id.length || values.id.length >= 12) {
     errors.id = "Must be between 5 characters to 11";
-  } else {
-    errors.idSuccess = "you are able to use it";
   }
 
   if (!values.password) {
@@ -66,10 +34,37 @@ const validate = (values) => {
   return errors;
 };
 const Signin = () => {
+  const selectAll = () => {
+    if (radioState.All) {
+      setRadioState({
+        All: false,
+        Toa: false,
+        Aypi: false,
+        Aous: false,
+        Aora: false,
+      });
+    } else if (!radioState.All) {
+      setRadioState({
+        All: true,
+        Toa: true,
+        Aypi: true,
+        Aous: true,
+        Aora: true,
+      });
+    }
+  };
+  const [radioState, setRadioState] = useState({
+    All: false,
+    Toa: false,
+    Aypi: false,
+    Aous: false,
+    Aora: false,
+  });
+
   const formik = useFormik({
     initialValues: {
       id: "",
-      idSuccess: "",
+
       password: "",
       confirmPassword: "",
       email: "",
@@ -97,11 +92,7 @@ const Signin = () => {
           {formik.errors.id ? (
             <div className="error">{formik.errors.id}</div>
           ) : null}{" "}
-          {formik.errors.idSuccess ? (
-            <div className="sucess_name">{formik.errors.idSuccess}</div>
-          ) : null}
         </div>
-
         <div className="form_control">
           <label htmlFor="password">Password</label>
           <input
@@ -116,7 +107,6 @@ const Signin = () => {
             <div className="error">{formik.errors.password}</div>
           ) : null}
         </div>
-
         <div className="form_control">
           <label htmlFor="confirmPassword">Confirm Password</label>
           <input
@@ -131,7 +121,6 @@ const Signin = () => {
             <div className="error">{formik.errors.confirmPassword}</div>
           ) : null}
         </div>
-
         <div className="form_control">
           <label htmlFor="email">Email Address</label>
           <input
@@ -146,14 +135,15 @@ const Signin = () => {
             <div className="error">{formik.errors.email}</div>
           ) : null}
         </div>
-
         <div className="form_control">
           <input
             type="radio"
             name="radio_all"
             id="radio_all"
+            checked={radioState.All}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            onClick={selectAll}
           />
           <label htmlFor="sellect_all">Sellect All</label>
         </div>
@@ -163,8 +153,18 @@ const Signin = () => {
             type="radio"
             name="radio_toa"
             id="radio_toa"
+            checked={radioState.Toa}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            onClick={() =>
+              setRadioState({
+                All: radioState.All,
+                Toa: !radioState.Toa,
+                Aypi: radioState.Aypi,
+                Aous: radioState.Aous,
+                Aora: radioState.Aora,
+              })
+            }
           />
           <div className="term_of_agree">
             Term of Agreemenet <Link to="/signin/tog">Term</Link>
@@ -174,14 +174,24 @@ const Signin = () => {
         <div className="form_control">
           <input
             type="radio"
-            name="radio_ayi"
-            id="radio_ayi"
+            name="radio_aypi"
+            id="radio_aypi"
+            checked={radioState.Aypi}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            onClick={() =>
+              setRadioState({
+                All: radioState.All,
+                Toa: radioState.Toa,
+                Aypi: !radioState.Aypi,
+                Aous: radioState.Aous,
+                Aora: radioState.Aora,
+              })
+            }
           />
           <label htmlFor="agree_your_info">
             Agreement of using your personal info{" "}
-            <Link to="/signin/ayi">Term</Link>
+            <Link to="/signin/aypi">Term</Link>
           </label>
         </div>
         <div className="form_control">
@@ -189,8 +199,18 @@ const Signin = () => {
             type="radio"
             name="radio_aous"
             id="radio_aous"
+            checked={radioState.Aous}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            onClick={() =>
+              setRadioState({
+                All: radioState.All,
+                Toa: radioState.Toa,
+                Aypi: radioState.Aypi,
+                Aous: !radioState.Aous,
+                Aora: radioState.Aora,
+              })
+            }
           />
           <label htmlFor="agree_of_using_store">
             Agreement of using the store <Link to="/signin/aous">Term</Link>
@@ -202,15 +222,33 @@ const Signin = () => {
             type="radio"
             name="radio_aora"
             id="radio_aora"
+            checked={radioState.Aora}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            onClick={() =>
+              setRadioState({
+                All: radioState.All,
+                Toa: radioState.Toa,
+                Aypi: radioState.Aypi,
+                Aous: radioState.Aous,
+                Aora: !radioState.Aora,
+              })
+            }
           />
           <label htmlFor="agree_of_receiving_ad">
             Agreement of receiving Ad <Link to="/signin/aora">Term</Link>
           </label>
         </div>
-        <button type="submit">Submit</button>
-      </form>
+        {radioState.Toa && radioState.Aypi && radioState.Aora ? (
+          <Button className="sign_in_button" type="submit">
+            Submit
+          </Button>
+        ) : (
+          <Button className="sign_in_button" disabled type="submit">
+            Submit
+          </Button>
+        )}
+      </form>{" "}
     </div>
   );
 };
