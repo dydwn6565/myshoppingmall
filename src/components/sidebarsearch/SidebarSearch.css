@@ -1,14 +1,13 @@
 .sidebar_table {
-  padding:1%;
+  padding: 1%;
 }
 
 .sidebar_table .clicked {
   display: none !important;
 }
 
-.plus_button, .remove_button {
-  
-  margin-left:50px;
-  margin-bottom:-5px;
-  
+.plus_button,
+.remove_button {
+  margin-left: 50px;
+  margin-bottom: -5px;
 }

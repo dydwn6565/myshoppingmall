@@ -4,14 +4,20 @@ import Header from "./Header";
 import MyPageHeader from "./MyPageHeader";
 import SidebarSearch from "./sidebarsearch/SidebarSearch";
 import SidebarItems from "./sidebarsearch/SidebarItems";
+import CompanyContact from "./sidebarsearch/CompanyContact";
+import MainPage from "./main/MainPage";
+import Side from "./Side";
 function Home() {
   return (
     <div>
       <HeadAd />
       <Header />
       <MyPageHeader />
-      <SidebarSearch />
+      <MainPage />
+      <Side />
+      {/* <SidebarSearch />
       <SidebarItems />
+      <CompanyContact /> */}
     </div>
   );
 }
