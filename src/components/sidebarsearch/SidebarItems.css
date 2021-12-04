@@ -1,4 +1,23 @@
-.sidebar_items{
-    width:70px;
-    height:120px;
+.sidebar_items {
+  width: 265.83px;
+  height: 230px;
+  padding: 10px;
+}
+
+.sidebar_items_header {
+  border: 1px solid gray;
+}
+.sidebar_items_header > span {
+  display: inline-block;
+  border-right: 1px solid gray;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.sidebar_items_body {
+  height: 250px;
+  /* display: flex; */
+  padding: 10px;
+  border: 1px solid black;
+  position: relative;
 }
