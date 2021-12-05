@@ -1,6 +1,6 @@
 .mainpage {
   width: 50%;
-  height: 1200px;
+  height: 900px;
   border: 1px solid #000000;
   margin-left: 400px;
 
@@ -41,4 +41,8 @@
 
 .mainpage > form > [type="text"] {
   margin-left: 105px;
+}
+
+.card_collection {
+  display: flex;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import ClothesCard from "./ClothesCard";
 import "./MainPage.css";
 function MainPage() {
   const handlesubmit = () => {};
@@ -23,6 +24,10 @@ function MainPage() {
         <input type="submit" />
       </form>
       <hr />
+      <div className="card_collection">
+        <ClothesCard />
+        <ClothesCard />
+      </div>
     </div>
   );
 }

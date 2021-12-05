@@ -10,3 +10,7 @@
   width: 15%;
   margin-top: 5px;
 }
+
+.my_page_header > p {
+  cursor: pointer;
+}

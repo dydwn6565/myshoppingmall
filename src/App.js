@@ -9,6 +9,10 @@ import Aous from "./components/terms/Aous";
 import Aypi from "./components/terms/Aypi";
 import Tog from "./components/terms/Tog";
 import FindIdPw from "./components/FindIdPw";
+import MyPage from "./components/mypage/MyPage";
+import RecentlyCheckedPage from "./components/mypage/RecentlyCheckedPage";
+import Cart from "./components/Cart";
+
 function App() {
   return (
     <div className="App">
@@ -22,6 +26,10 @@ function App() {
           <Route path="/signin/aypi" element={<Aypi />} />
           <Route path="/signin/tog" element={<Tog />} />
           <Route path="/findIdPw" element={<FindIdPw />} />
+          <Route path="/myPage" element={<MyPage />} />
+          <Route path="/recentlyChecked" element={<RecentlyCheckedPage />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/myPage" element={<MyPage />} />
         </Routes>
       </BrowserRouter>
     </div>
