@@ -12,6 +12,8 @@ import FindIdPw from "./components/FindIdPw";
 import MyPage from "./components/mypage/MyPage";
 import RecentlyCheckedPage from "./components/mypage/RecentlyCheckedPage";
 import Cart from "./components/Cart";
+import TractMyItem from "./components/TractMyItem";
+import Contact from "./components/Contact";
 
 function App() {
   return (
@@ -29,7 +31,9 @@ function App() {
           <Route path="/myPage" element={<MyPage />} />
           <Route path="/recentlyChecked" element={<RecentlyCheckedPage />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/myPage" element={<MyPage />} />
+          <Route path="/contact" element={<Contact />} />
+
+          <Route path="/tractMyItem" element={<TractMyItem />} />
         </Routes>
       </BrowserRouter>
     </div>

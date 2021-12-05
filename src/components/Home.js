@@ -1,7 +1,7 @@
 import React from "react";
 import HeadAd from "./HeadAd";
 import Header from "./Header";
-import MyPageHeader from "./MyPageHeader";
+import MainPageHeader from "./MainPageHeader";
 import SidebarSearch from "./sidebarsearch/SidebarSearch";
 import SidebarItems from "./sidebarsearch/SidebarItems";
 import CompanyContact from "./sidebarsearch/CompanyContact";
@@ -12,7 +12,7 @@ function Home() {
     <div>
       <HeadAd />
       <Header />
-      <MyPageHeader />
+      <MainPageHeader />
       <MainPage />
       <Side />
       {/* <SidebarSearch />
