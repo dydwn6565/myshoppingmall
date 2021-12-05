@@ -1,0 +1,15 @@
+.recentlychecked {
+  width: 60%;
+  height: 700px;
+
+  margin-left: 300px;
+  margin-top: 10px;
+}
+
+.recentlychecked > h2 {
+  padding: 10px;
+}
+.recentlychecked > hr {
+  margin-top: 10px;
+  border-top: 2px solid black;
+}

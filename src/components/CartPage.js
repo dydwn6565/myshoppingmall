@@ -1,22 +1,20 @@
 import React from "react";
+import Cart from "./Cart";
 import HeadAd from "./HeadAd";
 import Header from "./Header";
+
 import MainPageHeader from "./MainPageHeader";
-import MainPage from "./main/MainPage";
 import Side from "./Side";
-function Home() {
+function CartPage() {
   return (
     <div>
       <HeadAd />
       <Header />
       <MainPageHeader />
-      <MainPage />
+      <Cart />
       <Side />
-      {/* <SidebarSearch />
-      <SidebarItems />
-      <CompanyContact /> */}
     </div>
   );
 }
 
-export default Home;
+export default CartPage;

@@ -1,0 +1,22 @@
+.mypagemain {
+  width: 60%;
+  height: 700px;
+  /* border: 1px solid black; */
+  position: absolute;
+  margin-left: 300px;
+  margin-top: 10px;
+}
+
+.mypagemain > hr {
+  margin-top: 15px;
+  border-top: 2px solid black;
+}
+
+.order_info {
+  display: flex;
+}
+
+.order_info > p {
+  margin-left: 40px;
+  margin-top: 5px;
+}

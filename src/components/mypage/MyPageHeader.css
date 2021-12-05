@@ -12,9 +12,9 @@
 }
 
 .userAvatar {
-  width: 150px;
-  height: 150px;
-  margin-left: -70px;
+  width: 100px !important;
+  height: 100px !important;
+  margin-left: -40px;
   /* align-items: center; */
 }
 
