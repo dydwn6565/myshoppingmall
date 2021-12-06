@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import "./Signin.css";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { useDispatch } from "react-redux";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "./firebase";
+import { reducer } from "../Redux";
+import { initialValues } from "../Redux.js";
 
 const validate = (values) => {
   const errors = {};
@@ -72,9 +77,35 @@ const Signin = () => {
     validate,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+
+      register(values);
     },
   });
 
+  // sign in
+
+  const [state, dispatch] = useReducer(reducer, initialValues);
+
+  const register = ({ email, password, id }) => {
+    createUserWithEmailAndPassword(auth, email, password).then((userAuth) => {
+      updateProfile(auth.currentUser, {
+        userId: id,
+        coupon: {},
+        order: {},
+      }).then(() => {
+        dispatch({
+          type: "login",
+          payload: {
+            email: userAuth.user.email,
+            uid: userAuth.user.uid,
+            userId: id,
+            coupon: {},
+            order: {},
+          },
+        });
+      });
+    });
+  };
   return (
     <div className="signin">
       <h3 className="shopping_mall_name">Yongju mall</h3>
