@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import Signin from "./components/Signin";
+import Signup from "./components/Signup";
 import Aora from "./components/terms/Aora";
 import Aous from "./components/terms/Aous";
 import Aypi from "./components/terms/Aypi";
@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/signin/aora" element={<Aora />} />
           <Route path="/signin/aous" element={<Aous />} />
           <Route path="/signin/aypi" element={<Aypi />} />
