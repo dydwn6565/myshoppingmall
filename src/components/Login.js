@@ -1,12 +1,12 @@
 import Button from "@mui/material/Button";
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import "./Login.css";
 import Member from "./Member";
 import NonMember from "./NonMember";
 
 function Login() {
   const [member, setMember] = useState(true);
-
+  const [state, dispatch] = useReducer();
   return (
     <div className="login">
       <h3>Login</h3>

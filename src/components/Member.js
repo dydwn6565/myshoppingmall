@@ -1,19 +1,42 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import "./Member.css";
 import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "@firebase/auth";
+import { auth } from "./firebase";
+import { initialValues, reducer } from "../Redux";
 function Member() {
   const [id, setId] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const [state, dispatch] = useReducer(reducer, initialValues);
   const login = (e) => {
     e.preventDefault();
-    alert(`${id} and ${password}`);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userAuth) => {
+        dispatch({
+          type: "login",
+          payload: {
+            email: userAuth.user.email,
+            uid: userAuth.user.uid,
+            userId: userAuth.user.userId,
+            coupon: userAuth.user.coupon,
+            order: userAuth.user.order,
+          },
+        });
+      })
+      .then((e) => {
+        console.log(state.user);
+        navigate("/");
+      })
+      .catch((error) => alert(error));
   };
 
   const loginWithGoogle = () => {};
 
   const signUp = () => {
-    navigate("/signin");
+    navigate("/signup");
   };
 
   const findId = () => {
@@ -27,9 +50,9 @@ function Member() {
     <div className="member">
       <form>
         <input
-          type="text"
-          placeholder="Please type the id"
-          onChange={(e) => setId(e.target.value)}
+          type="email"
+          placeholder="Please type the email"
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"

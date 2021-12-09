@@ -87,24 +87,26 @@ const Signin = () => {
   const [state, dispatch] = useReducer(reducer, initialValues);
 
   const register = ({ email, password, id }) => {
-    createUserWithEmailAndPassword(auth, email, password).then((userAuth) => {
-      updateProfile(auth.currentUser, {
-        userId: id,
-        coupon: {},
-        order: {},
-      }).then(() => {
-        dispatch({
-          type: "login",
-          payload: {
-            email: userAuth.user.email,
-            uid: userAuth.user.uid,
-            userId: id,
-            coupon: {},
-            order: {},
-          },
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userAuth) => {
+        updateProfile(auth.currentUser, {
+          userId: id,
+          coupon: {},
+          order: {},
+        }).then(() => {
+          dispatch({
+            type: "login",
+            payload: {
+              email: userAuth.user.email,
+              uid: userAuth.user.uid,
+              userId: id,
+              coupon: {},
+              order: {},
+            },
+          });
         });
-      });
-    });
+      })
+      .catch((error) => alert(error));
   };
   return (
     <div className="signin">
