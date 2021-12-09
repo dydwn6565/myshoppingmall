@@ -6,7 +6,7 @@ const delay = 4000;
 function MainPageSearch() {
   const [ranking, setRanking] = useState(null);
   const [index, setIndex] = useState(0);
-
+  const [searchedItem, setSearchedItem] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       await fetch("https://clothesapi.herokuapp.com/ranking")
@@ -35,12 +35,31 @@ function MainPageSearch() {
 
   const search = (e) => {
     e.preventDefault();
+    console.log(searchedItem);
+    if (!sessionStorage.getItem("searchedItem")) {
+      //   const namesArr = [];
+      sessionStorage.setItem("searchedItem", JSON.stringify([searchedItem]));
+    } else {
+      const sessionData = JSON.parse(sessionStorage.getItem("searchedItem"));
+      console.log(sessionData);
+      const dataArray = [...sessionData, searchedItem];
+      const deduped = Array.from(new Set(dataArray));
+      console.log(deduped);
+      sessionStorage.setItem("searchedItem", JSON.stringify(deduped));
+      //   console.log(dataArray);
+    }
   };
   return (
     <div className="mainpagesearch">
       <span>YongJu Store</span>
-      <input type="text" placeholde="search" />
+
+      <input
+        type="text"
+        placeholde="search"
+        onChange={(e) => setSearchedItem(e.target.value)}
+      />
       <PageviewSharpIcon className="searchIcon" onClick={search} />
+
       <div className="slideshow">
         {ranking !== null ? (
           <>

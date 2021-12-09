@@ -1,0 +1,16 @@
+.extendedsearchbar {
+  width: 300px;
+  height: 200px;
+  border: 1px solid gray;
+  position: absolute;
+  margin-top: -34px;
+  margin-left: 199px;
+  color: black;
+  background-color: white;
+  z-index: 1;
+}
+
+.recently_searched {
+  background-color: gray;
+  width: 100px;
+}
