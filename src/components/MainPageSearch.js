@@ -7,6 +7,7 @@ function MainPageSearch() {
   const [ranking, setRanking] = useState(null);
   const [index, setIndex] = useState(0);
   const [searchedItem, setSearchedItem] = useState("");
+
   useEffect(() => {
     const fetchData = async () => {
       await fetch("https://clothesapi.herokuapp.com/ranking")
@@ -37,16 +38,14 @@ function MainPageSearch() {
     e.preventDefault();
     console.log(searchedItem);
     if (!sessionStorage.getItem("searchedItem")) {
-      //   const namesArr = [];
       sessionStorage.setItem("searchedItem", JSON.stringify([searchedItem]));
     } else {
       const sessionData = JSON.parse(sessionStorage.getItem("searchedItem"));
-      console.log(sessionData);
+
       const dataArray = [...sessionData, searchedItem];
       const deduped = Array.from(new Set(dataArray));
-      console.log(deduped);
+
       sessionStorage.setItem("searchedItem", JSON.stringify(deduped));
-      //   console.log(dataArray);
     }
   };
   return (

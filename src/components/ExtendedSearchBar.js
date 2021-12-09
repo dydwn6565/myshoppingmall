@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./ExtendedSearchBar.css";
 import { Container, Col, Row } from "react-grid-system";
 function ExtendedSearchBar() {
+  const [searchedItemList, setSearchedItemList] = useState([]);
+  useEffect(() => {
+    const sessionData = sessionStorage?.getItem("searchedItem");
+    setSearchedItemList(JSON.parse(sessionData));
+  }, []);
   return (
     <div className="extendedsearchbar">
       <Container>
         <Row>
           <div>
             <div className="recently_searched">Searched list</div>
-            <div>h1</div>
-            <div>h1</div>
-            <div>h1</div>
+            {searchedItemList.map((item) => (
+              <div>{item}</div>
+            ))}
           </div>
           <div>
             <div className="recently_searched">Ranking</div>
