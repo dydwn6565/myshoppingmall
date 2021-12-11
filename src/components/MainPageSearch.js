@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, useContext } from "react";
 import "./MainPageSearch.css";
 import PageviewSharpIcon from "@mui/icons-material/PageviewSharp";
 import { rankingInitialValues, rankingReducer } from "../Redux";
+import { RankContext } from "../Context";
 // import { useDispatch } from "react-redux";
 const delay = 4000;
 function MainPageSearch() {
   const [ranking, setRanking] = useState(null);
   const [index, setIndex] = useState(0);
   const [searchedItem, setSearchedItem] = useState("");
+  const { rank, setRank } = useContext(RankContext);
   //   const [state, dispatch] = useReducer(rankingReducer, rankingInitialValues);
 
   //   const dispatch = useDispatch();
@@ -16,8 +18,8 @@ function MainPageSearch() {
       await fetch("https://clothesapi.herokuapp.com/ranking")
         .then((response) => response.json())
         .then((result) => {
-          //   console.log(result[0]["search"]["first"]);
           setRanking(result[0]["search"]["first"]);
+          setRank(result[0]["search"]["first"]);
         });
     };
     fetchData();

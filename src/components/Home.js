@@ -6,10 +6,11 @@ import MainPage from "./main/MainPage";
 import Side from "./Side";
 import MainPageSearch from "./MainPageSearch";
 import ExtendedSearchBar from "./ExtendedSearchBar";
-import { UserContext } from "../Context";
+import { RankContext, UserContext } from "../Context";
 
 function Home() {
   const { user, setUser } = useContext(UserContext);
+
   return (
     <div>
       <HeadAd />
