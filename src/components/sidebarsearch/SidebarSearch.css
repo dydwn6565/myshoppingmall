@@ -1,5 +1,6 @@
 .sidebar_table {
   padding: 1%;
+  width: 230px;
 }
 
 .sidebar_table .clicked {
@@ -10,4 +11,13 @@
 .remove_button {
   margin-left: 50px;
   margin-bottom: -5px;
+}
+
+.sidebar_table_body_td {
+  text-align: center;
+  margin-right: 50px;
+}
+
+.sidebar_table_body_td:hover {
+  font-weight: bold;
 }

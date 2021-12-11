@@ -39,13 +39,6 @@ function MainPageSearch() {
     rankingCircle();
   }, [index]);
 
-  //   useEffect(() => {
-  //     console.log(ranking);
-  //     dispatch({
-  //       type: "ranking",
-  //       payload: { ranking: ranking },
-  //     });
-  //   }, [ranking]);
   const search = (e) => {
     e.preventDefault();
     console.log(searchedItem);

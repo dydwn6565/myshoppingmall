@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import HeadAd from "./HeadAd";
 import Header from "./Header";
 import MainPageHeader from "./MainPageHeader";
@@ -6,11 +6,22 @@ import MainPage from "./main/MainPage";
 import Side from "./Side";
 import MainPageSearch from "./MainPageSearch";
 import ExtendedSearchBar from "./ExtendedSearchBar";
-import { RankContext, UserContext } from "../Context";
+import { ItemContext, RankContext, UserContext } from "../Context";
 
 function Home() {
   const { user, setUser } = useContext(UserContext);
+  const { item, setItem } = useContext(ItemContext);
 
+  useEffect(() => {
+    const getItemList = async () => {
+      await fetch("https://clothesapi.herokuapp.com/item")
+        .then((response) => response.json())
+        .then((result) => {
+          setItem(result);
+        });
+    };
+    getItemList();
+  }, []);
   return (
     <div>
       <HeadAd />
