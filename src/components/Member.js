@@ -1,23 +1,25 @@
-import React, { useReducer, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Member.css";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "@firebase/auth";
 import { auth } from "./firebase";
-import { initialValues, reducer } from "../Redux";
+import { initialValues, userReducer } from "../Redux";
+import { UserContext } from "../Context";
+
 function Member() {
+  const { user, setUser } = useContext(UserContext);
   const [id, setId] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const [state, dispatch] = useReducer(reducer, initialValues);
+  // const [state, dispatch] = useReducer(userReducer, initialValues);
   const login = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userAuth) => {
-        dispatch({
-          type: "login",
-          payload: {
+        setUser({
+          userInfo: {
             email: userAuth.user.email,
             uid: userAuth.user.uid,
             userId: userAuth.user.userId,
@@ -27,7 +29,6 @@ function Member() {
         });
       })
       .then((e) => {
-        console.log(state.user);
         navigate("/");
       })
       .catch((error) => alert(error));

@@ -1,13 +1,17 @@
-import React, { useReducer, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Signup.css";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
-import { useDispatch } from "react-redux";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "./firebase";
-import { reducer } from "../Redux";
-import { initialValues } from "../Redux.js";
+import { auth, db } from "./firebase";
+import { UserContext } from "../Context";
+import { useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
+// import {UserContext} from "/"
+// import { useDispatch } from "react-redux";
+// import { reducer, userReducer } from "../Redux";
+// import { initialValues } from "../Redux.js";
 
 const validate = (values) => {
   const errors = {};
@@ -76,31 +80,43 @@ const Signin = () => {
     },
     validate,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
 
       register(values);
+      navigate("/");
     },
   });
 
   // sign in
 
-  const [state, dispatch] = useReducer(reducer, initialValues);
+  // const [state, dispatch] = useReducer(userReducer, initialValues);
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const register = ({ email, password, id }) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userAuth) => {
         updateProfile(auth.currentUser, {
           userId: id,
-          coupon: {},
+
+          coupon: { 1: "signup coupon" },
           order: {},
         }).then(() => {
-          dispatch({
-            type: "login",
-            payload: {
+          setUser({
+            userInfo: {
               email: userAuth.user.email,
               uid: userAuth.user.uid,
               userId: id,
-              coupon: {},
+              coupon: { 1: "signup coupon" },
+              order: {},
+            },
+          });
+          setDoc(doc(db, "users", userAuth.user.uid), {
+            userInfo: {
+              email: userAuth.user.email,
+              uid: userAuth.user.uid,
+              userId: id,
+              coupon: { 1: "signup coupon" },
               order: {},
             },
           });
