@@ -15,33 +15,43 @@ import Cart from "./components/Cart";
 import TractMyItem from "./components/TractMyItem";
 import Contact from "./components/Contact";
 import CartPage from "./components/CartPage";
-import { UserContext } from "./Context";
+import { ItemContext, RankContext, UserContext } from "./Context";
 
 function App() {
   const [user, setUser] = useState({});
-
+  const [rank, setRank] = useState({});
+  const [item, setItem] = useState({});
   // const UserContext = createContext(null);
   const userInfo = useMemo(() => ({ user, setUser }), [user, setUser]);
+  const rankInfo = useMemo(() => ({ rank, setRank }), [rank, setRank]);
+  const itemInfo = useMemo(() => ({ item, setItem }), [item, setItem]);
   return (
     <div className="App">
       <BrowserRouter>
         <UserContext.Provider value={userInfo}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/signin/aora" element={<Aora />} />
-            <Route path="/signin/aous" element={<Aous />} />
-            <Route path="/signin/aypi" element={<Aypi />} />
-            <Route path="/signin/tog" element={<Tog />} />
-            <Route path="/findIdPw" element={<FindIdPw />} />
-            <Route path="/myPage" element={<MyPage />} />
-            <Route path="/recentlyChecked" element={<RecentlyCheckedPage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/contact" element={<Contact />} />
+          <ItemContext.Provider value={itemInfo}>
+            <RankContext.Provider value={rankInfo}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/signin/aora" element={<Aora />} />
+                <Route path="/signin/aous" element={<Aous />} />
+                <Route path="/signin/aypi" element={<Aypi />} />
+                <Route path="/signin/tog" element={<Tog />} />
+                <Route path="/findIdPw" element={<FindIdPw />} />
+                <Route path="/myPage" element={<MyPage />} />
+                <Route
+                  path="/recentlyChecked"
+                  element={<RecentlyCheckedPage />}
+                />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/contact" element={<Contact />} />
 
-            <Route path="/tractMyItem" element={<TractMyItem />} />
-          </Routes>
+                <Route path="/tractMyItem" element={<TractMyItem />} />
+              </Routes>
+            </RankContext.Provider>
+          </ItemContext.Provider>
         </UserContext.Provider>
       </BrowserRouter>
     </div>
