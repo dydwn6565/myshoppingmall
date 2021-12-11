@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  width: 1000px;
 }
 
 .my_page_header > .my_page_header_login {

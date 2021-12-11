@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "./firebase";
 import { UserContext } from "../Context";
 import { useNavigate } from "react-router-dom";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 // import {UserContext} from "/"
 // import { useDispatch } from "react-redux";
 // import { reducer, userReducer } from "../Redux";
@@ -98,14 +98,19 @@ const Signin = () => {
       .then((userAuth) => {
         updateProfile(auth.currentUser, {
           userId: id,
-
+          userLevel: "",
+          reward: "",
+          point: "",
           coupon: { 1: "signup coupon" },
           order: {},
         }).then(() => {
           setUser({
             userInfo: {
               email: userAuth.user.email,
-              uid: userAuth.user.uid,
+              userLevel: "LV.4 Bronze",
+              signUpDate: serverTimestamp(),
+              reward: 50000,
+              point: 23000,
               userId: id,
               coupon: { 1: "signup coupon" },
               order: {},
@@ -114,7 +119,10 @@ const Signin = () => {
           setDoc(doc(db, "users", userAuth.user.uid), {
             userInfo: {
               email: userAuth.user.email,
-              uid: userAuth.user.uid,
+              userLevel: "LV.4 Bronze",
+              signUpDate: serverTimestamp(),
+              reward: 50000,
+              point: 23000,
               userId: id,
               coupon: { 1: "signup coupon" },
               order: {},

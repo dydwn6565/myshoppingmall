@@ -1,10 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Member.css";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "@firebase/auth";
-import { auth } from "./firebase";
-import { initialValues, userReducer } from "../Redux";
+import { auth, db } from "./firebase";
 import { UserContext } from "../Context";
+import { getDoc, doc, collection } from "firebase/firestore";
+// import { initialValues, userReducer } from "../Redux";
+// import { getDialogContentUtilityClass } from "@mui/material";
 
 function Member() {
   const { user, setUser } = useContext(UserContext);
@@ -18,18 +20,29 @@ function Member() {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userAuth) => {
-        setUser({
-          userInfo: {
-            email: userAuth.user.email,
-            uid: userAuth.user.uid,
-            userId: userAuth.user.userId,
-            coupon: userAuth.user.coupon,
-            order: userAuth.user.order,
-          },
-        });
-      })
-      .then((e) => {
-        navigate("/");
+        // console.log(userAuth.user);
+
+        getDoc(doc(db, "users", userAuth.user.uid))
+          .then((result) => {
+            console.log(result.data().userInfo);
+            setUser({
+              userInfo: {
+                email: result.data().userInfo.email,
+
+                userId: result.data().userInfo.userId,
+                coupon: result.data().userInfo.coupon,
+                order: result.data().userInfo.order,
+                userLevel: result.data().userInfo.userLevel,
+                signUpDate: result.data().userInfo.signupDate,
+                reward: result.data().userInfo.reward,
+                point: result.data().userInfo.point,
+              },
+            });
+          })
+          .then((e) => {
+            navigate("/");
+          })
+          .catch((error) => alert(error));
       })
       .catch((error) => alert(error));
   };
