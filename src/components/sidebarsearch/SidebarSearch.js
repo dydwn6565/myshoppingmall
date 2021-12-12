@@ -11,9 +11,10 @@ function SidebarSearch({ itemBigTitle, itemSmallTitle }) {
     setClicked((preValue) => !preValue);
   };
 
-  const sendItemListToItemCard = () => {
-    console.log(itemSmallTitle);
+  const sendItemListToItemCard = (target) => {
+    // console.log(target);
     setSelectedItem({
+      target: target,
       itemBigTitle: itemBigTitle,
       itemSmallTitle: itemSmallTitle,
     });
@@ -33,7 +34,7 @@ function SidebarSearch({ itemBigTitle, itemSmallTitle }) {
                 {itemSmallTitle.map((item) => (
                   <td
                     className="sidebar_table_body_td"
-                    onClick={() => sendItemListToItemCard()}
+                    onClick={() => sendItemListToItemCard(item)}
                   >
                     {item}
                   </td>

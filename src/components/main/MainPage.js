@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ItemContext, SelectedItemContext } from "../../Context";
 import ClothesCard from "./ClothesCard";
 import "./MainPage.css";
 function MainPage() {
   const handlesubmit = () => {};
+  const { selectedItem, setSelectedItem } = useContext(SelectedItemContext);
+  const { item, setItem } = useContext(ItemContext);
   return (
     <div className="mainpage">
-      <h1>Pants</h1>
+      {/* {console.log(item)} */}
+      <h1>{selectedItem["itemBigTitle"]}</h1>
       <hr />
       <div className="medium_clfc">
         <div className="medium_clfc_head">
           <p> Medium Classification</p>
         </div>
         <div className="medium_clfc_contents">
-          <p>Denim Pants</p>
-          <p>Slacks</p>
+          {/* {console.log(selectedItem["target"] === undefined)}
+          {console.log(selectedItem)} */}
+          {selectedItem["target"] === undefined
+            ? alert("loading")
+            : selectedItem["itemSmallTitle"].map((item) => <p>{item}</p>)}
         </div>
       </div>
       <hr />
@@ -25,8 +32,11 @@ function MainPage() {
       </form>
       <hr />
       <div className="card_collection">
-        <ClothesCard />
-        <ClothesCard />
+        {console.log(item === undefined)}
+        {item !== undefined &&
+          item.map((clothe) => <ClothesCard clothe={clothe} />)}
+        {/* <ClothesCard />
+        <ClothesCard /> */}
       </div>
     </div>
   );

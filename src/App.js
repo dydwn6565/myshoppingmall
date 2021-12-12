@@ -21,6 +21,7 @@ import {
   UserContext,
   SelectedItemContext,
 } from "./Context";
+import DetailPage from "./components/DetailPage";
 
 function App() {
   const [user, setUser] = useState({});
@@ -60,6 +61,7 @@ function App() {
                   <Route path="/contact" element={<Contact />} />
 
                   <Route path="/tractMyItem" element={<TractMyItem />} />
+                  <Route path="/:id" element={<DetailPage />} />
                 </Routes>
               </SelectedItemContext.Provider>
             </RankContext.Provider>

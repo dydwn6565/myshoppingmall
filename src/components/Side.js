@@ -15,7 +15,7 @@ function Side() {
       />
       <SidebarSearch
         itemBigTitle={"Pants"}
-        itemSmallTitle={["denim", "slacks"]}
+        itemSmallTitle={["denim pants", "slacks"]}
       />
 
       <SidebarItems />

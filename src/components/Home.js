@@ -6,24 +6,32 @@ import MainPage from "./main/MainPage";
 import Side from "./Side";
 import MainPageSearch from "./MainPageSearch";
 import ExtendedSearchBar from "./ExtendedSearchBar";
-import { ItemContext, RankContext, UserContext } from "../Context";
+import {
+  ItemContext,
+  RankContext,
+  SelectedItemContext,
+  UserContext,
+} from "../Context";
 
 function Home() {
   const { user, setUser } = useContext(UserContext);
   const { item, setItem } = useContext(ItemContext);
-
+  const { selectedItem, setSelectedItem } = useContext(SelectedItemContext);
   useEffect(() => {
     const getItemList = async () => {
-      await fetch("https://clothesapi.herokuapp.com/item")
+      await fetch(
+        `https://clothesapi.herokuapp.com/${selectedItem["itemBigTitle"]}`
+      )
         .then((response) => response.json())
         .then((result) => {
-          setItem(result);
+          setItem(result[selectedItem["target"]]);
         });
     };
     getItemList();
-  }, []);
+  }, [selectedItem]);
   return (
     <div>
+      {/* {console.log(item)} */}
       <HeadAd />
       <MainPageSearch />
       <ExtendedSearchBar />
@@ -34,7 +42,7 @@ function Home() {
       {/* <SidebarSearch />
       <SidebarItems />
       <CompanyContact /> */}
-      {console.log(user)};{console.log(typeof user)};
+      {/* {console.log(user)};{console.log(typeof user)}; */}
     </div>
   );
 }
