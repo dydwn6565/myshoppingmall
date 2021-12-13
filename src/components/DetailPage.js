@@ -3,10 +3,15 @@ import { useLocation } from "react-router-dom";
 import "./DetailPage.css";
 import Rating from "@mui/material/Rating";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import Button from "@mui/material/Button";
+
 function DetailPage(props) {
   const { state } = useLocation();
   console.log(state);
   const [value, setValue] = useState(5);
+
+  const orderItem = () => {};
+
   return (
     <div className="detailpage">
       <img src={`${state["image"]}`} alt="" />
@@ -20,6 +25,7 @@ function DetailPage(props) {
         <FavoriteOutlinedIcon className="like_icon" />
         <span>{state["reviewer"]}</span>
       </div>
+      <Button onClick={orderItem}></Button>
     </div>
   );
 }
