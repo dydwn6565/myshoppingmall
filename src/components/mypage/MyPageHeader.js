@@ -21,9 +21,9 @@ function MyPageHeader() {
           <Col>
             <div className="mypage_user_info">
               {console.log(user)}
-              <h2>{user?.userInfo.userId}</h2>
+              {/* <h2>{user?.userInfo.userId}</h2>
               <h3>{user?.userInfo.userLevel}</h3>
-              <h6>Your date of sign up {user?.userInfo.signUpDate}</h6>
+              <h6>Your date of sign up {user?.userInfo.signUpDate}</h6> */}
               <h6>you only left 42,298 score to upgarde your level</h6>
             </div>
           </Col>
@@ -32,14 +32,14 @@ function MyPageHeader() {
             <h3>
               reward <ChevronRightIcon />
             </h3>
-            <h2>{user?.userInfo.reward}</h2>
+            {/* <h2>{user?.userInfo.reward}</h2> */}
           </Col>
           <Col>
             <StarsRoundedIcon />
             <h3>
               Point <ChevronRightIcon />
             </h3>
-            <h2>{user?.userInfo.point}</h2>
+            {/* <h2>{user?.userInfo.point}</h2> */}
           </Col>
           <Col>
             <CardMembershipIcon />
