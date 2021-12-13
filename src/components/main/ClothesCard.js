@@ -7,7 +7,7 @@ function ClothesCard({ clothe }) {
   const [value, setValue] = useState(5);
   const navigate = useNavigate();
   const linkToDetailPage = () => {
-    navigate(`./${clothe["id"]}`);
+    navigate(`./${clothe["id"]}`, { state: clothe });
   };
   return (
     <div className="clothescard">

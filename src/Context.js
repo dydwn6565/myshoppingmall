@@ -6,4 +6,4 @@ export const ItemContext = createContext({});
 
 export const RankContext = createContext({});
 
-export const SelectedItemContext = createContext({});
+export const SelectedItemContext = createContext(null);

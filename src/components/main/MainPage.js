@@ -32,8 +32,10 @@ function MainPage() {
       </form>
       <hr />
       <div className="card_collection">
-        {console.log(item === undefined)}
-        {item !== undefined &&
+        {/* {console.log(selectedItem["target"] !== undefined)}
+        {console.log(selectedItem !== undefined && item !== undefined)} */}
+        {selectedItem["target"] !== undefined &&
+          item !== undefined &&
           item.map((clothe) => <ClothesCard clothe={clothe} />)}
         {/* <ClothesCard />
         <ClothesCard /> */}
