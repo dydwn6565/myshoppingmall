@@ -3,11 +3,12 @@ import "./ClothesCard.css";
 import Rating from "@mui/material/Rating";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import { useNavigate } from "react-router-dom";
+
 function ClothesCard({ clothe }) {
   const [value, setValue] = useState(5);
   const navigate = useNavigate();
   const linkToDetailPage = () => {
-    if (sessionStorage.getItem("resultlyCheckedItem") === undefined) {
+    if (sessionStorage.getItem("resultlyCheckedItem") === null) {
       sessionStorage.setItem("recentlyCheckedItem", JSON.stringify([clothe]));
       console.log("hit line 12");
     } else {

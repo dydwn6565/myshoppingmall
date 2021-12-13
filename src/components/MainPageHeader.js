@@ -49,9 +49,7 @@ function MyPageHeader() {
         <>
           {/* <p>{console.log(user.userInfo["userId"])}</p> */}
           {/* <div className="logout_main_page_header"> */}
-          <p>
-            <span>hi!</span> {user.userInfo["userId"]}
-          </p>
+          <p>{/* <span>hi!</span> {user.userInfo["userId"]} */}</p>
           <p onClick={moveToMyPage}>My page</p>
           <p onClick={moveToRecentlyCheckedPage}>Recently checked item list</p>
           <p onClick={moveToMyCartPage}>My shopping bag</p>

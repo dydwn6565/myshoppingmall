@@ -18,3 +18,16 @@
   transform: scale(0.8);
   margin-top: 10px;
 }
+
+.add_to_cart {
+  border: 1px solid lightblue;
+  background-color: white;
+  color: black;
+  width: 100px;
+  height: 40px;
+  margin-top: 15px;
+}
+
+.add_to_cart:hover {
+  background-color: lightgray;
+}

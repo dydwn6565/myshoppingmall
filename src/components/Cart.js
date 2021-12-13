@@ -19,6 +19,7 @@ function Cart() {
           <p>delivery fee</p>
         </div>
         <hr />
+        <p></p>
       </div>
       <button className="delete_order_list">dt a pt</button>
       <div className="order_details">
