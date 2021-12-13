@@ -14,4 +14,7 @@
 
 .my_page_header > p {
   cursor: pointer;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
