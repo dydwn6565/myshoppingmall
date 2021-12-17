@@ -25,6 +25,19 @@ function DetailPage(props) {
       console.log("hit line 18");
       state["size"] = size;
       state["quantity"] = quantity;
+      // console.log(
+      //   localData.map((item, index) => {
+      //     if (item["id"] === state["id"]) {
+      //       console.log("same");
+      //       console.log(index);
+      //       localData[index]["quantity"] += state["quantity"];
+
+      //     } else {
+      //       console.log("differ");
+
+      //     }
+      //   })
+      // );
       const dataArray = [...localData, state];
       const deduped = Array.from(new Set(dataArray));
 
