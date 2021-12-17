@@ -11,21 +11,26 @@ function DetailPage(props) {
   const [size, setSize] = useState("90");
   const [quantity, setQuantity] = useState("quantity");
 
-  // const orderItem = () => {
-  //   if (localStorage.getItem("orderItem") === null) {
-  //     console.log("hit line 16");
-  //     localStorage.setItem("orderItem", JSON.stringify([state]));
-  //   } else {
-  //     const localData = JSON.parse(localStorage.getItem("orderItem"));
+  const orderItem = () => {
+    if (localStorage.getItem("orderItem") === null) {
+      console.log("hit line 16");
+      state["size"] = size;
+      state["quantity"] = quantity;
+      console.log(state);
+      localStorage.setItem("orderItem", JSON.stringify([state]));
+    } else {
+      const localData = JSON.parse(localStorage.getItem("orderItem"));
 
-  //     console.log(localData);
-  //     console.log("hit line 18");
-  //     const dataArray = [...localData, state];
-  //     const deduped = Array.from(new Set(dataArray));
+      console.log(localData);
+      console.log("hit line 18");
+      state["size"] = size;
+      state["quantity"] = quantity;
+      const dataArray = [...localData, state];
+      const deduped = Array.from(new Set(dataArray));
 
-  //     localStorage.setItem("orderItem", JSON.stringify(deduped));
-  //   }
-  // };
+      localStorage.setItem("orderItem", JSON.stringify(deduped));
+    }
+  };
 
   return (
     <div className="detailpage">
@@ -40,11 +45,9 @@ function DetailPage(props) {
         <FavoriteOutlinedIcon className="like_icon" />
         <span>{state["reviewer"]}</span>
       </div>
-      {/* <button onClick={orderItem} className="add_to_cart">
-        Add to cart
-      </button> */}
+
       {console.log(state["inventory"])}
-      {console.log(Object.keys(state["inventory"][0]))}
+      {console.log(Object.keys(state["inventory"]))}
       {console.log(
         Object.values(state["inventory"]).find((e) => e.size === size)[
           "quantity"
@@ -59,14 +62,14 @@ function DetailPage(props) {
       </Dropdown>
 
       <Dropdown title={quantity}>
-        <Dropdown.Item
+        {/* <Dropdown.Item
           onClick={() => setQuantity(size["quantity"])}
-        ></Dropdown.Item>
+        ></Dropdown.Item> */}
         {Object.values(state["inventory"]).find((e) => e.size === size)[
           "quantity"
         ] > 10
           ? [...Array(10)].map((el, index) => (
-              <Dropdown.Item onClick={() => setQuantity(size["quantity"])}>
+              <Dropdown.Item onClick={() => setQuantity(index + 1)}>
                 {index + 1}
               </Dropdown.Item>
             ))
@@ -77,11 +80,14 @@ function DetailPage(props) {
                 ]
               ),
             ].map((el, index) => (
-              <Dropdown.Item onClick={() => setQuantity(size["quantity"])}>
+              <Dropdown.Item onClick={() => setQuantity(index + 1)}>
                 {index + 1}
               </Dropdown.Item>
             ))}
       </Dropdown>
+      <button onClick={orderItem} className="add_to_cart">
+        Add to cart
+      </button>
     </div>
   );
 }
