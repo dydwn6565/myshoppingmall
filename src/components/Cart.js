@@ -6,8 +6,64 @@ import Grid from "@mui/material/Grid";
 
 import Checkbox from "@mui/material/Checkbox";
 function Cart() {
-  const [orderState, setOrderState] = useState("");
+  const [orderState, setOrderState] = useState([]);
+  const [checkBox, setCheckBox] = useState({});
+  const [totalProductPrice, setTotalProductPrice] = useState(0);
+  const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
+  const checkBoxState = (index) => {
+    console.log(orderState);
+    if (checkBox[0] === undefined) {
+      orderState.map((item, index) => (checkBox[index] = false));
+      checkBox[index] = !checkBox[index];
+    } else {
+      console.log(!Object.values(checkBox)[0]);
+
+      console.log(checkBox[index]);
+      checkBox[index] = !checkBox[index];
+    }
+    console.log(checkBox);
+  };
+
+  const calculatePrice = () => {
+    if (orderState) {
+      orderState.map((item, index) =>
+        // console.log(item["original_price"] * item["quantity"])
+        setTotalProductPrice(
+          (prev) => prev + item["original_price"] * item["quantity"]
+        )
+      );
+      orderState.map((item, index) =>
+        setTotalDiscountPrice(
+          (prev) => prev + item["discounted_price"] * item["quantity"]
+        )
+      );
+    }
+  };
+
   const order = () => {};
+
+  const deleteItemList = () => {
+    let newItemList = [];
+    let arrangedArray = [];
+    orderState.map((item, index) => {
+      if (checkBox[index] === false) {
+        newItemList[index] = item;
+      }
+    });
+    newItemList
+      .filter((item, index) => item[index] !== null)
+      .map((items, index) => (arrangedArray[index] = items));
+    console.log(arrangedArray);
+    // (item !== undefined).map((item, index) => (newItemList[index] = item))
+    // );
+    setOrderState(arrangedArray);
+    // localStorage.setItem("orderItem") =JSON.stringfy(orderState);
+  };
+  useEffect(() => {
+    setTotalDiscountPrice(0);
+    setTotalProductPrice(0);
+    calculatePrice();
+  }, [orderState]);
 
   useEffect(() => {
     const order = JSON.parse(localStorage.getItem("orderItem"));
@@ -17,20 +73,20 @@ function Cart() {
     const removeDuplicate = () => {
       for (let i = 0; i < order.length; i++) {
         for (let j = 1 + i; j < order.length; j++) {
-          console.log("i" + i);
-          console.log("j" + j);
+          // console.log("i" + i);
+          // console.log("j" + j);
 
           if (
             newArray[i]["id"] === newArray[j]["id"] &&
             newArray[i]["size"] === newArray[j]["size"]
           ) {
-            console.log("line 24");
+            // console.log("line 24");
 
             newArray[i]["quantity"] =
               newArray[i]["quantity"] + newArray[j]["quantity"];
             newArray[j]["quantity"] = null;
           }
-          console.log(i);
+          // console.log(i);
         }
       }
 
@@ -42,8 +98,9 @@ function Cart() {
 
     removeDuplicate();
     setOrderState(arrangedArray);
-    console.log(arrangedArray);
-  }, []);
+
+    // console.log(arrangedArray);
+  }, [checkBox]);
   // const label = { inputProps: { "aria-label": "Checkbox demo" } };
   return (
     <div className="cart">
@@ -62,35 +119,42 @@ function Cart() {
         <hr />
         {orderState[0] !== undefined && (
           <Grid container className="cart_details">
-            <Checkbox
-              xs={2}
-              md={2}
-              defaultChecked
-              className="cart_item_checkbox"
-            />
-            <Grid item xs={0.5} md={0.5} className="cart_item_number">
-              {orderState.length}
-            </Grid>
-            <Grid item xs={2.5} md={2.5} className="order_item_name">
-              {console.log(orderState)}
-              {orderState[0]["name"]}
-            </Grid>
-            <Grid xs={1.7} md={1.7} item className="order_item_price">
-              {orderState[0]["original_price"]}
-            </Grid>
-            <Grid xs={1.7} md={1.7} item>
-              {orderState[0]["discounted_price"]}
-            </Grid>
-            <Grid xs={1.5} md={1.5} item>
-              {orderState[0]["quantity"]}
-            </Grid>
-            <Grid xs={1.5} md={1.5} item>
-              Free
-            </Grid>
+            {orderState.map((item, index) => (
+              <>
+                <Checkbox
+                  xs={2}
+                  md={2}
+                  onClick={() => checkBoxState(index)}
+                  className="cart_item_checkbox"
+                />
+                <Grid item xs={0.5} md={0.5} className="cart_item_number">
+                  {index + 1}
+                </Grid>
+                <Grid item xs={2.5} md={2.5} className="order_item_name">
+                  {/* {console.log(orderState)} */}
+                  {item["name"]}
+                </Grid>
+                <Grid xs={1.7} md={1.7} item className="order_item_price">
+                  {item["original_price"] * item["quantity"]}
+                </Grid>
+                <Grid xs={1.7} md={1.7} item>
+                  {(item["original_price"] - item["discounted_price"]) *
+                    item["quantity"]}
+                </Grid>
+                <Grid xs={1.5} md={1.5} item>
+                  {item["quantity"]}
+                </Grid>
+                <Grid xs={1.5} md={1.5} item>
+                  Free
+                </Grid>
+              </>
+            ))}
           </Grid>
         )}
       </div>
-      <button className="delete_order_list">dt a pt</button>
+      <button className="delete_order_list" onClick={deleteItemList}>
+        dt a pt
+      </button>
       <div className="order_details">
         <p>It is all free delivery</p>
         <p>
@@ -108,12 +172,13 @@ function Cart() {
       <button className="order_button" onClick={order}>
         Order
       </button>
+
       <div className="total_price">
-        <span>product price</span>
+        <span>product price: {totalProductPrice}</span>
         <RemoveIcon className="svg_icons" />
-        <span>total discount</span>
+        <span>total discount:{totalDiscountPrice}</span>
         <DragHandleIcon className="svg_icons" />
-        <span>Total price</span>
+        <span>Total price: {totalProductPrice - totalDiscountPrice}</span>
       </div>
     </div>
   );
