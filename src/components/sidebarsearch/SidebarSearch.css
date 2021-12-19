@@ -1,21 +1,32 @@
 .sidebar_table {
-  padding: 1%;
+  /* padding: 1%; */
   width: 230px;
 }
 
+
 .sidebar_table .clicked {
-  display: none !important;
+  /* display: none !important; */
 }
 
 .plus_button,
 .remove_button {
-  margin-left: 50px;
-  margin-bottom: -5px;
+  
+  float:right;
+  
 }
 
+.sidebar_table_th{
+  
+  float:left;
+  margin-left:10px;
+}
 .sidebar_table_body_td {
-  text-align: center;
-  margin-right: 50px;
+  /* text-align: center; */
+  /* margin-right: 50px; */
+  display:inline-block;
+  justify-content: space-evenly;
+  margin-left:24px;
+  
 }
 
 .sidebar_table_body_td:hover {
