@@ -24,6 +24,7 @@ import {
 import DetailPage from "./components/DetailPage";
 
 import OrderPage from "./components/OrderPage";
+import ConfirmPage from "./components/ConfirmPage";
 
 function App() {
   const [user, setUser] = useState({});
@@ -56,6 +57,7 @@ function App() {
                   <Route path="/findIdPw" element={<FindIdPw />} />
                   <Route path="/myPage" element={<MyPage />} />
                   <Route path="/order" element={<OrderPage />} />
+                  <Route path="/confirm" element={<ConfirmPage />} />
                   <Route
                     path="/recentlyChecked"
                     element={<RecentlyCheckedPage />}
