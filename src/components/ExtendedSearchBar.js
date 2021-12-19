@@ -11,7 +11,7 @@ function ExtendedSearchBar() {
     setSearchedItemList(JSON.parse(sessionData));
   }, []);
   return (
-    <div className="extendedsearchbar">
+    <div  className="extendedsearchbar">
       <Container>
         <Row>
           <div>

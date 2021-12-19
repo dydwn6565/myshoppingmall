@@ -5,7 +5,7 @@ import MainPageHeader from "./MainPageHeader";
 import MainPage from "./main/MainPage";
 import Side from "./Side";
 import MainPageSearch from "./MainPageSearch";
-import ExtendedSearchBar from "./ExtendedSearchBar";
+
 import {
   ItemContext,
   RankContext,
@@ -34,7 +34,7 @@ function Home() {
       {/* {console.log(item)} */}
       <HeadAd />
       <MainPageSearch />
-      <ExtendedSearchBar />
+      
       <Header />
       <MainPageHeader />
       <MainPage />

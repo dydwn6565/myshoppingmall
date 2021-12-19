@@ -12,6 +12,10 @@
   height: 20px;
 }
 
+.mainpagesearch > [type="text"]:hover{
+
+}
+
 .mainpagesearch > span {
   font-weight: bold;
   font-size: 25px;
@@ -41,3 +45,4 @@
   width: 100%;
   border-radius: 40px;
 }
+

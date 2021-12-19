@@ -16,24 +16,27 @@ function Order() {
   const [memo, setMemo] = useState("");
 
   useEffect(() => {
-    getDoc(doc(db, "users", userLogin["uid"])).then((result) => {
-      console.log(result.data().userInfo);
-      setUser({
-        userInfo: {
-          email: result.data().userInfo.email,
+    // getDoc(doc(db, "users", userLogin["uid"])).then((result) => {
+    //   console.log(result.data().userInfo);
+    //   setUser({
+    //     userInfo: {
+    //       email: result.data().userInfo.email,
 
-          userId: result.data().userInfo.userId,
-          coupon: result.data().userInfo.coupon,
-          order: result.data().userInfo.order,
-          userLevel: result.data().userInfo.userLevel,
-          signUpDate: result.data().userInfo.signupDate,
-          reward: result.data().userInfo.reward,
-          point: result.data().userInfo.point,
-        },
-      });
-    });
+    //       userId: result.data().userInfo.userId,
+    //       coupon: result.data().userInfo.coupon,
+    //       order: result.data().userInfo.order,
+    //       userLevel: result.data().userInfo.userLevel,
+    //       signUpDate: result.data().userInfo.signupDate,
+    //       reward: result.data().userInfo.reward,
+    //       point: result.data().userInfo.point,
+    //     },
+    //   });
+    // });
   }, []);
-
+ 
+  const payment = () =>{
+    navigate("/confirm")
+  }
   const order_address_form = () => {};
 
   return (
@@ -74,9 +77,26 @@ function Order() {
                 <input onChange={(e) => setMemo(e.target.value)} type="text" />
               </div>
               {console.log(recipient)}
-              {console.log("line77" + state["orderState"][0]["id"])}
+              {console.log(state)}
+              {console.log("line77" + state["orderState"][1]["id"])}
             </form>
-            <button>Order</button>
+
+            
+            <div className="item_list">
+              <h1>{console.log(state)}</h1>
+              { (state["orderState"]).map((item,index) =>(
+                <div className="order_item_description" >
+                <img src={`${item["image"]}`} alt="" />
+                <p ><span>Brand:  </span>{item["brand"]}</p>
+                <p><span >Name:   </span>{item["name"]}</p>
+                <p><span >Size:   </span>{item["size"]}</p>
+                <p><span >Quantity:   </span>{item["quantity"]}</p>
+                <p><span >Price:   </span>{(item["discounted_price"])*item["quantity"]}</p>
+                </div>
+              ))}
+            </div>
+            <div className="order_page_total_price">total price: {state["totalPrice"]}</div>
+            <button onClick={payment}>Payment</button>
           </div>
         </>
       ) : (

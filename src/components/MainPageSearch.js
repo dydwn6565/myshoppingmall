@@ -3,6 +3,7 @@ import "./MainPageSearch.css";
 import PageviewSharpIcon from "@mui/icons-material/PageviewSharp";
 import { rankingInitialValues, rankingReducer } from "../Redux";
 import { RankContext } from "../Context";
+import ExtendedSearchBar from "./ExtendedSearchBar";
 // import { useDispatch } from "react-redux";
 const delay = 4000;
 function MainPageSearch() {
@@ -10,9 +11,11 @@ function MainPageSearch() {
   const [index, setIndex] = useState(0);
   const [searchedItem, setSearchedItem] = useState("");
   const { rank, setRank } = useContext(RankContext);
+  const [extendbar,setExtendbar] = useState(false);
   //   const [state, dispatch] = useReducer(rankingReducer, rankingInitialValues);
 
   //   const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchData = async () => {
       await fetch("https://clothesapi.herokuapp.com/ranking")
@@ -53,13 +56,24 @@ function MainPageSearch() {
       sessionStorage.setItem("searchedItem", JSON.stringify(deduped));
     }
   };
+
+  const extendSearchBar =() =>{
+    setExtendbar(true);
+  }
+
+  const removeExtendSearchBar = () =>{
+    setExtendbar(false);
+  }
   return (
+    <>
     <div className="mainpagesearch">
       <span>YongJu Store</span>
 
       <input
         type="text"
         placeholde="search"
+        onFocus={extendSearchBar}
+        onBlur={removeExtendSearchBar}
         onChange={(e) => setSearchedItem(e.target.value)}
       />
       <PageviewSharpIcon className="searchIcon" onClick={search} />
@@ -73,11 +87,15 @@ function MainPageSearch() {
               {/* {index === ranking.length - 1 && setIndex(0)} */};
             </div>
           </>
+          
         ) : (
           alert("loading")
         )}
       </div>
+      
     </div>
+{extendbar && <ExtendedSearchBar />}
+    </>
   );
 }
 
