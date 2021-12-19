@@ -3,13 +3,14 @@ import "./Cart.css";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
 import Grid from "@mui/material/Grid";
-
 import Checkbox from "@mui/material/Checkbox";
+import { useNavigate } from "react-router-dom";
 function Cart() {
   const [orderState, setOrderState] = useState([]);
   const [checkBox, setCheckBox] = useState({});
   const [totalProductPrice, setTotalProductPrice] = useState(0);
   const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
+  const navigate = useNavigate();
   const checkBoxState = (index) => {
     console.log(orderState);
     if (checkBox[0] === undefined) {
@@ -40,7 +41,19 @@ function Cart() {
     }
   };
 
-  const order = () => {};
+  const order = () => {
+    // console.log(orderState);
+    navigate("/order", {
+      // orderState: orderState,
+      // totalPrice: totalProductPrice,
+      // discounted_price: totalDiscountPrice,
+      state: {
+        orderState: orderState,
+        totalPrice: totalProductPrice,
+        discountedPrice: totalDiscountPrice,
+      },
+    });
+  };
 
   const deleteItemList = () => {
     let newItemList = [];

@@ -23,6 +23,8 @@ import {
 } from "./Context";
 import DetailPage from "./components/DetailPage";
 
+import OrderPage from "./components/OrderPage";
+
 function App() {
   const [user, setUser] = useState({});
   const [rank, setRank] = useState({});
@@ -53,6 +55,7 @@ function App() {
                   <Route path="/signin/tog" element={<Tog />} />
                   <Route path="/findIdPw" element={<FindIdPw />} />
                   <Route path="/myPage" element={<MyPage />} />
+                  <Route path="/order" element={<OrderPage />} />
                   <Route
                     path="/recentlyChecked"
                     element={<RecentlyCheckedPage />}
