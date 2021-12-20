@@ -32,14 +32,23 @@ function MainPage() {
       </form>
       <hr />
       <div className="card_collection">
+        
+
         {/* {console.log(selectedItem["target"] !== undefined)}
         {console.log(selectedItem !== undefined && item !== undefined)} */}
-        {selectedItem["target"] !== undefined &&
+        <div className="card">
+      
+
+        {/* {selectedItem["target"] !== undefined &&
           item !== undefined &&
-          item.map((clothe) => <ClothesCard clothe={clothe} />)}
+          item.map((clothe,index) => 
+          <ClothesCard clothe={clothe}  />)} */}
         {/* <ClothesCard />
         <ClothesCard /> */}
+        </div>
+     
       </div>
+      
     </div>
   );
 }
