@@ -45,12 +45,16 @@
   margin-left: 105px;
 }
 
-.card_collection > div {
+.card  {
   /* flex-direction: row; */
-  /* flex:1; */
-  max-width:1000px ;
+  
+  width:1200px ;
   display: flex;
   
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  align-items: center;
   
   /* flex-wrap: 'wrap'; */
   
@@ -60,8 +64,8 @@
 .card_break{
   display:inline-block !important;
 } */
-
-.card{
+/* 
+.card >div{
   flex-wrap:"wrap" ;
   
-}
+} */

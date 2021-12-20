@@ -37,12 +37,15 @@ function MainPage() {
         {/* {console.log(selectedItem["target"] !== undefined)}
         {console.log(selectedItem !== undefined && item !== undefined)} */}
         <div className="card">
+        
       
 
-        {/* {selectedItem["target"] !== undefined &&
+        
+
+        {selectedItem["target"] !== undefined &&
           item !== undefined &&
           item.map((clothe,index) => 
-          <ClothesCard clothe={clothe}  />)} */}
+          <ClothesCard clothe={clothe}  />)}
         {/* <ClothesCard />
         <ClothesCard /> */}
         </div>
