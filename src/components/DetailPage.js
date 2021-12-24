@@ -1,16 +1,21 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./DetailPage.css";
 import Rating from "@mui/material/Rating";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import { Dropdown } from "rsuite";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 function DetailPage(props) {
   const { state } = useLocation();
   console.log(state);
   const [value, setValue] = useState(5);
-  const [size, setSize] = useState("90");
-  const [quantity, setQuantity] = useState("quantity");
-
+  const [size, setSize] = useState("");
+  const [quantity, setQuantity] = useState(0);
+  const navigate = useNavigate();
   const orderItem = () => {
     if (localStorage.getItem("orderItem") === null) {
       console.log("hit line 16");
@@ -18,6 +23,7 @@ function DetailPage(props) {
       state["quantity"] = quantity;
       console.log(state);
       localStorage.setItem("orderItem", JSON.stringify([state]));
+      navigate("/cart");
     } else {
       const localData = JSON.parse(localStorage.getItem("orderItem"));
 
@@ -42,7 +48,16 @@ function DetailPage(props) {
       const deduped = Array.from(new Set(dataArray));
 
       localStorage.setItem("orderItem", JSON.stringify(deduped));
+      navigate("/cart");
     }
+  };
+
+  const handleSize = (event) => {
+    setSize(event.target.value);
+  };
+
+  const handleQuantity = (event) => {
+    setQuantity(event.target.value);
   };
 
   return (
@@ -61,23 +76,20 @@ function DetailPage(props) {
 
       {console.log(state["inventory"])}
       {console.log(Object.keys(state["inventory"]))}
-      {console.log(
+      {/* {console.log(
         Object.values(state["inventory"]).find((e) => e.size === size)[
           "quantity"
         ]
-      )}
-      <Dropdown title={size}>
+      )} */}
+      {/* <Dropdown title={size}>
         {state["inventory"].map((size) => (
           <Dropdown.Item onClick={() => setSize(size["size"])}>
             {size["size"]}
           </Dropdown.Item>
         ))}
-      </Dropdown>
+      </Dropdown> */}
 
-      <Dropdown title={quantity}>
-        {/* <Dropdown.Item
-          onClick={() => setQuantity(size["quantity"])}
-        ></Dropdown.Item> */}
+      {/* <Dropdown title={quantity}>
         {Object.values(state["inventory"]).find((e) => e.size === size)[
           "quantity"
         ] > 10
@@ -97,7 +109,65 @@ function DetailPage(props) {
                 {index + 1}
               </Dropdown.Item>
             ))}
-      </Dropdown>
+      </Dropdown> */}
+
+      <Box mx={{ minWidth: 20 }}>
+        <FormControl sx={{ minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-label">Size</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={size}
+            label="Size"
+            onChange={handleSize}
+          >
+            {state["inventory"].map((size) => (
+              <MenuItem value={size}>{size["size"]}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+      {/* {size !== "" &&
+        console.log(
+          "size" +
+            size["size"] +
+            state["inventory"].find((e) => e.size === size["size"])["quantity"]
+        )} */}
+      {size !== "" && (
+        <Box mx={{ minWidth: 20 }}>
+          <FormControl sx={{ minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-label">Quantity</InputLabel>
+            {console.log("line133")}
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={quantity}
+              label="quantity"
+              onChange={handleQuantity}
+            >
+              {Object.values(state["inventory"]).find(
+                (e) => e.size === size["size"]
+              )["quantity"] > 10
+                ? [...Array(10)].map((el, index) => (
+                    <MenuItem value={index + 1}>{index + 1}</MenuItem>
+                  ))
+                : [
+                    ...Array(
+                      Object.values(state["inventory"]).find(
+                        (e) => e.size === size["size"]
+                      )["quantity"]
+                    ),
+                  ].map((el, index) => (
+                    <MenuItem value={index + 1}>{index + 1}</MenuItem>
+                  ))}
+            </Select>
+          </FormControl>
+        </Box>
+      )}
+
+      {console.log(size)}
+      {console.log(quantity)}
+
       <button onClick={orderItem} className="add_to_cart">
         Add to cart
       </button>

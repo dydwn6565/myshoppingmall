@@ -35,7 +35,10 @@ function Cart() {
       );
       orderState.map((item, index) =>
         setTotalDiscountPrice(
-          (prev) => prev + item["discounted_price"] * item["quantity"]
+          (prev) =>
+            prev +
+            (item["original_price"] - item["discounted_price"]) *
+              item["quantity"]
         )
       );
     }
@@ -82,18 +85,19 @@ function Cart() {
     const order = JSON.parse(localStorage.getItem("orderItem"));
     let newArray = order;
     let arrangedArray = [];
-
+    console.log("line 88 in Cart");
+    console.log(newArray);
     const removeDuplicate = () => {
       for (let i = 0; i < order.length; i++) {
         for (let j = 1 + i; j < order.length; j++) {
-          // console.log("i" + i);
-          // console.log("j" + j);
+          console.log("i" + i);
+          console.log("j" + j);
 
           if (
             newArray[i]["id"] === newArray[j]["id"] &&
-            newArray[i]["size"] === newArray[j]["size"]
+            newArray[i]["size"]["size"] === newArray[j]["size"]["size"]
           ) {
-            // console.log("line 24");
+            console.log("line 24");
 
             newArray[i]["quantity"] =
               newArray[i]["quantity"] + newArray[j]["quantity"];
