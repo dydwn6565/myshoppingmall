@@ -29,7 +29,7 @@ import ConfirmPage from "./components/ConfirmPage";
 function App() {
   const [user, setUser] = useState({});
   const [rank, setRank] = useState({});
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState("");
   const [selectedItem, setSelectedItem] = useState({});
   // const UserContext = createContext(null);
   const userInfo = useMemo(() => ({ user, setUser }), [user, setUser]);

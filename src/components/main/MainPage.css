@@ -35,6 +35,7 @@
   margin-left: 25px;
   margin-right: 5px;
   padding: 7px;
+  cursor: pointer;
 }
 
 .mainpage > form > label {
@@ -45,20 +46,18 @@
   margin-left: 105px;
 }
 
-.card  {
+.card {
   /* flex-direction: row; */
-  
-  width:1200px ;
+
+  width: 1200px;
   display: flex;
-  
+
   flex-direction: row;
   flex-wrap: wrap;
   /* justify-content: center; */
   align-items: center;
-  
+
   /* flex-wrap: 'wrap'; */
-  
-  
 }
 /* 
 .card_break{

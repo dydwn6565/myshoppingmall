@@ -29,7 +29,6 @@ function RecentlyChecked() {
             <h4>{item["discounted_price"]}</h4>
           </>
         ))}
-      ;
     </div>
   );
 }
