@@ -60,19 +60,23 @@ function Cart() {
 
   const deleteItemList = () => {
     let newItemList = [];
+    let newCheckBox = [];
     let arrangedArray = [];
     orderState.map((item, index) => {
       if (checkBox[index] === false) {
         newItemList[index] = item;
+        newCheckBox[index] = checkBox[index];
       }
     });
     newItemList
       .filter((item, index) => item[index] !== null)
       .map((items, index) => (arrangedArray[index] = items));
     console.log(arrangedArray);
+
     // (item !== undefined).map((item, index) => (newItemList[index] = item))
     // );
     setOrderState(arrangedArray);
+    setCheckBox(newCheckBox);
     // localStorage.setItem("orderItem") =JSON.stringfy(orderState);
   };
   useEffect(() => {
@@ -117,7 +121,7 @@ function Cart() {
     setOrderState(arrangedArray);
 
     // console.log(arrangedArray);
-  }, [checkBox]);
+  }, []);
   // const label = { inputProps: { "aria-label": "Checkbox demo" } };
   return (
     <div className="cart">
