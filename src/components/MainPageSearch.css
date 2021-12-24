@@ -3,7 +3,7 @@
   color: white;
   padding: 10px;
   position: relative;
-  width: 980px;
+  width: 1580px;
 }
 
 .mainpagesearch > [type="text"] {
@@ -12,8 +12,7 @@
   height: 20px;
 }
 
-.mainpagesearch > [type="text"]:hover{
-
+.mainpagesearch > [type="text"]:hover {
 }
 
 .mainpagesearch > span {
@@ -27,22 +26,21 @@
   margin-left: 5px;
 }
 
-.slideshow {
+.rankingslideshow {
   margin: 0 auto;
   overflow: hidden;
   max-width: 300px;
   display: inline-flex;
 }
 
-.slideshowSlider {
+.rankingslideshowSlider {
   white-space: nowrap;
 
   margin-left: 50px;
 }
-.slide {
+.rankingslide {
   display: inline-block;
   height: 50px;
   width: 100%;
   border-radius: 40px;
 }
-

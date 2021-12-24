@@ -11,7 +11,7 @@ function MainPageSearch() {
   const [index, setIndex] = useState(0);
   const [searchedItem, setSearchedItem] = useState("");
   const { rank, setRank } = useContext(RankContext);
-  const [extendbar,setExtendbar] = useState(false);
+  const [extendbar, setExtendbar] = useState(false);
   //   const [state, dispatch] = useReducer(rankingReducer, rankingInitialValues);
 
   //   const dispatch = useDispatch();
@@ -57,44 +57,42 @@ function MainPageSearch() {
     }
   };
 
-  const extendSearchBar =() =>{
+  const extendSearchBar = () => {
     setExtendbar(true);
-  }
+  };
 
-  const removeExtendSearchBar = () =>{
+  const removeExtendSearchBar = () => {
     setExtendbar(false);
-  }
+  };
   return (
     <>
-    <div className="mainpagesearch">
-      <span>YongJu Store</span>
+      <div className="mainpagesearch">
+        <span>YongJu Store</span>
 
-      <input
-        type="text"
-        placeholde="search"
-        onFocus={extendSearchBar}
-        onBlur={removeExtendSearchBar}
-        onChange={(e) => setSearchedItem(e.target.value)}
-      />
-      <PageviewSharpIcon className="searchIcon" onClick={search} />
+        <input
+          type="text"
+          placeholde="search"
+          onFocus={extendSearchBar}
+          onBlur={removeExtendSearchBar}
+          onChange={(e) => setSearchedItem(e.target.value)}
+        />
+        <PageviewSharpIcon className="searchIcon" onClick={search} />
 
-      <div className="slideshow">
-        {ranking !== null ? (
-          <>
-            <div className="slideshowSlider">
-              <span>{index + 1}</span>{" "}
-              <div className="slide">{ranking[index]}</div>
-              {/* {index === ranking.length - 1 && setIndex(0)} */};
-            </div>
-          </>
-          
-        ) : (
-          alert("loading")
-        )}
+        <div className="rankingslideshow">
+          {ranking !== null ? (
+            <>
+              <div className="rankingslideshowSlider">
+                <span>{index + 1}</span>{" "}
+                <div className="rankingslide">{ranking[index]}</div>
+                {/* {index === ranking.length - 1 && setIndex(0)} */};
+              </div>
+            </>
+          ) : (
+            alert("loading")
+          )}
+        </div>
       </div>
-      
-    </div>
-{extendbar && <ExtendedSearchBar />}
+      {extendbar && <ExtendedSearchBar />}
     </>
   );
 }

@@ -12,6 +12,7 @@ import {
   SelectedItemContext,
   UserContext,
 } from "../Context";
+import FirstSlideShow from "./FirstSlideShow";
 
 function Home() {
   const { user, setUser } = useContext(UserContext);
@@ -32,9 +33,10 @@ function Home() {
   return (
     <div>
       {/* {console.log(item)} */}
+      <FirstSlideShow />
       <HeadAd />
       <MainPageSearch />
-      
+
       <Header />
       <MainPageHeader />
       <MainPage />
