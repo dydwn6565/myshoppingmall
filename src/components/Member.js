@@ -31,7 +31,7 @@ function Member() {
 
                 userId: result.data().userInfo.userId,
                 coupon: result.data().userInfo.coupon,
-                order: result.data().userInfo.order,
+
                 userLevel: result.data().userInfo.userLevel,
                 signUpDate: result.data().userInfo.signupDate,
                 reward: result.data().userInfo.reward,

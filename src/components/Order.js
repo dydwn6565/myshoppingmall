@@ -11,7 +11,6 @@ import {
   updateDoc,
   serverTimestamp,
 } from "@firebase/firestore";
-import { v4 as uuid } from "uuid";
 
 function Order() {
   const navigate = useNavigate();
@@ -22,25 +21,6 @@ function Order() {
   const [cellphoneNumber, setCellphoneNumber] = useState(0);
   const [address, setAddress] = useState("");
   const [memo, setMemo] = useState("");
-  const uniqueId = uuid();
-
-  useEffect(() => {
-    // getDoc(doc(db, "users", userLogin["uid"])).then((result) => {
-    //   console.log(result.data().userInfo);
-    //   setUser({
-    //     userInfo: {
-    //       email: result.data().userInfo.email,
-    //       userId: result.data().userInfo.userId,
-    //       coupon: result.data().userInfo.coupon,
-    //       order: result.data().userInfo.order,
-    //       userLevel: result.data().userInfo.userLevel,
-    //       signUpDate: result.data().userInfo.signupDate,
-    //       reward: result.data().userInfo.reward,
-    //       point: result.data().userInfo.point,
-    //     },
-    //   });
-    // });
-  }, []);
 
   const payment = async () => {
     // localStorage.removeItem("orderItem")
