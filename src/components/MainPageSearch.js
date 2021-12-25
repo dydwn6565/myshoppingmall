@@ -5,7 +5,8 @@ import { rankingInitialValues, rankingReducer } from "../Redux";
 import { RankContext } from "../Context";
 import ExtendedSearchBar from "./ExtendedSearchBar";
 import { useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
+import Loading from "../components/Loading";
+
 const delay = 4000;
 function MainPageSearch() {
   const [ranking, setRanking] = useState(null);
@@ -93,7 +94,8 @@ function MainPageSearch() {
               </div>
             </>
           ) : (
-            alert("loading")
+            // alert("loading")
+            <Loading />
           )}
         </div>
       </div>

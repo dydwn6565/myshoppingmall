@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { ItemContext, SelectedItemContext } from "../../Context";
 import ClothesCard from "./ClothesCard";
+import Loading from "../Loading";
 import "./MainPage.css";
 function MainPage() {
   const handlesubmit = () => {};
@@ -31,24 +32,27 @@ function MainPage() {
         <div className="medium_clfc_contents">
           {/* {console.log(selectedItem["target"] === undefined)}
           {console.log(selectedItem)} */}
-          {selectedItem["target"] === undefined
-            ? alert("loading")
-            : selectedItem["itemSmallTitle"].map((item) => (
-                <>
-                  {console.log(selectedItem["target"])}
-                  <p
-                    onClick={() =>
-                      setSelectedItem({
-                        itemBigTitle: "Outer",
-                        itemSmallTitle: ["hoody", "cardigan"],
-                        target: item,
-                      })
-                    }
-                  >
-                    {item}
-                  </p>
-                </>
-              ))}
+          {selectedItem["target"] === undefined ? (
+            <Loading />
+          ) : (
+            // alert("loading")
+            selectedItem["itemSmallTitle"].map((item) => (
+              <>
+                {console.log(selectedItem["target"])}
+                <p
+                  onClick={() =>
+                    setSelectedItem({
+                      itemBigTitle: "Outer",
+                      itemSmallTitle: ["hoody", "cardigan"],
+                      target: item,
+                    })
+                  }
+                >
+                  {item}
+                </p>
+              </>
+            ))
+          )}
         </div>
       </div>
       <hr />
@@ -65,9 +69,12 @@ function MainPage() {
         <div className="card">
           {selectedItem["target"] !== undefined &&
           item !== "" &&
-          item !== undefined
-            ? item.map((clothe, index) => <ClothesCard clothe={clothe} />)
-            : alert("loading")}
+          item !== undefined ? (
+            item.map((clothe, index) => <ClothesCard clothe={clothe} />)
+          ) : (
+            // alert("loading")
+            <Loading />
+          )}
           {/* <ClothesCard />
         <ClothesCard /> */}
         </div>
