@@ -14,29 +14,29 @@ import { getDoc, doc } from "firebase/firestore";
 function MyPageHeader() {
   const { user, setUser } = useContext(UserContext);
   const [userLogin, loading] = useAuthState(auth);
-  // useEffect(() => {
-  const getuserData = () => {
-    getDoc(doc(db, "users", userLogin["uid"]))
-      .then((result) => {
-        // console.log(result.data().userInfo);
-        setUser({
-          userInfo: {
-            email: result.data().userInfo.email,
+  useEffect(() => {
+    const getuserData = () => {
+      getDoc(doc(db, "users", userLogin["uid"]))
+        .then((result) => {
+          // console.log(result.data().userInfo);
+          setUser({
+            userInfo: {
+              email: result.data().userInfo.email,
 
-            userId: result.data().userInfo.userId,
-            coupon: result.data().userInfo.coupon,
+              userId: result.data().userInfo.userId,
+              coupon: result.data().userInfo.coupon,
 
-            userLevel: result.data().userInfo.userLevel,
-            signUpDate: result.data().userInfo.signupDate,
-            reward: result.data().userInfo.reward,
-            point: result.data().userInfo.point,
-          },
-        });
-      })
-      .catch((error) => alert(error));
-  };
-  //   getuserData();
-  // }, []);
+              userLevel: result.data().userInfo.userLevel,
+              signUpDate: result.data().userInfo.signupDate,
+              reward: result.data().userInfo.reward,
+              point: result.data().userInfo.point,
+            },
+          });
+        })
+        .catch((error) => alert(error));
+    };
+    getuserData();
+  }, []);
   return (
     <div className="mypageheader">
       {/* {console.log(user)} */}

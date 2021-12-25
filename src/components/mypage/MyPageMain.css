@@ -1,5 +1,5 @@
 .mypagemain {
-  width: 600px;
+  width: 1300px;
   height: 700px;
   /* border: 1px solid black; */
   position: absolute;
@@ -14,9 +14,26 @@
 
 .order_info {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .order_info > p {
   margin-left: 40px;
   margin-top: 5px;
+}
+
+.order_info_details {
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px;
+}
+
+.order_info_details_name {
+  width: 250px;
+  margin-left: 20px;
+  margin-right: -170px;
+}
+
+.order_info_details_number {
+  margin-left: -70px;
 }
