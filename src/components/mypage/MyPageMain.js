@@ -7,23 +7,30 @@ import "./MyPageMain.css";
 function MyPageMain() {
   const [userLogin, loading] = useAuthState(auth);
   const [orderState, setOrderState] = useState([]);
+
   useEffect(() => {
-    const orders = [];
     const getOrders = () => {
-      getDocs(collection(db, "users", userLogin["uid"], "order"))
-        .then((result) => result.forEach((order) => orders.push(order.data())))
-        .catch((error) => alert(error));
+      const orders = [];
+      if (userLogin !== null) {
+        getDocs(collection(db, "users", userLogin["uid"], "order"))
+          .then((result) =>
+            result.forEach((order) => orders.push(order.data()))
+          )
+          .then(() => setOrderState(orders))
+          .catch((error) => alert(error));
+        // console.log("inside useEffect" + orders);
+        // setOrderState(orders);
+      }
     };
     getOrders();
-    // console.log(orders);
 
-    return () => setOrderState(orders);
-  }, []);
+    // return () => setOrderState(orders);
+  }, [userLogin]);
 
   return (
     <div className="mypagemain">
-      {console.log("MypageMain line25:" + orderState)}
-      {console.log("MypageMain line25:" + orderState)}
+      {/* {console.log("MypageMain line25:" + orderState)}
+      {console.log("MypageMain line25:" + orderState)} */}
       <hr />
 
       <div className="order_info">
@@ -33,8 +40,11 @@ function MyPageMain() {
         <p>Order quntity</p>
         <p>Order statue</p>
       </div>
-      {orderState[0] !== undefined
-        ? orderState.map((order) =>
+      {console.log("line42" + orderState)}
+      {
+        orderState[0] !== undefined &&
+          // convert &&
+          orderState.map((order) =>
             order["order"]["item"]["orderState"].map((item) => (
               <>
                 <div className="order_info_details">
@@ -55,7 +65,8 @@ function MyPageMain() {
               </>
             ))
           )
-        : alert("loading")}
+        // : alert("loading")
+      }
       <hr />
     </div>
   );

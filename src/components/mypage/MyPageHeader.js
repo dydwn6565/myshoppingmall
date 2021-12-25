@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./MyPageHeader.css";
 import Avatar from "@mui/material/Avatar";
 import { Container, Row, Col } from "react-grid-system";
@@ -14,34 +14,42 @@ import { getDoc, doc } from "firebase/firestore";
 function MyPageHeader() {
   const { user, setUser } = useContext(UserContext);
   const [userLogin, loading] = useAuthState(auth);
+  const [converter, setConverter] = useState(true);
   useEffect(() => {
-    const getuserData = () => {
-      getDoc(doc(db, "users", userLogin["uid"]))
-        .then((result) => {
-          // console.log(result.data().userInfo);
-          setUser({
-            userInfo: {
-              email: result.data().userInfo.email,
+    // const getuserData = () => {
+    // console.log(userLogin);
+    // console.log(!loading);
+    const getUserData = () => {
+      if (userLogin !== null) {
+        getDoc(doc(db, "users", userLogin["uid"]))
+          .then((result) => {
+            // console.log(result.data().userInfo);
+            setUser({
+              userInfo: {
+                email: result.data().userInfo.email,
 
-              userId: result.data().userInfo.userId,
-              coupon: result.data().userInfo.coupon,
+                userId: result.data().userInfo.userId,
+                coupon: result.data().userInfo.coupon,
 
-              userLevel: result.data().userInfo.userLevel,
-              signUpDate: result.data().userInfo.signupDate,
-              reward: result.data().userInfo.reward,
-              point: result.data().userInfo.point,
-            },
-          });
-        })
-        .catch((error) => alert(error));
+                userLevel: result.data().userInfo.userLevel,
+                signUpDate: result.data().userInfo.signupDate,
+                reward: result.data().userInfo.reward,
+                point: result.data().userInfo.point,
+              },
+            });
+            setConverter(false);
+          })
+          .catch((error) => alert(error));
+      }
     };
-    getuserData();
-  }, []);
+    // };
+    getUserData();
+  }, [userLogin]);
   return (
     <div className="mypageheader">
       {/* {console.log(user)} */}
       {/* {console.log(userLogin)} */}
-      {/* {userLogin !== null ? getuserData() : alert("loading")} */}
+      {/* {converter === true ? getUserData() : alert("loading")} */}
       {userLogin !== null && user["userInfo"] !== undefined ? (
         <>
           <h3>My page</h3>
