@@ -6,11 +6,12 @@ import MyPageSide from "./MyPageSide";
 import MainPageHeader from "../MainPageHeader";
 import "./MyPage.css";
 import MyPageMain from "./MyPageMain";
-
+import MainPageSearch from "../MainPageSearch";
 function MyPage() {
   return (
     <div className="mypage">
       <HeadAd />
+      <MainPageSearch />
       <Header />
       <MainPageHeader />
       <MyPageHeader />

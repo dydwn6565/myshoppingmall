@@ -5,6 +5,9 @@
   position: relative;
   width: 1580px;
 }
+.mainpagesearch > span {
+  cursor: pointer;
+}
 
 .mainpagesearch > [type="text"] {
   margin-left: 35px;

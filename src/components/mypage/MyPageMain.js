@@ -6,7 +6,7 @@ import "./MyPageMain.css";
 
 function MyPageMain() {
   const [userLogin, loading] = useAuthState(auth);
-  const [orderState, setOrderState] = useState("");
+  const [orderState, setOrderState] = useState([]);
   useEffect(() => {
     const orders = [];
     const getOrders = () => {
@@ -16,12 +16,13 @@ function MyPageMain() {
     };
     getOrders();
     // console.log(orders);
-    // setOrderState(orders);
+
     return () => setOrderState(orders);
-  }, [userLogin]);
+  }, []);
 
   return (
     <div className="mypagemain">
+      {console.log("MypageMain line25:" + orderState)}
       {console.log("MypageMain line25:" + orderState)}
       <hr />
 
@@ -32,28 +33,29 @@ function MyPageMain() {
         <p>Order quntity</p>
         <p>Order statue</p>
       </div>
-      {orderState[0] !== undefined &&
-        orderState.map((order) =>
-          order["order"]["item"]["orderState"].map((item) => (
-            <>
-              <div className="order_info_details">
-                <p className="order_info_details_name">{item["name"]}</p>
-                <p>
-                  {new Date(
-                    order["order"]["time"]["seconds"] * 1000
-                  ).toLocaleDateString()}
-                </p>
-                <p className="order_info_details_number">
-                  {order["order"]["orderNumber"]}
-                </p>
-                <p>{item["quantity"]}</p>
-                <p>{order["order"]["orderState"]}</p>
-              </div>
-              {console.log(order["order"])}
-              {console.log(order["order"]["time"]["seconds"])}
-            </>
-          ))
-        )}
+      {orderState[0] !== undefined
+        ? orderState.map((order) =>
+            order["order"]["item"]["orderState"].map((item) => (
+              <>
+                <div className="order_info_details">
+                  <p className="order_info_details_name">{item["name"]}</p>
+                  <p>
+                    {new Date(
+                      order["order"]["time"]["seconds"] * 1000
+                    ).toLocaleDateString()}
+                  </p>
+                  <p className="order_info_details_number">
+                    {order["order"]["orderNumber"]}
+                  </p>
+                  <p>{item["quantity"]}</p>
+                  <p>{order["order"]["orderState"]}</p>
+                </div>
+                {console.log(order["order"])}
+                {console.log(order["order"]["time"]["seconds"])}
+              </>
+            ))
+          )
+        : alert("loading")}
       <hr />
     </div>
   );

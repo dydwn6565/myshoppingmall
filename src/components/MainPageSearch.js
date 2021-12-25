@@ -4,6 +4,7 @@ import PageviewSharpIcon from "@mui/icons-material/PageviewSharp";
 import { rankingInitialValues, rankingReducer } from "../Redux";
 import { RankContext } from "../Context";
 import ExtendedSearchBar from "./ExtendedSearchBar";
+import { useNavigate } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 const delay = 4000;
 function MainPageSearch() {
@@ -12,6 +13,7 @@ function MainPageSearch() {
   const [searchedItem, setSearchedItem] = useState("");
   const { rank, setRank } = useContext(RankContext);
   const [extendbar, setExtendbar] = useState(false);
+  const navigate = useNavigate();
   //   const [state, dispatch] = useReducer(rankingReducer, rankingInitialValues);
 
   //   const dispatch = useDispatch();
@@ -64,10 +66,13 @@ function MainPageSearch() {
   const removeExtendSearchBar = () => {
     setExtendbar(false);
   };
+  const moveToMain = () => {
+    navigate("/");
+  };
   return (
     <>
       <div className="mainpagesearch">
-        <span>YongJu Store</span>
+        <span onClick={moveToMain}>YongJu Store</span>
 
         <input
           type="text"
