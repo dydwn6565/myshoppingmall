@@ -5,12 +5,12 @@
   height: 30px;
   display: block;
   margin-top: 5%;
-  margin-left: 20%;
+  margin-left: 70px;
 }
 
 .find_pw > [type="radio"] {
-  margin-right: 2%;
-  margin-left: 2%;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .verification {

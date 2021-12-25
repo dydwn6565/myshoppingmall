@@ -5,12 +5,12 @@
   height: 30px;
   display: block;
   margin-top: 5%;
-  margin-left: 20%;
+  margin-left: 90px;
 }
 
 .find_id > [type="radio"] {
-  margin-right: 2%;
-  margin-left: 2%;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .verification {
@@ -32,4 +32,5 @@
 
   border: 1px solid black !important;
   margin-top: 15%;
+  margin-left: 10px;
 }

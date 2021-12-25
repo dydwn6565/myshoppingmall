@@ -71,17 +71,6 @@ function FirstSlideShow() {
               </div>
             ))}
           </div>
-          <div className="slideshowdots">
-            {images.map((_, idx) => (
-              <div
-                key={idx}
-                className={`slideshowdot${index === idx ? "active" : ""}`}
-                onClick={() => {
-                  setIndex(idx);
-                }}
-              ></div>
-            ))}
-          </div>
         </div>
       </div>
     </>

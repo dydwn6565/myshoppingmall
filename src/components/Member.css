@@ -28,10 +28,10 @@
   width: 50%;
 }
 .find_id {
-  margin-right: 5%;
+  margin-right: 10px;
 }
 .find_pw {
-  margin-left: 5%;
+  margin-left: 10px;
 }
 
 .login_with_google {
