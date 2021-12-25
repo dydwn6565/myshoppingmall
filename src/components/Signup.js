@@ -113,7 +113,6 @@ const Signin = () => {
               point: 23000,
               userId: id,
               coupon: { 1: "signup coupon" },
-              order: {},
             },
           });
           setDoc(doc(db, "users", userAuth.user.uid), {
@@ -125,7 +124,6 @@ const Signin = () => {
               point: 23000,
               userId: id,
               coupon: { 1: "signup coupon" },
-              order: {},
             },
           });
         });

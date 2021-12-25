@@ -3,7 +3,15 @@ import "./Order.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "./firebase";
-import { doc, getDoc } from "@firebase/firestore";
+import {
+  doc,
+  getDoc,
+  addDoc,
+  collection,
+  updateDoc,
+  serverTimestamp,
+} from "@firebase/firestore";
+import { v4 as uuid } from "uuid";
 
 function Order() {
   const navigate = useNavigate();
@@ -14,6 +22,7 @@ function Order() {
   const [cellphoneNumber, setCellphoneNumber] = useState(0);
   const [address, setAddress] = useState("");
   const [memo, setMemo] = useState("");
+  const uniqueId = uuid();
 
   useEffect(() => {
     // getDoc(doc(db, "users", userLogin["uid"])).then((result) => {
@@ -21,7 +30,6 @@ function Order() {
     //   setUser({
     //     userInfo: {
     //       email: result.data().userInfo.email,
-
     //       userId: result.data().userInfo.userId,
     //       coupon: result.data().userInfo.coupon,
     //       order: result.data().userInfo.order,
@@ -33,10 +41,24 @@ function Order() {
     //   });
     // });
   }, []);
- 
-  const payment = () =>{
-    navigate("/confirm")
-  }
+
+  const payment = async () => {
+    // localStorage.removeItem("orderItem")
+    const order = {
+      recipient: recipient,
+      cellphoneNumber: cellphoneNumber,
+      address: address,
+      memo: memo,
+      item: state,
+      orderState: "reday",
+      time: serverTimestamp(),
+    };
+    addDoc(collection(db, "users", userLogin["uid"], "order"), {
+      order: order,
+    })
+      .then(() => navigate("/confirm"))
+      .catch((error) => alert(error));
+  };
   const order_address_form = () => {};
 
   return (
@@ -81,21 +103,39 @@ function Order() {
               {console.log("line77" + state["orderState"][1]["id"])}
             </form>
 
-            
             <div className="item_list">
               <h1>{console.log(state)}</h1>
-              { (state["orderState"]).map((item,index) =>(
-                <div className="order_item_description" >
-                <img src={`${item["image"]}`} alt="" />
-                <p ><span>Brand:  </span>{item["brand"]}</p>
-                <p><span >Name:   </span>{item["name"]}</p>
-                <p><span >Size:   </span>{item["size"]}</p>
-                <p><span >Quantity:   </span>{item["quantity"]}</p>
-                <p><span >Price:   </span>{(item["discounted_price"])*item["quantity"]}</p>
+              {state["orderState"].map((item, index) => (
+                <div className="order_item_description">
+                  <img src={`${item["image"]}`} alt="" />
+                  <div>
+                    <p>
+                      <span>Brand: </span>
+                      {item["brand"]}
+                    </p>
+                    <p>
+                      <span>Name: </span>
+                      {item["name"]}
+                    </p>
+                    <p>
+                      <span>Size: </span>
+                      {item["size"]["size"]}
+                    </p>
+                    <p>
+                      <span>Quantity: </span>
+                      {item["quantity"]}
+                    </p>
+                    <p>
+                      <span>Price: </span>
+                      {item["discounted_price"] * item["quantity"]}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
-            <div className="order_page_total_price">total price: {state["totalPrice"]}</div>
+            <div className="order_page_total_price">
+              Total price: {state["totalPrice"]}
+            </div>
             <button onClick={payment}>Payment</button>
           </div>
         </>
