@@ -10,37 +10,42 @@ function Login() {
   // const [state, dispatch] = useReducer();
 
   return (
-    <div className="login">
-      <h3>Login</h3>
+    <div className="login_background">
+      <div className="login">
+        <h3>Login</h3>
 
-      {member ? (
-        <>
-          {" "}
-          <Button
-            onClick={(e) => setMember(true)}
-            className="member_button white"
-          >
-            Member
-          </Button>
-          <Button onClick={(e) => setMember(false)} className="nomember_button">
-            Not Member
-          </Button>
-          <Member />
-        </>
-      ) : (
-        <>
-          <Button onClick={(e) => setMember(true)} className="member_button">
-            Member
-          </Button>
-          <Button
-            onClick={(e) => setMember(false)}
-            className="nomember_button white"
-          >
-            Not Member
-          </Button>
-          <NonMember />
-        </>
-      )}
+        {member ? (
+          <>
+            {" "}
+            <Button
+              onClick={(e) => setMember(true)}
+              className="member_button white"
+            >
+              Member
+            </Button>
+            <Button
+              onClick={(e) => setMember(false)}
+              className="nomember_button"
+            >
+              Not Member
+            </Button>
+            <Member />
+          </>
+        ) : (
+          <>
+            <Button onClick={(e) => setMember(true)} className="member_button">
+              Member
+            </Button>
+            <Button
+              onClick={(e) => setMember(false)}
+              className="nomember_button white"
+            >
+              Not Member
+            </Button>
+            <NonMember />
+          </>
+        )}
+      </div>
     </div>
   );
 }

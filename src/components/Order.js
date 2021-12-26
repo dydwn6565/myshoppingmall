@@ -46,7 +46,7 @@ function Order() {
     // {
     //   console.log(uniqueId.slice(0, 8));
     // }
-    // localStorage.removeItem("orderItem")
+    localStorage.removeItem("orderItem");
     const order = {
       recipient: recipient,
       cellphoneNumber: cellphoneNumber,
