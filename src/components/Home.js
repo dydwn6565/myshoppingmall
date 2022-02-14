@@ -33,7 +33,7 @@ function Home() {
   return (
     <div>
       {/* {console.log(item)} */}
-      <FirstSlideShow />
+      {/* <FirstSlideShow /> */}
       <HeadAd />
       <MainPageSearch />
 
