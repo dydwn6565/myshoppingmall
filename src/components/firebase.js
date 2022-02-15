@@ -15,8 +15,8 @@ const firebaseConfig = {
   projectId: "myshoppingmall-743fd",
   storageBucket: "myshoppingmall-743fd.appspot.com",
   messagingSenderId: "937075886604",
-  appId: "1:937075886604:web:a803ff4880d8e9ff49fc29",
-  measurementId: "${config.measurementId}",
+  appId: "1:937075886604:web:bdaad1a10d2e60de49fc29",
+  measurementId: "G-S1QKEMXZZD",
 };
 
 // Initialize Firebase
