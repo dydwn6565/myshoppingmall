@@ -1,8 +1,7 @@
 .clothescard {
-  width: 180px;
-  height: 300px;
-  border: 1px solid black;
-  
+  width: 198.4px;
+  height: 350px;
+  border: 0.2px ridge black;
 }
 
 .clothescard > img {
@@ -13,6 +12,7 @@
 .card_script {
   margin-left: 10px;
   margin-top: 5px;
+  padding: 5px;
 }
 
 .card_script > p {
@@ -25,19 +25,27 @@
   font-size: 15px;
 }
 
-.card_script > span {
+.card_script_reviewer {
+  display: flex;
   color: darkorange;
+  margin-top: 10px;
+}
+.card_script_reviewer_number {
+  /* margin-top: 12px; */
+  font-size: 14px;
+  margin-left: 4px;
+  margin-top: 2px;
+}
+
+.like_icon_container {
+  display: flex;
+
+  color: red;
   margin-top: 5px;
 }
 
 .like_icon_container > span {
+  margin-left: 5px;
+  margin-top: 1px;
   font-size: 13px;
-  color: red;
-}
-
-.like_icon {
-  font-size: 10px;
-  color: red;
-  margin-right: 3px;
-  margin-top: -9px;
 }

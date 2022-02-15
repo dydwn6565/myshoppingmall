@@ -10,7 +10,6 @@ function ClothesCard({ clothe }) {
   const linkToDetailPage = () => {
     if (sessionStorage.getItem("resultlyCheckedItem") === null) {
       sessionStorage.setItem("recentlyCheckedItem", JSON.stringify([clothe]));
-      console.log("hit line 12");
     } else {
       const sessionData = JSON.parse(
         sessionStorage.getItem("recentlyCheckedItem")
@@ -31,17 +30,21 @@ function ClothesCard({ clothe }) {
         <p>{clothe["brand"]}</p>
         <p>{clothe["name"]}</p>
 
-        <Rating
-          className="rating_icon"
-          name="read-only"
-          value={value}
-          readOnly
-        />
-        <span>{clothe["reviewer"]}</span>
+        <div className="card_script_reviewer">
+          <Rating
+            className="rating_icon"
+            name="read-only"
+            value={value}
+            readOnly
+          />
+          <span className="card_script_reviewer_number">
+            {clothe["reviewer"]}
+          </span>
+        </div>
+
         <div className="like_icon_container">
           <FavoriteOutlinedIcon className="like_icon" />
           <span>{clothe["like"]}</span>
-          {console.log(clothe)}
         </div>
       </div>
     </div>
