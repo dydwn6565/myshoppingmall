@@ -8,7 +8,7 @@ import Aora from "./components/terms/Aora";
 import Aous from "./components/terms/Aous";
 import Aypi from "./components/terms/Aypi";
 import Tog from "./components/terms/Tog";
-import FindIdPw from "./components/FindIdPw";
+import ResetPw from "./components/ResetPw";
 import MyPage from "./components/mypage/MyPage";
 import RecentlyCheckedPage from "./components/mypage/RecentlyCheckedPage";
 import Cart from "./components/Cart";
@@ -54,7 +54,7 @@ function App() {
                   <Route path="/signin/aous" element={<Aous />} />
                   <Route path="/signin/aypi" element={<Aypi />} />
                   <Route path="/signin/tog" element={<Tog />} />
-                  <Route path="/findIdPw" element={<FindIdPw />} />
+                  <Route path="/resetPw" element={<ResetPw />} />
                   <Route path="/myPage" element={<MyPage />} />
                   <Route path="/order" element={<OrderPage />} />
                   <Route path="/confirm" element={<ConfirmPage />} />

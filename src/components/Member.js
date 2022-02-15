@@ -66,8 +66,6 @@ function Member() {
       const res = await signInWithPopup(auth, googleProvider);
       const user = res.user;
 
-      // const q = query(collection(db, "users"), where("uid", "==", user.uid));
-
       const docs = await getDoc(doc(db, "users", user.uid));
 
       const userInfo = docs.data().userInfo;
@@ -122,11 +120,11 @@ function Member() {
     navigate("/signup");
   };
 
-  const findId = () => {
-    navigate("/findIdPw");
-  };
+  // const findId = () => {
+  //   navigate("/findIdPw");
+  // };
 
-  const findPw = () => {
+  const resetPw = () => {
     navigate("/findIdPw");
   };
   return (
@@ -149,14 +147,9 @@ function Member() {
             </button>
           </form>
           <div className="login_extra_features">
-            <span>autoLogin</span>
             <div className="find_id_and_pw">
-              <span onClick={findId} className="find_id">
-                Find Id
-              </span>
-              <span>|</span>
-              <span onClick={findPw} className="find_pw">
-                Find password
+              <span onClick={resetPw} className="find_pw">
+                Reset password
               </span>
             </div>
           </div>
