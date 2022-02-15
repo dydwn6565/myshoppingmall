@@ -8,7 +8,7 @@ function Side() {
   const { item, setItem } = useContext(ItemContext);
   return (
     <div className="side">
-      {console.log(item)}
+      {/* {console.log(item)} */}
       <SidebarSearch
         itemBigTitle={"outer"}
         itemSmallTitle={["hoody", "cardigan"]}

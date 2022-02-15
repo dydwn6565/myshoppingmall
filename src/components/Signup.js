@@ -80,8 +80,6 @@ const Signin = () => {
     },
     validate,
     onSubmit: (values) => {
-      // alert(JSON.stringify(values, null, 2));
-
       register(values);
       navigate("/");
     },
@@ -89,44 +87,43 @@ const Signin = () => {
 
   // sign in
 
-  // const [state, dispatch] = useReducer(userReducer, initialValues);
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const register = ({ email, password, id }) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userAuth) => {
-        updateProfile(auth.currentUser, {
-          userId: id,
-          userLevel: "",
-          reward: "",
-          point: "",
-          coupon: { 1: "signup coupon" },
-          order: {},
-        }).then(() => {
-          setUser({
-            userInfo: {
-              email: userAuth.user.email,
-              userLevel: "LV.4 Bronze",
-              signUpDate: serverTimestamp(),
-              reward: 50000,
-              point: 23000,
-              userId: id,
-              coupon: { 1: "signup coupon" },
-            },
-          });
-          setDoc(doc(db, "users", userAuth.user.uid), {
-            userInfo: {
-              email: userAuth.user.email,
-              userLevel: "LV.4 Bronze",
-              signUpDate: serverTimestamp(),
-              reward: 50000,
-              point: 23000,
-              userId: id,
-              coupon: { 1: "signup coupon" },
-            },
-          });
+        // updateProfile(auth.currentUser, {
+        //   userId: id,
+        //   userLevel: "",
+        //   reward: "",
+        //   point: "",
+        //   coupon: { 1: "signup coupon" },
+        //   order: {},
+        // }).then(() => {
+        setUser({
+          userInfo: {
+            email: userAuth.user.email,
+            userLevel: "LV.4 Bronze",
+            signUpDate: serverTimestamp(),
+            reward: 50000,
+            point: 23000,
+            userId: id,
+            coupon: { 1: "signup coupon" },
+          },
         });
+        setDoc(doc(db, "users", userAuth.user.uid), {
+          userInfo: {
+            email: userAuth.user.email,
+            userLevel: "LV.4 Bronze",
+            signUpDate: serverTimestamp(),
+            reward: 50000,
+            point: 23000,
+            userId: id,
+            coupon: { 1: "signup coupon" },
+          },
+        });
+        // });
       })
       .catch((error) => alert(error));
   };

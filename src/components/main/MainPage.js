@@ -20,8 +20,8 @@ function MainPage() {
   }, []);
   return (
     <div className="mainpage">
-      {console.log(selectedItem)}
-      {console.log("item" + JSON.stringify(item))}
+      {/* {console.log(selectedItem)}
+      {console.log("item" + JSON.stringify(item))} */}
 
       <h1>{selectedItem["itemBigTitle"]}</h1>
       <hr />
@@ -38,7 +38,7 @@ function MainPage() {
             // alert("loading")
             selectedItem["itemSmallTitle"].map((item) => (
               <>
-                {console.log(selectedItem["target"])}
+                {/* {console.log(selectedItem["target"])} */}
                 <p
                   onClick={() =>
                     setSelectedItem({

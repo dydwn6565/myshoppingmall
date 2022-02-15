@@ -44,7 +44,7 @@ function Home() {
 
   return (
     <div>
-      {console.log(selectedItem)}
+      {/* {console.log(selectedItem)} */}
       {/* <FirstSlideShow /> */}
       <HeadAd />
       <MainPageSearch />
