@@ -11,7 +11,7 @@ function MainPage() {
   useEffect(() => {
     const initialSelectedItem = () => {
       setSelectedItem({
-        itemBigTitle: "Outer",
+        itemBigTitle: "outer",
         itemSmallTitle: ["hoody", "cardigan"],
         target: "hoody",
       });
@@ -42,7 +42,7 @@ function MainPage() {
                 <p
                   onClick={() =>
                     setSelectedItem({
-                      itemBigTitle: "Outer",
+                      itemBigTitle: "outer",
                       itemSmallTitle: ["hoody", "cardigan"],
                       target: item,
                     })
@@ -64,15 +64,12 @@ function MainPage() {
       </form>
       <hr />
       <div className="card_collection">
-        {/* {console.log(selectedItem["target"] !== undefined)}
-        {console.log(selectedItem !== undefined && item !== undefined)} */}
         <div className="card">
           {selectedItem["target"] !== undefined &&
           item !== "" &&
           item !== undefined ? (
             item.map((clothe, index) => <ClothesCard clothe={clothe} />)
           ) : (
-            // alert("loading")
             <Loading />
           )}
           {/* <ClothesCard />

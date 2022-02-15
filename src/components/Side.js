@@ -10,11 +10,11 @@ function Side() {
     <div className="side">
       {console.log(item)}
       <SidebarSearch
-        itemBigTitle={"Outer"}
+        itemBigTitle={"outer"}
         itemSmallTitle={["hoody", "cardigan"]}
       />
       <SidebarSearch
-        itemBigTitle={"Pants"}
+        itemBigTitle={"pants"}
         itemSmallTitle={["denim pants", "slacks"]}
       />
 
