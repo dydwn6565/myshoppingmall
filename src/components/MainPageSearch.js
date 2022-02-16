@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useReducer, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./MainPageSearch.css";
 import PageviewSharpIcon from "@mui/icons-material/PageviewSharp";
-import { rankingInitialValues, rankingReducer } from "../Redux";
+
 import { RankContext } from "../Context";
 import ExtendedSearchBar from "./ExtendedSearchBar";
 import { useNavigate } from "react-router-dom";

@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useMemo, createContext } from "react";
+import { useState, useMemo } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -11,7 +11,7 @@ import Tog from "./components/terms/Tog";
 import ResetPw from "./components/ResetPw";
 import MyPage from "./components/mypage/MyPage";
 import RecentlyCheckedPage from "./components/mypage/RecentlyCheckedPage";
-import Cart from "./components/Cart";
+// import Cart from "./components/Cart";
 import TractMyItem from "./components/TractMyItem";
 import Contact from "./components/Contact";
 import CartPage from "./components/CartPage";
@@ -54,7 +54,7 @@ function App() {
                   <Route path="/signin/aous" element={<Aous />} />
                   <Route path="/signin/aypi" element={<Aypi />} />
                   <Route path="/signin/tog" element={<Tog />} />
-                  <Route path="/resetPw" element={<ResetPw />} />
+                  <Route path="/login/resetPw" element={<ResetPw />} />
                   <Route path="/myPage" element={<MyPage />} />
                   <Route path="/order" element={<OrderPage />} />
                   <Route path="/confirm" element={<ConfirmPage />} />

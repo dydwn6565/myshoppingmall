@@ -13,13 +13,26 @@
   background-color: gray;
 }
 
-.find_id_pw > Button {
-  border: 3px solid black;
-  border-radius: 0;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  color: black;
-  font-size: 20px;
-  margin-left: 0.5%;
+.find_id_pw > input {
+  margin-top: 50px;
+  width: 300px;
+  padding: 5px;
+}
+
+.find_id_pw > div > Button {
+  margin-top: 50px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.reset_pw_alert_message {
+  margin-top: 15px;
+}
+.fade_in {
+  transition: opacity 1s ease;
+}
+
+.fade_out {
+  opacity: 0;
+  transition: opacity 1s ease;
 }

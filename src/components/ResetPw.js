@@ -1,43 +1,57 @@
 import Button from "@mui/material/Button";
-import React, { useState } from "react";
-// import FindId from "./find/FindId";
-// import FindPw from "./find/FindPw";
+import React, { useRef, useState } from "react";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import Alert from "./Alert";
+
 import "./ResetPw.css";
 
-function FindIdPw() {
-  const [findIdPw, setFindIdPw] = useState("Id");
+function ResetPw() {
+  const [userEmail, setUserEmail] = useState("");
+  const [alert, setAlert] = useState(false);
+  const [fadeProp, setFadeProp] = useState("fade_out");
+  const auth = getAuth();
+
+  const showAlert = () => {
+    setAlert(true);
+    setTimeout(() => {
+      setFadeProp("fade_out");
+    }, 3000);
+  };
+  const resetPw = () => {
+    sendPasswordResetEmail(auth, userEmail)
+      .then(() => {})
+      .catch((error) => {
+        setFadeProp("fade_in");
+
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        showAlert();
+      });
+  };
   return (
     <div className="find_id_pw">
-      <h2>FInd {findIdPw}</h2>
+      <h2>Reset Id </h2>
 
-      {/* <Button className="white" onClick={() => setFindIdPw("PW")}>
-        Find Pw
-      </Button>
-      <Button className="white" onClick={() => setFindIdPw("Id")}>
-        Find Id
-      </Button> */}
-      {/* {findIdPw === "Id" ? (
-        <>
-          <Button onClick={() => setFindIdPw("PW")}>Find Pw</Button>
-          <Button className="white" onClick={() => setFindIdPw("Id")}>
-            Find Id
-          </Button>
-          <FindId />
-        </>
-      ) : ( */}
-      <>
-        <Button className="white" onClick={() => setFindIdPw("PW")}>
-          {/* Find Pw */}
-        </Button>
-        <input type="email" placeholder="type email" />
-
-        <Button>Find Id</Button>
-        {/* <Button onClick={() => setFindIdPw("Id")}>Find PW</Button> */}
-        {/* <FindPw /> */}
-      </>
-      {/* )} */}
+      <input
+        type="email"
+        placeholder="type your email"
+        onChange={(e) => setUserEmail(e.target.value)}
+      />
+      <div>
+        <Button onClick={resetPw}>Reset Pw</Button>
+        {/* <h1>{userEmail}</h1> */}
+        <div className="reset_pw_alert_message">
+          {alert ? (
+            <div className={fadeProp}>
+              <Alert error="Please type different Email, can not find email" />
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
     </div>
   );
 }
 
-export default FindIdPw;
+export default ResetPw;

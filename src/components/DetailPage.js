@@ -28,7 +28,7 @@ function DetailPage(props) {
       const localData = JSON.parse(localStorage.getItem("orderItem"));
 
       console.log(localData);
-      console.log("hit line 18");
+
       state["size"] = size;
       state["quantity"] = quantity;
       // console.log(

@@ -1,28 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Member.css";
 import { useNavigate } from "react-router-dom";
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithGoogle,
   signInWithPopup,
-  updateProfile,
 } from "@firebase/auth";
 import { auth, db } from "./firebase";
 import { UserContext } from "../Context";
-import {
-  getDoc,
-  doc,
-  collection,
-  query,
-  where,
-  getDocs,
-  addDoc,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
+import { getDoc, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Loading from "../components/Loading";
+// import Loading from "../components/Loading";
 
 function Member() {
   const { user, setUser } = useContext(UserContext);
@@ -125,7 +113,7 @@ function Member() {
   // };
 
   const resetPw = () => {
-    navigate("/findIdPw");
+    navigate("/login/resetPw");
   };
   return (
     <>
