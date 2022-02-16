@@ -4,10 +4,10 @@ function RecentlyChecked() {
   const [checkedItem, setCheckedItem] = useState(null);
 
   useEffect(() => {
-    if (sessionStorage.getItem("recentlyCheckedItem") !== null) {
+    if (localStorage.getItem("recentlyCheckedItem") !== null) {
       const getCheckedLIst = () => {
         const checkedItemLIst = JSON.parse(
-          sessionStorage.getItem("recentlyCheckedItem")
+          localStorage.getItem("recentlyCheckedItem")
         );
         setCheckedItem(checkedItemLIst);
       };
@@ -18,17 +18,33 @@ function RecentlyChecked() {
     <div className="recentlychecked">
       <h2>Recently checked items</h2>
       <hr />
-      {console.log(checkedItem)}
-      {checkedItem !== null &&
-        checkedItem.map((item) => (
-          <>
-            <img src={item["image"]} />
-            <h2>{item["brand"]}</h2>
-            <h4>{item["name"]}</h4>
-            <h4>{item["original_price"]}</h4>
-            <h4>{item["discounted_price"]}</h4>
-          </>
-        ))}
+      <div className="recentlychecked_container">
+        {/* {console.log(checkedItem)} */}
+
+        {checkedItem !== null &&
+          checkedItem.map((item) => (
+            <>
+              <div>
+                <img src={item["image"]} />
+
+                <h3>{item["brand"]}</h3>
+                <h4>{item["name"]}</h4>
+                <h5>
+                  Original Price:{" "}
+                  <span className="original_price">
+                    <s>{item["original_price"]}</s>
+                  </span>
+                </h5>
+                <h5>
+                  Discounted Price:{" "}
+                  <span className="discounted_price">
+                    {item["discounted_price"]}
+                  </span>
+                </h5>
+              </div>
+            </>
+          ))}
+      </div>
     </div>
   );
 }

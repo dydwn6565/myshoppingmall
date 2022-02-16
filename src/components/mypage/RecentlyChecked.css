@@ -1,9 +1,23 @@
 .recentlychecked {
-  width: 60%;
-  height: 700px;
-
   margin-left: 300px;
   margin-top: 10px;
+}
+
+.recentlychecked_container {
+  display: flex;
+  /* justify-content: center; */
+}
+
+.recentlychecked_container > div {
+  margin-top: 5px;
+  margin-left: 15px;
+}
+.recentlychecked_container > div > h5 {
+  margin-top: 5px;
+}
+
+.original_price {
+  color: gray;
 }
 
 .recentlychecked > h2 {
@@ -12,4 +26,5 @@
 .recentlychecked > hr {
   margin-top: 10px;
   border-top: 2px solid black;
+  margin-bottom: 10px;
 }

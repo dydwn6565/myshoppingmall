@@ -8,18 +8,19 @@ function ClothesCard({ clothe }) {
   const [value, setValue] = useState(5);
   const navigate = useNavigate();
   const linkToDetailPage = () => {
-    if (sessionStorage.getItem("resultlyCheckedItem") === null) {
-      sessionStorage.setItem("recentlyCheckedItem", JSON.stringify([clothe]));
+    console.log(localStorage.getItem("re"));
+    if (localStorage.getItem("recentlyCheckedItem") === null) {
+      localStorage.setItem("recentlyCheckedItem", JSON.stringify([clothe]));
     } else {
       const sessionData = JSON.parse(
-        sessionStorage.getItem("recentlyCheckedItem")
+        localStorage.getItem("recentlyCheckedItem")
       );
-      console.log(sessionData);
-      console.log("hit line 18");
+      // console.log(sessionData);
+      // console.log("hit line 18");
       const dataArray = [...sessionData, clothe];
       const deduped = Array.from(new Set(dataArray));
 
-      sessionStorage.setItem("recentlyCheckedItem", JSON.stringify(deduped));
+      localStorage.setItem("recentlyCheckedItem", JSON.stringify(deduped));
     }
     navigate(`./${clothe["id"]}`, { state: clothe });
   };

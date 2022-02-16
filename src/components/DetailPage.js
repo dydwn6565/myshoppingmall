@@ -11,7 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 function DetailPage(props) {
   const { state } = useLocation();
-  console.log(state);
+  // console.log(state);
   const [value, setValue] = useState(5);
   const [size, setSize] = useState("");
   const [quantity, setQuantity] = useState(0);
@@ -21,13 +21,13 @@ function DetailPage(props) {
       console.log("hit line 16");
       state["size"] = size;
       state["quantity"] = quantity;
-      console.log(state);
+      // console.log(state);
       localStorage.setItem("orderItem", JSON.stringify([state]));
       navigate("/cart");
     } else {
       const localData = JSON.parse(localStorage.getItem("orderItem"));
 
-      console.log(localData);
+      // console.log(localData);
 
       state["size"] = size;
       state["quantity"] = quantity;
@@ -71,8 +71,8 @@ function DetailPage(props) {
             <span className="review_icon_span">{state["reviewer"]}</span>
           </div>
 
-          {console.log(state["inventory"])}
-          {console.log(Object.keys(state["inventory"]))}
+          {/* {console.log(state["inventory"])}
+          {console.log(Object.keys(state["inventory"]))} */}
           <div className="size_selector">
             <Box mx={{ minWidth: 20 }}>
               <FormControl sx={{ minWidth: 120 }}>
@@ -99,7 +99,7 @@ function DetailPage(props) {
                   <InputLabel id="demo-simple-select-label">
                     Quantity
                   </InputLabel>
-                  {console.log("line133")}
+                  {/* {console.log("line133")} */}
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
