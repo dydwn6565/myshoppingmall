@@ -92,29 +92,31 @@ function Cart() {
     console.log("line 88 in Cart");
     console.log(newArray);
     const removeDuplicate = () => {
-      for (let i = 0; i < order.length; i++) {
-        for (let j = 1 + i; j < order.length; j++) {
-          console.log("i" + i);
-          console.log("j" + j);
+      if (order !== null) {
+        for (let i = 0; i < order.length; i++) {
+          for (let j = 1 + i; j < order.length; j++) {
+            console.log("i" + i);
+            console.log("j" + j);
 
-          if (
-            newArray[i]["id"] === newArray[j]["id"] &&
-            newArray[i]["size"]["size"] === newArray[j]["size"]["size"]
-          ) {
-            console.log("line 24");
+            if (
+              newArray[i]["id"] === newArray[j]["id"] &&
+              newArray[i]["size"]["size"] === newArray[j]["size"]["size"]
+            ) {
+              console.log("line 24");
 
-            newArray[i]["quantity"] =
-              newArray[i]["quantity"] + newArray[j]["quantity"];
-            newArray[j]["quantity"] = null;
+              newArray[i]["quantity"] =
+                newArray[i]["quantity"] + newArray[j]["quantity"];
+              newArray[j]["quantity"] = null;
+            }
+            // console.log(i);
           }
-          // console.log(i);
         }
-      }
 
-      newArray
-        .filter((item) => item["quantity"] !== null)
-        .filter((item) => item["quantity"] !== 0)
-        .map((items, index) => (arrangedArray[index] = items));
+        newArray
+          .filter((item) => item["quantity"] !== null)
+          .filter((item) => item["quantity"] !== 0)
+          .map((items, index) => (arrangedArray[index] = items));
+      }
     };
 
     removeDuplicate();

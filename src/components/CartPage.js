@@ -11,7 +11,7 @@ function CartPage() {
     <div>
       <HeadAd />
       <MainPageSearch />
-      <Header />
+
       <MainPageHeader />
 
       <Cart />

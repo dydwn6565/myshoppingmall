@@ -16,9 +16,6 @@ function CompanyContact() {
         <p>- can use 1:1 request</p>
         <p>- please use product' Q&A part about the product </p>
       </div>
-      <button>product review</button>
-      <button>member benefit</button>
-      <button>notice</button>
     </div>
   );
 }
