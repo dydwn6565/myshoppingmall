@@ -1,6 +1,6 @@
 .extendedsearchbar {
-  width: 400px;
-  height: 200px;
+  width: 540px;
+  height: 333px;
   border: 1px solid gray;
   position: absolute;
   margin-top: -34px;
@@ -8,11 +8,57 @@
   color: black;
   background-color: white;
   z-index: 1;
-  
 }
 
 .recently_searched {
   background-color: gray;
-  width: 133.3px;
+  width: 180px;
+  height: 40px;
+  /* padding: 3px; */
 }
 
+.recently_searched > p {
+  padding: 3px;
+}
+
+.recently_searched_button {
+  margin-top: -30px;
+  margin-left: 90px;
+}
+
+/* .recently_searched_button > button {
+  height: 20px;
+  width: 20px;
+  margin-right: -20px;
+} */
+
+.searched_rank {
+  border-right: 0.1px solid gray;
+  border-bottom: 0.1px solid gray;
+  border-width: thin;
+}
+
+.recently_searched_button {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -25px;
+  /* margin-left: 10px; */
+}
+.arrow_forward_icon {
+  transform: scale(0.7);
+
+  border: 1px solid black;
+
+  margin-left: -8px;
+}
+.recommend_item {
+  margin-left: 50px;
+}
+.arrow_back_icon {
+  border: 1px solid black;
+  transform: scale(0.7);
+}
+
+.searched_rank {
+  padding: 5px;
+}

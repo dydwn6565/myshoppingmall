@@ -20,15 +20,16 @@ function MainPageSearch() {
   //   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      await fetch("https://clothesapi.herokuapp.com/ranking")
+    const fetchRankingData = async () => {
+      await fetch("https://clothes-api.vercel.app/api/items/ranking")
         .then((response) => response.json())
         .then((result) => {
-          setRanking(result[0]["search"]["first"]);
-          setRank(result[0]["search"]["first"]);
+          console.log(result["2022/02/16"]);
+          setRanking(result["2022/02/16"]);
+          setRank(result["2022/02/16"]);
         });
     };
-    fetchData();
+    fetchRankingData();
   }, []);
   useEffect(() => {
     const rankingCircle = () => {
@@ -79,7 +80,7 @@ function MainPageSearch() {
           type="text"
           placeholde="search"
           onFocus={extendSearchBar}
-          onBlur={removeExtendSearchBar}
+          // onBlur={removeExtendSearchBar}
           onChange={(e) => setSearchedItem(e.target.value)}
         />
         <PageviewSharpIcon className="searchIcon" onClick={search} />
