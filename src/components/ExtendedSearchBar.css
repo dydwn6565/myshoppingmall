@@ -1,6 +1,6 @@
 .extendedsearchbar {
   width: 540px;
-  height: 333px;
+  height: 365px;
   border: 1px solid gray;
   position: absolute;
   margin-top: -34px;
@@ -26,18 +26,16 @@
   margin-left: 90px;
 }
 
-/* .recently_searched_button > button {
-  height: 20px;
-  width: 20px;
-  margin-right: -20px;
-} */
-
 .searched_rank {
   border-right: 0.1px solid gray;
   border-bottom: 0.1px solid gray;
+  border-left: 0.1px solid gray;
   border-width: thin;
 }
 
+.extended_search_bar_numbering {
+  margin-right: 10px;
+}
 .recently_searched_button {
   display: flex;
   justify-content: flex-end;

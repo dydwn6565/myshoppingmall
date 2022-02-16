@@ -8,7 +8,8 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 function ExtendedSearchBar() {
   const [searchedItemList, setSearchedItemList] = useState([]);
   const [searchedItemLCP, setSearchedItemLCP] = useState(0);
-  const [rankingItemLCP, setRankingItem] = useState(0);
+  const [rankingItemLCP, setRankingItemLCP] = useState(0);
+  const [recommendedItemLCP, setRecommendedItemLCP] = useState(0);
   const [recommendedItem, setRecommendedItem] = useState(null);
   const { rank, setRank } = useContext(RankContext);
 
@@ -28,14 +29,29 @@ function ExtendedSearchBar() {
 
   const rankingItemPrev = () => {
     if (rankingItemLCP !== 0) {
-      setSearchedItemLCP((prev) => prev - 10);
+      setRankingItemLCP((prev) => prev - 10);
     }
   };
 
   const rankingItemNext = () => {
-    if (rankingItemLCP) {
+    if (rank) {
       if (rank.length > rankingItemLCP + 10) {
-        setSearchedItemLCP((prev) => prev + 10);
+        setRankingItemLCP((prev) => prev + 10);
+      }
+    }
+  };
+
+  const recommendedItemPrev = () => {
+    console.log("hit 45");
+    if (recommendedItemLCP !== 0) {
+      setRecommendedItemLCP((prev) => prev - 10);
+    }
+  };
+
+  const recommendedItemNext = () => {
+    if (recommendedItem) {
+      if (recommendedItem.length > recommendedItemLCP + 10) {
+        setRecommendedItemLCP((prev) => prev + 10);
       }
     }
   };
@@ -74,8 +90,8 @@ function ExtendedSearchBar() {
               </div>
             </div>
 
-            {searchedItemList?.map((item, keys) => {
-              if (keys < searchedItemLCP + 10 && keys > searchedItemLCP) {
+            {searchedItemList?.map((item, key) => {
+              if (key < searchedItemLCP + 10 && key >= searchedItemLCP) {
                 return <div className="searched_rank">{item}</div>;
               }
             })}
@@ -95,30 +111,48 @@ function ExtendedSearchBar() {
 
             {rank[0] === undefined
               ? alert("hi")
-              : rank?.map((item, keys) => {
-                  if (keys < rankingItemLCP + 10 && keys > rankingItemLCP) {
-                    return <div className="searched_rank">{item}</div>;
+              : rank?.map((item, key) => {
+                  console.log(key);
+                  if (key < rankingItemLCP + 10 && key >= rankingItemLCP) {
+                    return (
+                      <>
+                        <div className="searched_rank">
+                          <span className="extended_search_bar_numbering">
+                            {key + 1}
+                          </span>{" "}
+                          {item}
+                        </div>
+                      </>
+                    );
                   }
-                  <div className="searched_rank">
-                    <span>{rank.indexOf(item) + 1}</span> {item}
-                  </div>;
+                  // <div className="searched_rank">{item}</div>;
                 })}
           </div>
           <div>
             <div className="recently_searched ">
               <p>Recommend items</p>
               <div className="recently_searched_button recommend_item">
-                <div className="arrow_back_icon">
+                <div className="arrow_back_icon" onClick={recommendedItemPrev}>
                   <ArrowBackIosNewIcon />
                 </div>
-                <div className="arrow_forward_icon">
+                <div
+                  className="arrow_forward_icon"
+                  onClick={recommendedItemNext}
+                >
                   <ArrowForwardIosIcon />
                 </div>
               </div>
             </div>
-            {recommendedItem?.map((item, keys) => {
-              if (keys < searchedItemLCP + 10 && keys > searchedItemLCP) {
-                return <div className="searched_rank">{item}</div>;
+            {recommendedItem?.map((item, key) => {
+              if (key < recommendedItemLCP + 10 && key >= recommendedItemLCP) {
+                return (
+                  <div className="searched_rank">
+                    <span className="extended_search_bar_numbering">
+                      {key + 1}
+                    </span>{" "}
+                    {item}
+                  </div>
+                );
               }
             })}
           </div>
