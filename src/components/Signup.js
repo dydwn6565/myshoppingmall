@@ -197,7 +197,7 @@ const Signin = () => {
             onBlur={formik.handleBlur}
             onClick={selectAll}
           />
-          <label htmlFor="sellect_all">Sellect All</label>
+          <label htmlFor="selelct_all">Select All</label>
         </div>
 
         <div className="form_control">

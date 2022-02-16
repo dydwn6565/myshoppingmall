@@ -1,36 +1,53 @@
 import Button from "@mui/material/Button";
 import React, { useRef, useState } from "react";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-import Alert from "./Alert";
+import { useNavigate } from "react-router-dom";
+import { ErrorAlerts, SuccessAlert } from "./Alert";
 
 import "./ResetPw.css";
 
 function ResetPw() {
   const [userEmail, setUserEmail] = useState("");
-  const [alert, setAlert] = useState(false);
+  const [errorAlert, setErrorAlert] = useState(false);
+  const [successAlert, setSuccessAlert] = useState(false);
   const [fadeProp, setFadeProp] = useState("fade_out");
   const auth = getAuth();
+  const navigate = useNavigate();
 
-  const showAlert = () => {
-    setAlert(true);
+  const showAlert = (option) => {
+    if (option === "error") {
+      setErrorAlert(true);
+    } else {
+      setSuccessAlert(true);
+    }
     setTimeout(() => {
       setFadeProp("fade_out");
     }, 3000);
   };
+
   const resetPw = () => {
     sendPasswordResetEmail(auth, userEmail)
-      .then(() => {})
+      .then(() => {
+        setFadeProp("fade_in");
+        showAlert("success");
+      })
       .catch((error) => {
+        console.log("line 35");
         setFadeProp("fade_in");
 
         // const errorCode = error.code;
-        // const errorMessage = error.message;
-        showAlert();
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        showAlert("error");
       });
+  };
+
+  const moveToLoginPage = () => {
+    navigate("/login");
   };
   return (
     <div className="find_id_pw">
-      <h2>Reset Id </h2>
+      <h2>Reset Password </h2>
 
       <input
         type="email"
@@ -38,17 +55,25 @@ function ResetPw() {
         onChange={(e) => setUserEmail(e.target.value)}
       />
       <div>
-        <Button onClick={resetPw}>Reset Pw</Button>
+        <Button onClick={resetPw}>Reset Password</Button>
         {/* <h1>{userEmail}</h1> */}
         <div className="reset_pw_alert_message">
-          {alert ? (
+          {errorAlert ? (
             <div className={fadeProp}>
-              <Alert error="Please type different Email, can not find email" />
+              {ErrorAlerts("Please type different Email, can not find email")}
+            </div>
+          ) : (
+            ""
+          )}
+          {successAlert ? (
+            <div className={fadeProp}>
+              {SuccessAlert("Please check your email")}
             </div>
           ) : (
             ""
           )}
         </div>
+        <Button onClick={moveToLoginPage}>back to login page</Button>
       </div>
     </div>
   );

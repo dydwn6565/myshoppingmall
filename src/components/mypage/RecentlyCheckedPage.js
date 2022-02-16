@@ -6,11 +6,13 @@ import MainPageHeader from "../MainPageHeader";
 import "./RecentlyCheckedPage.css";
 import MyPageSide from "./MyPageSide";
 import RecentlyChecked from "./RecentlyChecked";
+import MainPageSearch from "../MainPageSearch";
 function RecentlyCheckedPage() {
   return (
     <div className="recentlycheckedpage">
       <HeadAd />
-      <Header />
+      <MainPageSearch />
+      {/* <Header /> */}
       <MainPageHeader />
       <MyPageHeader />
       <MyPageSide />

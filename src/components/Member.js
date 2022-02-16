@@ -145,7 +145,7 @@ function Member() {
             Login with google
           </button>
           <div className="sign_up">
-            <span>Get 15% discount when you sing up</span>
+            <span>Get 15% discount when you sign up</span>
             <button onClick={signUp}>Sign up</button>
           </div>
         </div>

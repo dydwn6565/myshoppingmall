@@ -12,7 +12,7 @@ function MyPage() {
     <div className="mypage">
       <HeadAd />
       <MainPageSearch />
-      <Header />
+
       <MainPageHeader />
       <MyPageHeader />
 
