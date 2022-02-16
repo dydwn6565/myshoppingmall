@@ -31,19 +31,7 @@ function DetailPage(props) {
 
       state["size"] = size;
       state["quantity"] = quantity;
-      // console.log(
-      //   localData.map((item, index) => {
-      //     if (item["id"] === state["id"]) {
-      //       console.log("same");
-      //       console.log(index);
-      //       localData[index]["quantity"] += state["quantity"];
 
-      //     } else {
-      //       console.log("differ");
-
-      //     }
-      //   })
-      // );
       const dataArray = [...localData, state];
       const deduped = Array.from(new Set(dataArray));
 
@@ -61,117 +49,94 @@ function DetailPage(props) {
   };
 
   return (
-    <div className="detailpage">
-      <img src={`${state["image"]}`} alt="" />
-      <h2>{state["brand"]}</h2>
-      <h3>{state["name"]}</h3>
-      <h4>{state["original_price"]}</h4>
-      <h4>{state["discounted_price"]}</h4>
-      <Rating className="rating_icon" name="read-only" value={value} readOnly />
-      <span>{state["like"]}</span>
-      <div>
-        <FavoriteOutlinedIcon className="like_icon" />
-        <span>{state["reviewer"]}</span>
-      </div>
+    <>
+      <div className="detailpage_container">
+        <div className="detailpage">
+          <img src={`${state["image"]}`} alt="" />
+          <h2>{state["brand"]}</h2>
+          <h3>{state["name"]}</h3>
+          <h4>{state["original_price"]}</h4>
+          <h4>{state["discounted_price"]}</h4>
+          <div className="detail_page_like_container">
+            <Rating
+              className="rating_icon"
+              name="read-only"
+              value={value}
+              readOnly
+            />
+            <span className="detail_page_like_span">{state["like"]}</span>
+          </div>
+          <div className="detail_page_review_container">
+            <FavoriteOutlinedIcon />
+            <span className="review_icon_span">{state["reviewer"]}</span>
+          </div>
 
-      {console.log(state["inventory"])}
-      {console.log(Object.keys(state["inventory"]))}
-      {/* {console.log(
-        Object.values(state["inventory"]).find((e) => e.size === size)[
-          "quantity"
-        ]
-      )} */}
-      {/* <Dropdown title={size}>
-        {state["inventory"].map((size) => (
-          <Dropdown.Item onClick={() => setSize(size["size"])}>
-            {size["size"]}
-          </Dropdown.Item>
-        ))}
-      </Dropdown> */}
-
-      {/* <Dropdown title={quantity}>
-        {Object.values(state["inventory"]).find((e) => e.size === size)[
-          "quantity"
-        ] > 10
-          ? [...Array(10)].map((el, index) => (
-              <Dropdown.Item onClick={() => setQuantity(index + 1)}>
-                {index + 1}
-              </Dropdown.Item>
-            ))
-          : [
-              ...Array(
-                Object.values(state["inventory"]).find((e) => e.size === size)[
-                  "quantity"
-                ]
-              ),
-            ].map((el, index) => (
-              <Dropdown.Item onClick={() => setQuantity(index + 1)}>
-                {index + 1}
-              </Dropdown.Item>
-            ))}
-      </Dropdown> */}
-
-      <Box mx={{ minWidth: 20 }}>
-        <FormControl sx={{ minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-label">Size</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={size}
-            label="Size"
-            onChange={handleSize}
-          >
-            {state["inventory"].map((size) => (
-              <MenuItem value={size}>{size["size"]}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Box>
-      {/* {size !== "" &&
-        console.log(
-          "size" +
-            size["size"] +
-            state["inventory"].find((e) => e.size === size["size"])["quantity"]
-        )} */}
-      {size !== "" && (
-        <Box mx={{ minWidth: 20 }}>
-          <FormControl sx={{ minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-label">Quantity</InputLabel>
-            {console.log("line133")}
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={quantity}
-              label="quantity"
-              onChange={handleQuantity}
-            >
-              {Object.values(state["inventory"]).find(
-                (e) => e.size === size["size"]
-              )["quantity"] > 10
-                ? [...Array(10)].map((el, index) => (
-                    <MenuItem value={index + 1}>{index + 1}</MenuItem>
-                  ))
-                : [
-                    ...Array(
-                      Object.values(state["inventory"]).find(
-                        (e) => e.size === size["size"]
-                      )["quantity"]
-                    ),
-                  ].map((el, index) => (
-                    <MenuItem value={index + 1}>{index + 1}</MenuItem>
+          {console.log(state["inventory"])}
+          {console.log(Object.keys(state["inventory"]))}
+          <div className="size_selector">
+            <Box mx={{ minWidth: 20 }}>
+              <FormControl sx={{ minWidth: 120 }}>
+                <InputLabel id="demo-simple-select-label">Size</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={size}
+                  label="Size"
+                  onChange={handleSize}
+                >
+                  {state["inventory"].map((size) => (
+                    <MenuItem value={size}>{size["size"]}</MenuItem>
                   ))}
-            </Select>
-          </FormControl>
-        </Box>
-      )}
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
 
-      {console.log(size)}
-      {console.log(quantity)}
+          <div className="quantity_selector">
+            {size !== "" && (
+              <Box mx={{ minWidth: 20 }}>
+                <FormControl sx={{ minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-label">
+                    Quantity
+                  </InputLabel>
+                  {console.log("line133")}
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={quantity}
+                    label="quantity"
+                    onChange={handleQuantity}
+                  >
+                    {Object.values(state["inventory"]).find(
+                      (e) => e.size === size["size"]
+                    )["quantity"] > 10
+                      ? [...Array(10)].map((el, index) => (
+                          <MenuItem value={index + 1}>{index + 1}</MenuItem>
+                        ))
+                      : [
+                          ...Array(
+                            Object.values(state["inventory"]).find(
+                              (e) => e.size === size["size"]
+                            )["quantity"]
+                          ),
+                        ].map((el, index) => (
+                          <MenuItem value={index + 1}>{index + 1}</MenuItem>
+                        ))}
+                  </Select>
+                </FormControl>
+              </Box>
+            )}
+          </div>
 
-      <button onClick={orderItem} className="add_to_cart">
-        Add to cart
-      </button>
-    </div>
+          {console.log(size)}
+          {console.log(quantity)}
+
+          <button onClick={orderItem} className="add_to_cart">
+            Add to cart
+          </button>
+        </div>
+      </div>
+    </>
   );
 }
 
