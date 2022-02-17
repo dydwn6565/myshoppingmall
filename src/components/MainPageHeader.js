@@ -47,8 +47,6 @@ function MyPageHeader() {
     <div className="my_page_header">
       {userLogin ? (
         <>
-          {/* <p>{console.log(user.userInfo["userId"])}</p> */}
-          {/* <div className="logout_main_page_header"> */}
           <p>{/* <span>hi!</span> {user.userInfo["userId"]} */}</p>
           <p onClick={moveToMyPage}>My page</p>
           <p onClick={moveToRecentlyCheckedPage}>Recently checked item list</p>
@@ -56,7 +54,6 @@ function MyPageHeader() {
           <p onClick={moveToTrackingMyItemPage}>Tracking my items</p>
           <p onClick={moveToContactPage}>Contact</p>
           <p onClick={logout}>Logout</p>
-          {/* </div> */}
         </>
       ) : (
         <>

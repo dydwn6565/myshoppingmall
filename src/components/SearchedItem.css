@@ -1,0 +1,16 @@
+.searchedItem {
+  border: 1px solid #000000;
+  margin-left: 400px;
+
+  position: absolute;
+}
+
+.searchedItem_head {
+  display: inline-block;
+  height: 70px;
+}
+
+.searchedItem > hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

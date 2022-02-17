@@ -11,14 +11,13 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 function DetailPage(props) {
   const { state } = useLocation();
-  // console.log(state);
+
   const [value, setValue] = useState(5);
   const [size, setSize] = useState("");
   const [quantity, setQuantity] = useState(0);
   const navigate = useNavigate();
   const orderItem = () => {
     if (localStorage.getItem("orderItem") === null) {
-      console.log("hit line 16");
       state["size"] = size;
       state["quantity"] = quantity;
       // console.log(state);

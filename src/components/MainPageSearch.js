@@ -58,7 +58,7 @@ function MainPageSearch() {
 
         sessionStorage.setItem("searchedItem", JSON.stringify(deduped));
       }
-      navigate("/searchedItempage/page");
+      navigate(`/searchedItempage/${searchItem}`, { state: searchItem });
     }
   };
 

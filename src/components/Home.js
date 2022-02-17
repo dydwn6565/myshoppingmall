@@ -34,8 +34,10 @@ function Home() {
       const data = await fetch(
         `https://clothes-api.vercel.app/api/items/${selectedItem["itemBigTitle"]}`
       );
+
       if (data.status === 200) {
         const response = await data.json();
+
         setItem(response[selectedItem["target"]]);
       }
     };

@@ -8,10 +8,6 @@ import { auth, db } from "./firebase";
 import { UserContext } from "../Context";
 import { useNavigate } from "react-router-dom";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-// import {UserContext} from "/"
-// import { useDispatch } from "react-redux";
-// import { reducer, userReducer } from "../Redux";
-// import { initialValues } from "../Redux.js";
 
 const validate = (values) => {
   const errors = {};
@@ -93,14 +89,6 @@ const Signin = () => {
   const register = ({ email, password, id }) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userAuth) => {
-        // updateProfile(auth.currentUser, {
-        //   userId: id,
-        //   userLevel: "",
-        //   reward: "",
-        //   point: "",
-        //   coupon: { 1: "signup coupon" },
-        //   order: {},
-        // }).then(() => {
         setUser({
           userInfo: {
             email: userAuth.user.email,
