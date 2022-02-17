@@ -25,6 +25,7 @@ import DetailPage from "./components/DetailPage";
 
 import OrderPage from "./components/OrderPage";
 import ConfirmPage from "./components/ConfirmPage";
+import SearchedItemPage from "./components/SearchedItemPage";
 
 function App() {
   const [user, setUser] = useState({});
@@ -66,7 +67,11 @@ function App() {
                   <Route path="/contact" element={<Contact />} />
 
                   <Route path="/tractMyItem" element={<TractMyItem />} />
-                  <Route path="/:id" element={<DetailPage />} />
+                  <Route path="/detailpage/:id" element={<DetailPage />} />
+                  <Route
+                    path="/searchedItempage/:id"
+                    element={<SearchedItemPage />}
+                  />
                 </Routes>
               </SelectedItemContext.Provider>
             </RankContext.Provider>

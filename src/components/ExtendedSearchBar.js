@@ -5,7 +5,7 @@ import { RankContext } from "../Context";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
-function ExtendedSearchBar() {
+function ExtendedSearchBar({ setSearchItem }) {
   const [searchedItemList, setSearchedItemList] = useState([]);
   const [searchedItemLCP, setSearchedItemLCP] = useState(0);
   const [rankingItemLCP, setRankingItemLCP] = useState(0);
@@ -42,7 +42,6 @@ function ExtendedSearchBar() {
   };
 
   const recommendedItemPrev = () => {
-    console.log("hit 45");
     if (recommendedItemLCP !== 0) {
       setRecommendedItemLCP((prev) => prev - 10);
     }
@@ -92,7 +91,14 @@ function ExtendedSearchBar() {
 
             {searchedItemList?.map((item, key) => {
               if (key < searchedItemLCP + 10 && key >= searchedItemLCP) {
-                return <div className="searched_rank">{item}</div>;
+                return (
+                  <div
+                    className="searched_rank"
+                    onClick={(e) => setSearchItem(searchedItemList[key])}
+                  >
+                    {item}
+                  </div>
+                );
               }
             })}
           </div>
@@ -112,11 +118,13 @@ function ExtendedSearchBar() {
             {rank[0] === undefined
               ? alert("hi")
               : rank?.map((item, key) => {
-                  console.log(key);
                   if (key < rankingItemLCP + 10 && key >= rankingItemLCP) {
                     return (
                       <>
-                        <div className="searched_rank">
+                        <div
+                          className="searched_rank"
+                          onClick={(e) => setSearchItem(rank[key])}
+                        >
                           <span className="extended_search_bar_numbering">
                             {key + 1}
                           </span>{" "}
@@ -125,7 +133,6 @@ function ExtendedSearchBar() {
                       </>
                     );
                   }
-                  // <div className="searched_rank">{item}</div>;
                 })}
           </div>
           <div>
@@ -146,7 +153,10 @@ function ExtendedSearchBar() {
             {recommendedItem?.map((item, key) => {
               if (key < recommendedItemLCP + 10 && key >= recommendedItemLCP) {
                 return (
-                  <div className="searched_rank">
+                  <div
+                    className="searched_rank"
+                    onClick={(e) => setSearchItem(recommendedItem[key])}
+                  >
                     <span className="extended_search_bar_numbering">
                       {key + 1}
                     </span>{" "}

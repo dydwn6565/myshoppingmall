@@ -33,6 +33,9 @@
   border-width: thin;
 }
 
+.searched_rank:hover {
+  background-color: lightgray;
+}
 .extended_search_bar_numbering {
   margin-right: 10px;
 }

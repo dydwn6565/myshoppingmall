@@ -1,8 +1,4 @@
 .mainpage {
-  /* width: 50%; */
-  /* max-width:500px; */
-  /* width:800px; */
-
   border: 1px solid #000000;
   margin-left: 400px;
 
@@ -47,24 +43,10 @@
 }
 
 .card {
-  /* flex-direction: row; */
-
   width: 1200px;
   display: flex;
 
   flex-direction: row;
   flex-wrap: wrap;
-  /* justify-content: center; */
   align-items: center;
-
-  /* flex-wrap: 'wrap'; */
 }
-/* 
-.card_break{
-  display:inline-block !important;
-} */
-/* 
-.card >div{
-  flex-wrap:"wrap" ;
-  
-} */

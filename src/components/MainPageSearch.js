@@ -14,10 +14,8 @@ function MainPageSearch() {
   const [searchedItem, setSearchedItem] = useState("");
   const { rank, setRank } = useContext(RankContext);
   const [extendbar, setExtendbar] = useState(false);
+  const [searchItem, setSearchItem] = useState("");
   const navigate = useNavigate();
-  //   const [state, dispatch] = useReducer(rankingReducer, rankingInitialValues);
-
-  //   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchRankingData = async () => {
@@ -49,15 +47,18 @@ function MainPageSearch() {
   const search = (e) => {
     e.preventDefault();
     console.log(searchedItem);
-    if (!sessionStorage.getItem("searchedItem")) {
-      sessionStorage.setItem("searchedItem", JSON.stringify([searchedItem]));
-    } else {
-      const sessionData = JSON.parse(sessionStorage.getItem("searchedItem"));
+    if (e !== "") {
+      if (!sessionStorage.getItem("searchedItem")) {
+        sessionStorage.setItem("searchedItem", JSON.stringify([searchedItem]));
+      } else {
+        const sessionData = JSON.parse(sessionStorage.getItem("searchedItem"));
 
-      const dataArray = [...sessionData, searchedItem];
-      const deduped = Array.from(new Set(dataArray));
+        const dataArray = [...sessionData, searchedItem];
+        const deduped = Array.from(new Set(dataArray));
 
-      sessionStorage.setItem("searchedItem", JSON.stringify(deduped));
+        sessionStorage.setItem("searchedItem", JSON.stringify(deduped));
+      }
+      navigate("/searchedItempage/page");
     }
   };
 
@@ -66,7 +67,9 @@ function MainPageSearch() {
   };
 
   const removeExtendSearchBar = () => {
-    setExtendbar(false);
+    setTimeout(() => {
+      setExtendbar(false);
+    }, 10000);
   };
   const moveToMain = () => {
     navigate("/");
@@ -78,10 +81,14 @@ function MainPageSearch() {
 
         <input
           type="text"
-          placeholde="search"
+          placeholder="search"
+          value={searchItem}
           onFocus={extendSearchBar}
-          // onBlur={removeExtendSearchBar}
-          onChange={(e) => setSearchedItem(e.target.value)}
+          onBlur={removeExtendSearchBar}
+          onChange={
+            ((e) => setSearchedItem(e.target.value),
+            (e) => setSearchItem(e.target.value))
+          }
         />
         <PageviewSharpIcon className="searchIcon" onClick={search} />
 
@@ -95,12 +102,11 @@ function MainPageSearch() {
               </div>
             </>
           ) : (
-            // alert("loading")
             <Loading />
           )}
         </div>
       </div>
-      {extendbar && <ExtendedSearchBar />}
+      {extendbar && <ExtendedSearchBar setSearchItem={setSearchItem} />}
     </>
   );
 }

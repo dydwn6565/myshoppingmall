@@ -71,8 +71,6 @@ function DetailPage(props) {
             <span className="review_icon_span">{state["reviewer"]}</span>
           </div>
 
-          {/* {console.log(state["inventory"])}
-          {console.log(Object.keys(state["inventory"]))} */}
           <div className="size_selector">
             <Box mx={{ minWidth: 20 }}>
               <FormControl sx={{ minWidth: 120 }}>

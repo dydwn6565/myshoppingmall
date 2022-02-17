@@ -20,9 +20,6 @@ function MainPage() {
   }, []);
   return (
     <div className="mainpage">
-      {/* {console.log(selectedItem)}
-      {console.log("item" + JSON.stringify(item))} */}
-
       <h1>{selectedItem["itemBigTitle"]}</h1>
       <hr />
       <div className="medium_clfc">
@@ -30,15 +27,11 @@ function MainPage() {
           <p> Medium Classification</p>
         </div>
         <div className="medium_clfc_contents">
-          {/* {console.log(selectedItem["target"] === undefined)}
-          {console.log(selectedItem)} */}
           {selectedItem["target"] === undefined ? (
             <Loading />
           ) : (
-            // alert("loading")
             selectedItem["itemSmallTitle"].map((item) => (
               <>
-                {/* {console.log(selectedItem["target"])} */}
                 <p
                   onClick={() =>
                     setSelectedItem({
@@ -72,8 +65,6 @@ function MainPage() {
           ) : (
             <Loading />
           )}
-          {/* <ClothesCard />
-        <ClothesCard /> */}
         </div>
       </div>
     </div>
