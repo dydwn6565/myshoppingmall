@@ -19,14 +19,11 @@
 
 .login_extra_features {
   display: flex;
-  justify-content: space-evenly;
-  margin-left: 10%;
+  justify-content: flex-end;
+  margin-right: 20%;
   margin-top: 2%;
 }
-.find_id_and_pw {
-  margin-left: 20%;
-  width: 50%;
-}
+
 .find_id {
   margin-right: 10px;
 }

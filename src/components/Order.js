@@ -43,9 +43,6 @@ function Order() {
   }, []);
 
   const payment = async () => {
-    // {
-    //   console.log(uniqueId.slice(0, 8));
-    // }
     localStorage.removeItem("orderItem");
     const order = {
       recipient: recipient,
@@ -69,11 +66,9 @@ function Order() {
     <div className="order">
       {userLogin ? (
         <>
-          {console.log(userLogin)}
-          {console.log(user)}
-          <div>Order/Payment</div>
+          <div className="order_payment_head">Order/Payment</div>
           <hr />
-          <div>Recipient Info</div>
+          <div className="recipient_info_head">Recipient Info</div>
           <div className="order_address">
             <hr />
             <form className="order_address_form" action="handleAddress">
@@ -102,13 +97,9 @@ function Order() {
                 Memo{" "}
                 <input onChange={(e) => setMemo(e.target.value)} type="text" />
               </div>
-              {console.log(recipient)}
-              {console.log(state)}
-              {/* {console.log("line77" + state["orderState"][1]["id"])} */}
             </form>
 
             <div className="item_list">
-              <h1>{console.log(state)}</h1>
               {state["orderState"].map((item, index) => (
                 <div className="order_item_description">
                   <img src={`${item["image"]}`} alt="" />
@@ -138,7 +129,7 @@ function Order() {
               ))}
             </div>
             <div className="order_page_total_price">
-              Total price: {state["totalPrice"]}
+              Total price: {state["totalPrice"] - state["discountedPrice"]}
             </div>
             <button onClick={payment}>Payment</button>
           </div>

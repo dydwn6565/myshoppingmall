@@ -10,7 +10,6 @@ import { auth, db } from "./firebase";
 import { UserContext } from "../Context";
 import { getDoc, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-// import Loading from "../components/Loading";
 
 function Member() {
   const { user, setUser } = useContext(UserContext);
@@ -108,10 +107,6 @@ function Member() {
     navigate("/signup");
   };
 
-  // const findId = () => {
-  //   navigate("/findIdPw");
-  // };
-
   const resetPw = () => {
     navigate("/login/resetPw");
   };
@@ -135,11 +130,9 @@ function Member() {
             </button>
           </form>
           <div className="login_extra_features">
-            <div className="find_id_and_pw">
-              <span onClick={resetPw} className="find_pw">
-                Reset password
-              </span>
-            </div>
+            <span onClick={resetPw} className="find_pw">
+              Reset password
+            </span>
           </div>
           <button onClick={loginWithGoogle} className="login_with_google">
             Login with google
