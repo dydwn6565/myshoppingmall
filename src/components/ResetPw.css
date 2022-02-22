@@ -15,13 +15,14 @@
 
 .find_id_pw > input {
   margin-top: 50px;
-  width: 300px;
+  width: 60%;
   padding: 5px;
 }
 
 .find_id_pw > div > Button {
-  margin-top: 50px;
-  border: 1px solid black;
+  margin-top: 35px;
+  /* border: 1px solid black; */
+  width: 55%;
   background-color: white;
 }
 

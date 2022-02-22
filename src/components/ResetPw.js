@@ -27,15 +27,15 @@ function ResetPw() {
 
   const resetPw = () => {
     sendPasswordResetEmail(auth, userEmail)
-      .then(() => {
+      .then((result) => {
+        console.log("line31" + result);
         setFadeProp("fade_in");
         showAlert("success");
+        console.log("hit");
       })
       .catch((error) => {
-        console.log("line 35");
         setFadeProp("fade_in");
 
-        // const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage);
         showAlert("error");
@@ -56,7 +56,7 @@ function ResetPw() {
       />
       <div>
         <Button onClick={resetPw}>Reset Password</Button>
-        {/* <h1>{userEmail}</h1> */}
+        <Button onClick={moveToLoginPage}>back to login page</Button>
         <div className="reset_pw_alert_message">
           {errorAlert ? (
             <div className={fadeProp}>
@@ -73,7 +73,6 @@ function ResetPw() {
             ""
           )}
         </div>
-        <Button onClick={moveToLoginPage}>back to login page</Button>
       </div>
     </div>
   );
