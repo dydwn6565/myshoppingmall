@@ -20,13 +20,11 @@ function DetailPage(props) {
     if (localStorage.getItem("orderItem") === null) {
       state["size"] = size;
       state["quantity"] = quantity;
-      // console.log(state);
+
       localStorage.setItem("orderItem", JSON.stringify([state]));
       navigate("/cart");
     } else {
       const localData = JSON.parse(localStorage.getItem("orderItem"));
-
-      // console.log(localData);
 
       state["size"] = size;
       state["quantity"] = quantity;
@@ -54,8 +52,18 @@ function DetailPage(props) {
           <img src={`${state["image"]}`} alt="" />
           <h2>{state["brand"]}</h2>
           <h3>{state["name"]}</h3>
-          <h4>{state["original_price"]}</h4>
-          <h4>{state["discounted_price"]}</h4>
+          <div className="detailpage_original_price">
+            <h4>
+              <span>Original Price: </span>
+              <s className="original_price">{state["original_price"]}</s>
+            </h4>
+          </div>
+          <div className="detailpage_discounted_price">
+            <h4>
+              <span>Discounted Price: </span>
+              {state["discounted_price"]}
+            </h4>
+          </div>
           <div className="detail_page_like_container">
             <Rating
               className="rating_icon"
@@ -96,7 +104,7 @@ function DetailPage(props) {
                   <InputLabel id="demo-simple-select-label">
                     Quantity
                   </InputLabel>
-                  {/* {console.log("line133")} */}
+
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"

@@ -45,6 +45,14 @@
   margin-top: 15px;
 }
 
+.detailpage_original_price {
+  margin-top: 15px;
+}
+
+.detailpage_discounted_price {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
 .add_to_cart {
   border: 1px solid lightblue;
   background-color: white;
@@ -52,7 +60,7 @@
   width: 100px;
   height: 40px;
   margin-top: 15px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .add_to_cart:hover {

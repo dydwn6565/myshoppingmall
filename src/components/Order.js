@@ -104,7 +104,7 @@ function Order() {
               </div>
               {console.log(recipient)}
               {console.log(state)}
-              {console.log("line77" + state["orderState"][1]["id"])}
+              {/* {console.log("line77" + state["orderState"][1]["id"])} */}
             </form>
 
             <div className="item_list">
