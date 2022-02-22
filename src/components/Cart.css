@@ -6,6 +6,12 @@
   margin-left: 350px;
 }
 
+.cart_empty_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: gray;
+}
 .order_container {
   width: 1000px;
 
@@ -48,16 +54,18 @@
   justify-content: center;
   position: relative;
   margin-left: 500px;
-  margin-top: 5%;
+
+  margin-bottom: 5%;
 }
 
 .total_price {
-  padding: 15%;
+  padding: 10%;
 }
 
 .total_price > span {
   margin-top: 50px;
-  font-size: 12px;
+  font-size: 20px;
+  margin-left: 5px;
 }
 
 .svg_icons {
@@ -66,9 +74,6 @@
 }
 
 .cart_details {
-  /* display: flex;
-  justify-content: space-evenly; */
-  /* margin-left: -70px !important; */
   font-size: 10px;
 }
 
