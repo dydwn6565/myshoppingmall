@@ -11,24 +11,19 @@ function Cart() {
   const [totalProductPrice, setTotalProductPrice] = useState(0);
   const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
   const navigate = useNavigate();
+
   const checkBoxState = (index) => {
-    console.log(orderState);
     if (checkBox[0] === undefined) {
       orderState.map((item, index) => (checkBox[index] = false));
       checkBox[index] = !checkBox[index];
     } else {
-      console.log(!Object.values(checkBox)[0]);
-
-      console.log(checkBox[index]);
       checkBox[index] = !checkBox[index];
     }
-    console.log(checkBox);
   };
 
   const calculatePrice = () => {
     if (orderState) {
       orderState.map((item, index) =>
-        // console.log(item["original_price"] * item["quantity"])
         setTotalProductPrice(
           (prev) => prev + item["original_price"] * item["quantity"]
         )
@@ -45,40 +40,44 @@ function Cart() {
   };
 
   const order = () => {
-    // console.log(orderState);
-    navigate("/order", {
-      // orderState: orderState,
-      // totalPrice: totalProductPrice,
-      // discounted_price: totalDiscountPrice,
-      state: {
-        orderState: orderState,
-        totalPrice: totalProductPrice,
-        discountedPrice: totalDiscountPrice,
-      },
-    });
+    console.log(orderState[0]);
+    if (orderState[0] !== undefined) {
+      navigate("/order", {
+        state: {
+          orderState: orderState,
+          totalPrice: totalProductPrice,
+          discountedPrice: totalDiscountPrice,
+        },
+      });
+    } else {
+      alert("please selete any items");
+    }
   };
 
   const deleteItemList = () => {
     let newItemList = [];
     let newCheckBox = [];
     let arrangedArray = [];
-    orderState.map((item, index) => {
-      if (checkBox[index] === false) {
-        newItemList[index] = item;
-        newCheckBox[index] = checkBox[index];
-      }
-    });
-    newItemList
-      .filter((item, index) => item[index] !== null)
-      .map((items, index) => (arrangedArray[index] = items));
-    console.log(arrangedArray);
 
-    // (item !== undefined).map((item, index) => (newItemList[index] = item))
-    // );
-    setOrderState(arrangedArray);
-    setCheckBox(newCheckBox);
-    // localStorage.setItem("orderItem") =JSON.stringfy(orderState);
+    if (orderState) {
+      orderState.map((item, index) => {
+        if (checkBox[index] === false) {
+          newItemList[index] = item;
+          newCheckBox[index] = checkBox[index];
+        }
+      });
+
+      newItemList
+        .filter((item, index) => item[index] !== null)
+        .map((items, index) => (arrangedArray[index] = items));
+      console.log(arrangedArray);
+
+      setOrderState(arrangedArray);
+      setCheckBox(newCheckBox);
+      localStorage.setItem("orderItem", JSON.stringify(arrangedArray));
+    }
   };
+
   useEffect(() => {
     setTotalDiscountPrice(0);
     setTotalProductPrice(0);
@@ -89,26 +88,19 @@ function Cart() {
     const order = JSON.parse(localStorage.getItem("orderItem"));
     let newArray = order;
     let arrangedArray = [];
-    console.log("line 88 in Cart");
-    console.log(newArray);
+
     const removeDuplicate = () => {
       if (order !== null) {
         for (let i = 0; i < order.length; i++) {
           for (let j = 1 + i; j < order.length; j++) {
-            console.log("i" + i);
-            console.log("j" + j);
-
             if (
               newArray[i]["id"] === newArray[j]["id"] &&
               newArray[i]["size"]["size"] === newArray[j]["size"]["size"]
             ) {
-              console.log("line 24");
-
               newArray[i]["quantity"] =
                 newArray[i]["quantity"] + newArray[j]["quantity"];
               newArray[j]["quantity"] = null;
             }
-            // console.log(i);
           }
         }
 
@@ -121,10 +113,8 @@ function Cart() {
 
     removeDuplicate();
     setOrderState(arrangedArray);
-
-    // console.log(arrangedArray);
   }, []);
-  // const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
   return (
     <div className="cart">
       <h3>Order /Payment</h3>
@@ -140,7 +130,7 @@ function Cart() {
           <p>delivery fee</p>
         </div>
         <hr />
-        {orderState[0] !== undefined && (
+        {orderState[0] !== undefined ? (
           <Grid container className="cart_details">
             {orderState.map((item, index) => (
               <>
@@ -154,7 +144,6 @@ function Cart() {
                   {index + 1}
                 </Grid>
                 <Grid item xs={2.5} md={2.5} className="order_item_name">
-                  {/* {console.log(orderState)} */}
                   {item["name"]}
                 </Grid>
                 <Grid xs={1.7} md={1.7} item className="order_item_price">
@@ -173,6 +162,20 @@ function Cart() {
               </>
             ))}
           </Grid>
+        ) : (
+          <>
+            <Grid container className="cart_details">
+              <Grid item xs={0.5} md={0.5} className="cart_item_number"></Grid>
+              <Grid item xs={2.5} md={2.5} className="order_item_name"></Grid>
+              <Grid xs={1.7} md={1.7} item className="order_item_price"></Grid>
+              <Grid xs={1.7} md={1.7} item></Grid>
+              <Grid xs={1.5} md={1.5} item></Grid>
+              <Grid xs={1.5} md={1.5} item></Grid>
+            </Grid>
+            <div className="cart_empty_container">
+              <h3>There is no more items in the cart</h3>
+            </div>
+          </>
         )}
       </div>
       <button className="delete_order_list" onClick={deleteItemList}>
@@ -192,17 +195,17 @@ function Cart() {
         </p>
         <p>The cart can hold at most 100 items.</p>
       </div>
-      <button className="order_button" onClick={order}>
-        Order
-      </button>
 
       <div className="total_price">
         <span>product price: {totalProductPrice}</span>
         <RemoveIcon className="svg_icons" />
-        <span>total discount:{totalDiscountPrice}</span>
+        <span>total discount: {totalDiscountPrice}</span>
         <DragHandleIcon className="svg_icons" />
         <span>Total price: {totalProductPrice - totalDiscountPrice}</span>
       </div>
+      <button className="order_button" onClick={order}>
+        Order
+      </button>
     </div>
   );
 }
