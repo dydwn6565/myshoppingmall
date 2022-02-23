@@ -12,5 +12,12 @@
 
 .searchedItem > hr {
   margin-top: 10px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
+}
+
+.no_item_in_filtered_data {
+  margin-left: 500px;
+  color: gray;
+  font-size: 30px;
+  padding: 35px;
 }

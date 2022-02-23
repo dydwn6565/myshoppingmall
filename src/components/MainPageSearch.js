@@ -11,24 +11,29 @@ const delay = 4000;
 function MainPageSearch() {
   const [ranking, setRanking] = useState(null);
   const [index, setIndex] = useState(0);
-  const [searchedItem, setSearchedItem] = useState("");
+  // const [searchedItem, setSearchedItem] = useState("");
   const { rank, setRank } = useContext(RankContext);
   const [extendbar, setExtendbar] = useState(false);
   const [searchItem, setSearchItem] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchRankingData = async () => {
-      await fetch("https://clothes-api.vercel.app/api/items/ranking")
-        .then((response) => response.json())
-        .then((result) => {
-          console.log(result["2022/02/16"]);
-          setRanking(result["2022/02/16"]);
-          setRank(result["2022/02/16"]);
-        });
-    };
-    fetchRankingData();
+    try {
+      const fetchRankingData = async () => {
+        await fetch("https://clothes-api.vercel.app/api/items/ranking")
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result["2022/02/16"]);
+            setRanking(result["2022/02/16"]);
+            setRank(result["2022/02/16"]);
+          });
+      };
+      fetchRankingData();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
+
   useEffect(() => {
     const rankingCircle = () => {
       setTimeout(
@@ -46,17 +51,17 @@ function MainPageSearch() {
 
   const search = (e) => {
     e.preventDefault();
-    console.log(searchedItem);
-    if (e !== "") {
-      if (!sessionStorage.getItem("searchedItem")) {
-        sessionStorage.setItem("searchedItem", JSON.stringify([searchedItem]));
-      } else {
-        const sessionData = JSON.parse(sessionStorage.getItem("searchedItem"));
 
-        const dataArray = [...sessionData, searchedItem];
+    if (e !== "") {
+      if (!localStorage.getItem("searchItem")) {
+        localStorage.setItem("searchItem", JSON.stringify([searchItem]));
+      } else {
+        const localStorageData = JSON.parse(localStorage.getItem("searchItem"));
+
+        const dataArray = [...localStorageData, searchItem];
         const deduped = Array.from(new Set(dataArray));
 
-        sessionStorage.setItem("searchedItem", JSON.stringify(deduped));
+        localStorage.setItem("searchItem", JSON.stringify(deduped));
       }
       navigate(`/searchedItempage/${searchItem}`, { state: searchItem });
     }
@@ -85,20 +90,15 @@ function MainPageSearch() {
           value={searchItem}
           onFocus={extendSearchBar}
           onBlur={removeExtendSearchBar}
-          onChange={
-            ((e) => setSearchedItem(e.target.value),
-            (e) => setSearchItem(e.target.value))
-          }
+          onChange={(e) => setSearchItem(e.target.value)}
         />
         <PageviewSharpIcon className="searchIcon" onClick={search} />
-
         <div className="rankingslideshow">
           {ranking !== null ? (
             <>
               <div className="rankingslideshowSlider">
                 <span>{index + 1}</span>{" "}
                 <div className="rankingslide">{ranking[index]}</div>
-                {/* {index === ranking.length - 1 && setIndex(0)} */};
               </div>
             </>
           ) : (

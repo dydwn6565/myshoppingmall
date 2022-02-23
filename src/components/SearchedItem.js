@@ -28,12 +28,16 @@ function SearchedItem() {
       <h3>Searched Products</h3>
       <hr />
 
-      <div className="medium_clfc_contents"></div>
-
       <div className="card_collection">
         <div className="card">
           {filteredData ? (
-            filteredData.map((clothe, index) => <ClothesCard clothe={clothe} />)
+            filteredData[0] !== undefined ? (
+              filteredData.map((clothe, index) => (
+                <ClothesCard clothe={clothe} />
+              ))
+            ) : (
+              <div className="no_item_in_filtered_data">No searched Item</div>
+            )
           ) : (
             <Loading />
           )}

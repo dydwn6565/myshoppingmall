@@ -11,11 +11,11 @@ function ClothesCard({ clothe }) {
     if (localStorage.getItem("recentlyCheckedItem") === null) {
       localStorage.setItem("recentlyCheckedItem", JSON.stringify([clothe]));
     } else {
-      const sessionData = JSON.parse(
+      const localStorageData = JSON.parse(
         localStorage.getItem("recentlyCheckedItem")
       );
 
-      const dataArray = [...sessionData, clothe];
+      const dataArray = [...localStorageData, clothe];
       const deduped = Array.from(new Set(dataArray));
 
       localStorage.setItem("recentlyCheckedItem", JSON.stringify(deduped));

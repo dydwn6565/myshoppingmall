@@ -56,21 +56,25 @@ function ExtendedSearchBar({ setSearchItem }) {
   };
 
   useEffect(() => {
-    const sessionData = sessionStorage?.getItem("searchedItem");
-    setSearchedItemList(JSON.parse(sessionData));
+    const localData = localStorage?.getItem("searchItem");
+    setSearchedItemList(JSON.parse(localData));
   }, []);
 
   useEffect(() => {
-    const fetchRankingData = async () => {
-      await fetch("https://clothes-api.vercel.app/api/items/recommend")
-        .then((response) => response.json())
-        .then((result) => {
-          console.log(result["2022/02/16"]);
+    try {
+      const fetchRankingData = async () => {
+        await fetch("https://clothes-api.vercel.app/api/items/recommend")
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result["2022/02/16"]);
 
-          setRecommendedItem(result["2022/02/16"]);
-        });
-    };
-    fetchRankingData();
+            setRecommendedItem(result["2022/02/16"]);
+          });
+      };
+      fetchRankingData();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
   return (
     <div className="extendedsearchbar">
@@ -94,7 +98,7 @@ function ExtendedSearchBar({ setSearchItem }) {
                 return (
                   <div
                     className="searched_rank"
-                    onClick={(e) => setSearchItem(searchedItemList[key])}
+                    onClick={() => setSearchItem(searchedItemList[key])}
                   >
                     {item}
                   </div>
@@ -123,7 +127,7 @@ function ExtendedSearchBar({ setSearchItem }) {
                       <>
                         <div
                           className="searched_rank"
-                          onClick={(e) => setSearchItem(rank[key])}
+                          onClick={() => setSearchItem(rank[key])}
                         >
                           <span className="extended_search_bar_numbering">
                             {key + 1}
