@@ -1,0 +1,84 @@
+.order {
+  border: 1px solid black;
+  width: 1100px;
+  height: 1000px;
+  position: absolute;
+  margin-left: 350px;
+}
+
+.order_payment_head {
+  margin-left: 25px;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.recipient_info_head {
+  margin-left: 30px;
+  padding: 10px;
+}
+
+.order_address {
+  width: 900px;
+
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.order_address > hr {
+  margin-top: 30px;
+}
+
+.order_address_form {
+  padding: 50px;
+
+  width: 400px;
+}
+
+.order_address_form > div {
+  margin-top: 50px;
+}
+
+.order_address_form > div > [type="text"],
+.order_address_form > div > [type="number"] {
+  float: right;
+}
+
+.item_list {
+  width: 700px;
+
+  border: 1px solid black;
+  margin-left: 100px;
+  font-size: 10px;
+}
+
+.order_address > button {
+  margin-left: 300px;
+  margin-top: 20px;
+  height: 50px;
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.order_item_description {
+  margin-bottom: 10px;
+  display: flex;
+}
+.order_item_description > img {
+  width: 70px;
+  height: 70px;
+  padding: 10px;
+}
+.order_page_total_price {
+  margin-left: 30px;
+  margin-top: 20px;
+}
+
+.order_item_description > div > p {
+  margin-left: 20px;
+}
+
+.order_item_description > div {
+  display: flex;
+  margin-top: 30px;
+}

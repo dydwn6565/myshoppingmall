@@ -1,0 +1,44 @@
+.recentlychecked {
+  margin-left: 300px;
+  margin-top: 10px;
+}
+
+.recentlychecked_container {
+  width: 1300px;
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.recentlychecked_card {
+  width: 180px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.recentlychecked_item_name {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.recentlychecked_item_original_price {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.original_price {
+  color: gray;
+}
+
+.recentlychecked > h2 {
+  padding: 10px;
+}
+.recentlychecked > hr {
+  margin-top: 10px;
+  border-top: 2px solid black;
+  margin-bottom: 10px;
+}

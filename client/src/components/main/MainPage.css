@@ -1,0 +1,52 @@
+.mainpage {
+  border: 1px solid #000000;
+  margin-left: 400px;
+
+  position: absolute;
+}
+
+.mainpage > hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.medium_clfc {
+  display: flex;
+}
+
+.medium_clfc_head {
+  display: inline-block;
+  height: 70px;
+}
+
+.medium_clfc_head > p {
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.medium_clfc_contents {
+  display: flex;
+}
+
+.medium_clfc_contents > p {
+  margin-left: 25px;
+  margin-right: 5px;
+  padding: 7px;
+  cursor: pointer;
+}
+
+.mainpage > form > label {
+  margin-left: 15px;
+}
+
+.mainpage > form > [type="text"] {
+  margin-left: 105px;
+}
+
+.card {
+  width: 1200px;
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}

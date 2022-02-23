@@ -1,0 +1,32 @@
+.update_total {
+  position: absolute;
+  right: 0;
+  margin-right: 70px;
+  text-decoration: underline;
+}
+
+.update_total_left_icon {
+  border: 0.5px solid gray;
+  position: absolute;
+  right: 0;
+  margin-right: 32px;
+  cursor: pointer;
+}
+
+.update_total_right_icon {
+  border: 0.5px solid gray;
+  position: absolute;
+  right: 0;
+  margin-right: 7px;
+  cursor: pointer;
+}
+
+.update_list {
+  width: 150px;
+}
+
+.update_list > p {
+  display: inline-block;
+  font-size: 10px;
+  padding: 2px;
+}

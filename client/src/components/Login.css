@@ -1,0 +1,33 @@
+.login {
+  text-align: center;
+  align-items: center;
+
+  width: 55%;
+  padding: 10px;
+  height: 500px;
+
+  border: 5px;
+  margin: auto;
+  margin-top: 5%;
+
+  background-color: lightgrey;
+}
+.login > .member_button,
+.login > .nomember_button {
+  border: 3px solid black;
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  color: black;
+  font-size: 20px;
+  margin-left: 0.5%;
+}
+
+.white {
+  color: white !important;
+  border: 3px solid white !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
