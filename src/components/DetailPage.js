@@ -45,6 +45,10 @@ function DetailPage(props) {
     setQuantity(event.target.value);
   };
 
+  const backToHome = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <div className="detailpage_container">
@@ -136,9 +140,14 @@ function DetailPage(props) {
           {console.log(size)}
           {console.log(quantity)}
 
-          <button onClick={orderItem} className="add_to_cart">
-            Add to cart
-          </button>
+          <div className="detailpage_buttons">
+            <button onClick={orderItem} className="add_to_cart">
+              Add to cart
+            </button>
+            <button onClick={backToHome} className="add_to_cart">
+              back to homepage
+            </button>
+          </div>
         </div>
       </div>
     </>

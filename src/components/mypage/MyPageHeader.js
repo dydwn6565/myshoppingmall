@@ -47,21 +47,15 @@ function MyPageHeader() {
   }, [userLogin]);
   return (
     <div className="mypageheader">
-      {/* {console.log(user)} */}
-      {/* {console.log(userLogin)} */}
-      {/* {converter === true ? getUserData() : alert("loading")} */}
       {userLogin !== null && user["userInfo"] !== undefined ? (
         <>
           <h3>My page</h3>
           <div className="my_page_header_container">
-            {/* <Container className="my_page_header_container">
-            <Row className="my_page_header_row"> */}
             <div>
               <Avatar className="userAvatar">H</Avatar>
             </div>
 
             <div className="mypage_user_info">
-              {console.log(user["userInfo"])}
               <h2>{user?.userInfo.userId}</h2>
               <h3>{user?.userInfo.userLevel}</h3>
 

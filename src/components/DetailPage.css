@@ -66,3 +66,8 @@
 .add_to_cart:hover {
   background-color: lightgray;
 }
+
+.detailpage_buttons {
+  display: flex;
+  justify-content: center;
+}

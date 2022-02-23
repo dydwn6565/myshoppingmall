@@ -12,16 +12,23 @@ function ClothesCard({ clothe }) {
       localStorage.setItem("recentlyCheckedItem", JSON.stringify([clothe]));
     } else {
       console.log("hit 17 inside recentlycheckedItem");
+
       const localStorageData = JSON.parse(
         localStorage.getItem("recentlyCheckedItem")
       );
-
+      const unique = (value, index, self) => {
+        return self.indexOf(value) === index;
+      };
       const dataArray = [...localStorageData, clothe];
-      const deduped = Array.from(new Set(dataArray));
-      console.log(deduped);
-      localStorage.setItem("recentlyCheckedItem", JSON.stringify(deduped));
+
+      const deletedDupe = dataArray.filter(
+        (item, index, self) => index === self.findIndex((t) => t.id === item.id)
+      );
+      console.log(deletedDupe);
+
+      localStorage.setItem("recentlyCheckedItem", JSON.stringify(deletedDupe));
+      navigate(`detailpage/${clothe["id"]}`, { state: clothe });
     }
-    navigate(`detailpage/${clothe["id"]}`, { state: clothe });
   };
   return (
     <div className="clothescard">
