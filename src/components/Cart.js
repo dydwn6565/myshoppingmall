@@ -27,6 +27,7 @@ function Cart() {
         method: "POST",
         headers: {
           Accept: "application/json",
+          "access-control-allow-origin": "*",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ token: token, product: product }),
