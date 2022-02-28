@@ -5,12 +5,36 @@ import DragHandleIcon from "@mui/icons-material/DragHandle";
 import Grid from "@mui/material/Grid";
 import Checkbox from "@mui/material/Checkbox";
 import { useNavigate } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
+
 function Cart() {
   const [orderState, setOrderState] = useState([]);
   const [checkBox, setCheckBox] = useState({});
   const [totalProductPrice, setTotalProductPrice] = useState(0);
   const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
   const navigate = useNavigate();
+
+  const [product] = useState({
+    name: "Sample Game",
+    price: 200,
+    description: "This is a sample game",
+  });
+
+  async function handleToken(token, addresses) {
+    const response = await fetch(
+      "https://clothes-api.vercel.app/api/items/checkout",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token: token, product: product }),
+      }
+    );
+
+    console.log(response.status);
+  }
 
   const checkBoxState = (index) => {
     if (checkBox[0] === undefined) {
@@ -181,6 +205,14 @@ function Cart() {
       <button className="delete_order_list" onClick={deleteItemList}>
         dt a pt
       </button>
+      <StripeCheckout
+        stripeKey="pk_test_51KWFQPG6LrFQPHnXH7WOTGL81dl0Xy6UheSB0SzaktLPmviFLlb4AFCPK6wB97i4jQZPc4VOO3Fl9CSothI5WYz9003qUxR8AV"
+        token={handleToken}
+        amount={product.price * 100}
+        name={product.name}
+        billingAddress
+        shippingAddress
+      />
       <div className="order_details">
         <p>It is all free delivery</p>
         <p>

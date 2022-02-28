@@ -22,6 +22,7 @@
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "react-slideshow-image": "^3.6.0",
+    "react-stripe-checkout": "^2.6.3",
     "rsuite": "^5.3.0",
     "uuidv4": "^6.2.12",
     "web-vitals": "^1.1.2"
