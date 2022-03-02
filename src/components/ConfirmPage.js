@@ -10,18 +10,20 @@ import Header from "./Header";
 import Order from "./Order";
 import Side from "./Side";
 import MainPageHeader from "./MainPageHeader";
+import MainPageSearch from "./MainPageSearch";
 
 function ConfirmPage() {
   const uniqueId = uuid();
   const navigate = useNavigate();
-  const { recipient, cellphoneNumber, address, memo, orderState } = JSON.parse(
-    localStorage?.getItem("user_delivery_info")
-  );
+
   const [userLogin] = useAuthState(auth);
 
   useEffect(() => {
     const payment = async () => {
       localStorage.removeItem("orderItem");
+
+      const { recipient, cellphoneNumber, address, memo, orderState } =
+        JSON.parse(localStorage?.getItem("user_delivery_info"));
       const order = {
         recipient: recipient,
         cellphoneNumber: cellphoneNumber,
@@ -44,7 +46,7 @@ function ConfirmPage() {
         order: order,
       }).catch((error) => alert(error));
     };
-    if (orderState && userLogin) {
+    if (JSON.parse(localStorage?.getItem("user_delivery_info")) && userLogin) {
       payment();
     }
   });
@@ -54,11 +56,11 @@ function ConfirmPage() {
       {userLogin ? (
         <div>
           <HeadAd />
-          <Header />
+
+          <MainPageSearch />
           <MainPageHeader />
-          <Order />
-          <Side />
           <h1>Thank you for your payment</h1>
+          {/* <Side /> */}
         </div>
       ) : (
         navigate("/login")

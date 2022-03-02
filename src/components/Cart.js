@@ -5,6 +5,8 @@ import DragHandleIcon from "@mui/icons-material/DragHandle";
 import Grid from "@mui/material/Grid";
 import Checkbox from "@mui/material/Checkbox";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function Cart() {
   const [orderState, setOrderState] = useState([]);
@@ -120,7 +122,9 @@ function Cart() {
     <div className="cart">
       <h3>Order /Payment</h3>
       <hr />
-      <h3>Delivery</h3>
+      <div className="cart_title">
+        <h3>Delivery Infomation</h3>
+      </div>
       <div className="order_container">
         <div className="order_container_title">
           <p>total item</p>
@@ -179,9 +183,15 @@ function Cart() {
           </>
         )}
       </div>
-      <button className="delete_order_list" onClick={deleteItemList}>
-        dt a pt
-      </button>
+      <div className="delete_order_list">
+        <Button
+          variant="outlined"
+          startIcon={<DeleteIcon />}
+          onClick={deleteItemList}
+        >
+          delect
+        </Button>
+      </div>
 
       <div className="order_details">
         <p>It is all free delivery</p>

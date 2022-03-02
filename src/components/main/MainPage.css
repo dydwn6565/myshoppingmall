@@ -9,6 +9,9 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.mainpage > h1 {
+  margin-left: 10px;
+}
 .medium_clfc {
   display: flex;
 }
@@ -16,6 +19,7 @@
 .medium_clfc_head {
   display: inline-block;
   height: 70px;
+  margin-left: 10px;
 }
 
 .medium_clfc_head > p {

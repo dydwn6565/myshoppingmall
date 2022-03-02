@@ -21,35 +21,70 @@ function Order() {
   const [addressone, setAddressone] = useState("");
   const [addresstwo, setAddresstwo] = useState("");
   const [memo, setMemo] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [province, setProvince] = useState("");
+  const [city, setCity] = useState("");
+  const [postalcode, setPostalcode] = useState("");
 
-  const [errors, setErrors] = useState({
-    recipient: "",
-    phone: "",
-    addressone: "",
-    addresstwo: "",
-  });
+  const [errorsRecipient, setErrorsRecipient] = useState("");
+  const [errorsCellphone, setErrorsCellphone] = useState("");
+  const [errorsAddressone, setErrorsAddressone] = useState("");
+  const [errorsAddresstwo, setErrorsAddresstwo] = useState("");
+  const [errorsNationality, setErrorsNationality] = useState("");
+  const [errorsProvince, setErrorsProvince] = useState("");
+  const [errorsCity, setErrorsCity] = useState("");
+  const [errorsPostalcode, setErrorsPostalcode] = useState("");
+
   const elements = useElements();
   const stripe = useStripe();
+  const phoneRegex = /\(\d{3}\)\s*\d{3}-\d{4}/;
 
   const checkInputValidation = () => {
     if (recipient === "") {
-      setErrors({ recipient: "please type recipient" });
+      setErrorsRecipient("please type recipient");
+    } else {
+      setErrorsRecipient("");
     }
     console.log(cellphoneNumber);
 
-    const phoneRegex = /\(\d{3}\)\s*\d{3}-\d{4}/;
-
-    // ).test(cellphoneNumber.phone);
     console.log(phoneRegex.test(cellphoneNumber.phone));
     if (!phoneRegex.test(cellphoneNumber.phone)) {
-      setErrors({ phone: "please type proper phone number" });
+      console.log(cellphoneNumber);
+
+      setErrorsCellphone("please type proper phone number");
+    } else {
+      setErrorsCellphone("");
     }
 
     if (addressone === "") {
-      setErrors({ addressone: "Please type address one" });
+      setErrorsAddressone("Please type address one");
+    } else {
+      setErrorsAddressone("");
     }
     if (addresstwo === "") {
-      setErrors({ addresstwo: "Please type address two" });
+      setErrorsAddresstwo("Please type address two");
+    } else {
+      setErrorsAddresstwo("");
+    }
+    if (nationality === "") {
+      setErrorsNationality("Please type nationality");
+    } else {
+      setErrorsNationality("");
+    }
+    if (province === "") {
+      setErrorsProvince("Please type province");
+    } else {
+      setErrorsProvince("");
+    }
+    if (city === "") {
+      setErrorsCity("Please type city");
+    } else {
+      setErrorsCity("");
+    }
+    if (postalcode === "") {
+      setErrorsPostalcode("Please type postalcode");
+    } else {
+      setErrorsPostalcode("");
     }
   };
 
@@ -57,16 +92,19 @@ function Order() {
     if (!stripe || !elements) {
       return;
     }
-    // e.preventDefault();
-    if (e) {
-      checkInputValidation();
-    }
+
+    checkInputValidation();
 
     if (
       recipient !== "" &&
       cellphoneNumber !== "" &&
       addressone !== "" &&
-      addresstwo !== ""
+      addresstwo !== "" &&
+      nationality !== "" &&
+      province !== "" &&
+      city !== "" &&
+      postalcode !== "" &&
+      phoneRegex.test(cellphoneNumber.phone)
     ) {
       try {
         await fetch("http://localhost:3001/api/items/checkout", {
@@ -94,6 +132,10 @@ function Order() {
                 recipient: recipient,
                 cellphoneNumber: cellphoneNumber,
                 address: addressone + addresstwo,
+                nationality: nationality,
+                provice: province,
+                city: city,
+                postalcode: postalcode,
                 memo: memo,
                 orderState: state,
               })
@@ -107,12 +149,11 @@ function Order() {
       }
     }
   }
+
   const handleOnChangePhoneNumber = (value) => {
     setCellphoneNumber({
       phone: value,
     });
-
-    console.log(cellphoneNumber);
   };
 
   const handleOnChangeRecipients = (value) => {
@@ -136,105 +177,147 @@ function Order() {
             <div className="recipient_info_head">Recipient Info</div>
             <hr />
 
-            <form
-              className="order_address_form"
-              // onSubmit={(e) => handleToken(e)}
-            >
-              <Box component="form" noValidate autoComplete="off">
+            {/* <form className="order_address_form"> */}
+            <Box component="form" noValidate autoComplete="off">
+              <TextField
+                id="outlined-basic"
+                label="Recipient"
+                variant="outlined"
+                required
+                error={errorsRecipient}
+                helperText={errorsRecipient}
+                sx={{ m: 1, width: "25ch" }}
+                onChange={(e) => handleOnChangeRecipients(e.target.value)}
+              />
+
+              <div>
+                <MuiPhoneNumber
+                  defaultCountry={"ca"}
+                  onChange={handleOnChangePhoneNumber}
+                  required
+                  error={errorsCellphone}
+                  helperText={errorsCellphone}
+                  sx={{ m: 1, width: "25ch", mt: "2ch", mb: "2ch" }}
+                />
+              </div>
+              <div>
                 <TextField
                   id="outlined-basic"
-                  label="Recipient"
+                  label="Your address line one"
                   variant="outlined"
                   required
-                  error={errors?.recipient}
-                  helperText={errors.recipient}
-                  sx={{ m: 1, width: "25ch" }}
-                  onChange={(e) => handleOnChangeRecipients(e.target.value)}
+                  error={errorsAddressone}
+                  helperText={errorsAddressone}
+                  sx={{ m: 1, width: "52ch" }}
+                  onChange={(e) => setAddressone(e.target.value)}
                 />
+              </div>
+              <div>
+                <TextField
+                  id="outlined-basic"
+                  label="Your address line two"
+                  variant="outlined"
+                  required
+                  error={errorsAddresstwo}
+                  helperText={errorsAddresstwo}
+                  sx={{ m: 1, width: "52ch" }}
+                  onChange={(e) => setAddresstwo(e.target.value)}
+                />
+              </div>
+              {/* <AutoCompletePlace /> */}
+              <TextField
+                id="outlined-multiline-static"
+                label="Nationality"
+                variant="outlined"
+                error={errorsNationality}
+                helperText={errorsNationality}
+                sx={{ m: 1, width: "25ch", mb: "2ch" }}
+                multiline
+                onChange={(e) => setNationality(e.target.value)}
+              />
+              <TextField
+                id="outlined-multiline-static"
+                label="Province"
+                variant="outlined"
+                error={errorsProvince}
+                helperText={errorsProvince}
+                sx={{ m: 1, width: "25ch", mb: "2ch" }}
+                multiline
+                onChange={(e) => setProvince(e.target.value)}
+              />
+              <div>
+                <TextField
+                  id="outlined-multiline-static"
+                  label="City"
+                  variant="outlined"
+                  error={errorsCity}
+                  helperText={errorsCity}
+                  sx={{ m: 1, width: "25ch", mb: "2ch" }}
+                  multiline
+                  onChange={(e) => setCity(e.target.value)}
+                />
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Postal Code"
+                  variant="outlined"
+                  error={errorsPostalcode}
+                  helperText={errorsPostalcode}
+                  sx={{ m: 1, width: "25ch", mb: "2ch" }}
+                  multiline
+                  onChange={(e) => setPostalcode(e.target.value)}
+                />
+              </div>
+              <div>
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Memo"
+                  variant="outlined"
+                  rows={4}
+                  sx={{ m: 1, width: "52ch", mb: "2ch" }}
+                  multiline
+                  onChange={(e) => setMemo(e.target.value)}
+                />
+              </div>
+            </Box>
 
-                <div>
-                  <MuiPhoneNumber
-                    defaultCountry={"ca"}
-                    onChange={handleOnChangePhoneNumber}
-                    required
-                    error={errors?.phone}
-                    helperText={errors.phone}
-                    sx={{ m: 1, width: "25ch", mt: "2ch", mb: "2ch" }}
-                  />
-                </div>
-                <div>
-                  <TextField
-                    id="outlined-basic"
-                    label="Your address line one"
-                    variant="outlined"
-                    required
-                    sx={{ m: 1, width: "52ch" }}
-                    onChange={(e) => setAddressone(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <TextField
-                    id="outlined-basic"
-                    label="Your address line two"
-                    variant="outlined"
-                    required
-                    sx={{ m: 1, width: "52ch" }}
-                    onChange={(e) => setAddresstwo(e.target.value)}
-                  />
-                </div>
-                {/* <AutoCompletePlace /> */}
-                <div>
-                  <TextField
-                    id="outlined-multiline-static"
-                    label="Memo"
-                    variant="outlined"
-                    rows={4}
-                    sx={{ m: 1, width: "52ch", mb: "2ch" }}
-                    multiline
-                    onChange={(e) => setMemo(e.target.value)}
-                  />
-                </div>
-              </Box>
-
-              <div className="item_list">
-                {state["orderState"].map((item, index) => (
-                  <div className="order_item_description">
-                    <img src={`${item["image"]}`} alt="" />
-                    <div>
-                      <p>
-                        <span>Brand: </span>
-                        {item["brand"]}
-                      </p>
-                      <p>
-                        <span>Name: </span>
-                        {item["name"]}
-                      </p>
-                      <p>
-                        <span>Size: </span>
-                        {item["size"]["size"]}
-                      </p>
-                      <p>
-                        <span>Quantity: </span>
-                        {item["quantity"]}
-                      </p>
-                      <p>
-                        <span>Price: </span>
-                        {item["discounted_price"] * item["quantity"]}
-                      </p>
-                    </div>
+            <div className="item_list">
+              {state["orderState"].map((item, index) => (
+                <div className="order_item_description">
+                  <img src={`${item["image"]}`} alt="" />
+                  <div>
+                    <p>
+                      <span>Brand: </span>
+                      {item["brand"]}
+                    </p>
+                    <p>
+                      <span>Name: </span>
+                      {item["name"]}
+                    </p>
+                    <p>
+                      <span>Size: </span>
+                      {item["size"]["size"]}
+                    </p>
+                    <p>
+                      <span>Quantity: </span>
+                      {item["quantity"]}
+                    </p>
+                    <p>
+                      <span>Price: </span>
+                      {item["discounted_price"] * item["quantity"]}
+                    </p>
                   </div>
-                ))}
-              </div>
-              <div className="order_page_total_price">
-                Total price: {state["totalPrice"] - state["discountedPrice"]}
-              </div>
-
-              <div className="card_element">
-                <Button variant="contained" onClick={(e) => handleToken(e)}>
-                  Payment
-                </Button>
-              </div>
-            </form>
+                </div>
+              ))}
+            </div>
+            <div className="order_page_total_price">
+              Total price: {state["totalPrice"] - state["discountedPrice"]}
+            </div>
+            {/* </form> */}
+            <div className="card_element">
+              <Button variant="contained" onClick={(e) => handleToken(e)}>
+                Payment
+              </Button>
+            </div>
           </div>
         </>
       ) : loading ? (

@@ -50,12 +50,6 @@ function MainPage() {
       </div>
       <hr />
 
-      <form onSubmit={handlesubmit}>
-        <label>Search</label>
-        <input type="text" />
-        <input type="submit" />
-      </form>
-      <hr />
       <div className="card_collection">
         <div className="card">
           {selectedItem["target"] !== undefined &&
