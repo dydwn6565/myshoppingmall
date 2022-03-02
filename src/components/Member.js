@@ -50,51 +50,52 @@ function Member() {
 
   const signInWithGoogle = async (googleProvider) => {
     try {
-      const res = await signInWithPopup(auth, googleProvider);
-      const user = res.user;
+      await signInWithPopup(auth, googleProvider)
+        .then((user) => {
+          getDoc(doc(db, "users", user.user.uid))
+            .then((docs) => {
+              console.log(docs.data());
+              if (docs.data() === undefined) {
+                setUser({
+                  userInfo: {
+                    email: user.user.email,
+                    userLevel: "LV.4 Bronze",
+                    signUpDate: serverTimestamp(),
+                    reward: 50000,
+                    point: 23000,
+                    userId: user.user.email,
+                    coupon: { 1: "signup coupon" },
+                  },
+                });
 
-      const docs = await getDoc(doc(db, "users", user.uid));
-
-      const userInfo = docs.data().userInfo;
-      console.log("hit inside line59");
-      if (userInfo === undefined) {
-        console.log("hit inside line60");
-        setUser({
-          userInfo: {
-            email: user.email,
-            userLevel: "LV.4 Bronze",
-            signUpDate: serverTimestamp(),
-            reward: 50000,
-            point: 23000,
-            userId: user.email,
-            coupon: { 1: "signup coupon" },
-          },
-        });
-
-        setDoc(doc(db, "users", user.uid), {
-          userInfo: {
-            email: user.email,
-            userLevel: "LV.4 Bronze",
-            signUpDate: serverTimestamp(),
-            reward: 50000,
-            point: 23000,
-            userId: user.email,
-            coupon: { 1: "signup coupon" },
-          },
-        });
-      } else {
-        setUser({
-          userInfo: {
-            email: userInfo.email,
-            userLevel: userInfo.userLevel,
-            signUpDate: userInfo.signUpDate,
-            reward: userInfo.reward,
-            point: userInfo.point,
-            userId: userInfo.email,
-            coupon: userInfo.coupon,
-          },
-        });
-      }
+                setDoc(doc(db, "users", user.user.uid), {
+                  userInfo: {
+                    email: user.user.email,
+                    userLevel: "LV.4 Bronze",
+                    signUpDate: serverTimestamp(),
+                    reward: 50000,
+                    point: 23000,
+                    userId: user.user.email,
+                    coupon: { 1: "signup coupon" },
+                  },
+                });
+              } else {
+                setUser({
+                  userInfo: {
+                    email: docs.data().email,
+                    userLevel: docs.data().userLevel,
+                    signUpDate: docs.data().signUpDate,
+                    reward: docs.data().reward,
+                    point: docs.data().point,
+                    userId: docs.data().email,
+                    coupon: docs.data().coupon,
+                  },
+                });
+              }
+            })
+            .catch((error) => alert(error));
+        })
+        .catch((error) => alert(error));
     } catch (err) {
       alert(err.message);
     }
