@@ -14,9 +14,6 @@ function SidebarItems() {
         <span>only here</span>
       </div>
       <div className="sidebar_items_body">
-        {/* <Ranking /> */}
-        {/* <Update /> */}
-        {/* <Sale /> */}
         <OnlyHear />
       </div>
     </div>

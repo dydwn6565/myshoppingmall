@@ -70,7 +70,6 @@
   padding: 10px;
 }
 .order_page_total_price {
-  margin-left: 30px;
   margin-top: 20px;
 }
 
@@ -85,5 +84,4 @@
 
 .card_element {
   width: 350px;
-  height: 100px;
 }

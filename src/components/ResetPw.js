@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { ErrorAlerts, SuccessAlert } from "./Alert";

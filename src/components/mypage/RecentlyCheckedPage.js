@@ -1,6 +1,6 @@
 import React from "react";
 import HeadAd from "../HeadAd";
-import Header from "../Header";
+
 import MyPageHeader from "./MyPageHeader";
 import MainPageHeader from "../MainPageHeader";
 import "./RecentlyCheckedPage.css";
@@ -12,7 +12,7 @@ function RecentlyCheckedPage() {
     <div className="recentlycheckedpage">
       <HeadAd />
       <MainPageSearch />
-      {/* <Header /> */}
+
       <MainPageHeader />
       <MyPageHeader />
       <MyPageSide />

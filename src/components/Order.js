@@ -2,15 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Order.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "./firebase";
-import {
-  doc,
-  getDoc,
-  addDoc,
-  collection,
-  updateDoc,
-  serverTimestamp,
-} from "@firebase/firestore";
+import { auth } from "./firebase";
+
 import { v4 as uuid } from "uuid";
 
 import { useElements, useStripe } from "@stripe/react-stripe-js";
@@ -18,29 +11,29 @@ import { useElements, useStripe } from "@stripe/react-stripe-js";
 function Order() {
   const navigate = useNavigate();
   const [userLogin, loading] = useAuthState(auth);
-  const { state, totalPrice, discounted_price } = useLocation();
-  const [user, setUser] = useState("");
+  const { state } = useLocation();
+
   const [recipient, setRecipient] = useState("");
   const [cellphoneNumber, setCellphoneNumber] = useState(0);
   const [addressone, setAddressone] = useState("");
   const [addresstwo, setAddresstwo] = useState("");
   const [memo, setMemo] = useState("");
-  const uniqueId = uuid();
+
   const elements = useElements();
   const stripe = useStripe();
 
-  async function handleToken(e, addresses) {
-    // e.preventDefault();
+  async function handleToken(e) {
     if (!stripe || !elements) {
       return;
     }
-    console.log(state);
+
     if (
       recipient !== "" &&
       cellphoneNumber !== "" &&
       addressone !== "" &&
       addresstwo !== ""
     ) {
+      e.preventDefault();
       const clientSecret = await fetch(
         "http://localhost:3001/api/items/checkout",
         {
@@ -77,17 +70,6 @@ function Order() {
         .catch((e) => {
           console.error(e.error);
         });
-
-      const results = await stripe
-        .confirmCardPayment({
-          //`Elements` instance that was used to create the Payment Element
-          clientSecret,
-        })
-        .then(function (result) {
-          if (result) {
-            console.log(result.error.message);
-          }
-        });
     }
   }
 
@@ -96,25 +78,6 @@ function Order() {
       localStorage.removeItem("user_delivery_info");
     }
   }, []);
-
-  const payment = async () => {
-    localStorage.removeItem("orderItem");
-    const order = {
-      recipient: recipient,
-      cellphoneNumber: cellphoneNumber,
-      address: addressone + " " + addresstwo,
-      memo: memo,
-      item: state,
-      orderState: "ready",
-      orderNumber: uniqueId.slice(0, 8),
-      time: serverTimestamp(),
-    };
-    addDoc(collection(db, "users", userLogin["uid"], "order"), {
-      order: order,
-    })
-      .then(() => navigate("/confirm"))
-      .catch((error) => alert(error));
-  };
 
   return (
     <div className="order">
@@ -125,7 +88,7 @@ function Order() {
           <div className="recipient_info_head">Recipient Info</div>
           <div className="order_address">
             <hr />
-            <form className="order_address_form">
+            <form className="order_address_form" onSubmit={handleToken}>
               <div>
                 Recipient{" "}
                 <input
@@ -196,10 +159,10 @@ function Order() {
               <div className="order_page_total_price">
                 Total price: {state["totalPrice"] - state["discountedPrice"]}
               </div>
-              {/* <input type="submit" value="submit" /> */}
+
               <div className="card_element"></div>
+              <button>Payment</button>
             </form>
-            <button onClick={handleToken}>Payment</button>
           </div>
         </>
       ) : loading ? (

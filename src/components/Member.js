@@ -12,12 +12,12 @@ import { getDoc, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 function Member() {
-  const { user, setUser } = useContext(UserContext);
-  const [id, setId] = useState("");
+  const { setUser } = useContext(UserContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [userLogin, loading] = useAuthState(auth);
+  const [userLogin] = useAuthState(auth);
 
   const login = (e) => {
     e.preventDefault();
@@ -56,7 +56,9 @@ function Member() {
       const docs = await getDoc(doc(db, "users", user.uid));
 
       const userInfo = docs.data().userInfo;
+      console.log("hit inside line59");
       if (userInfo === undefined) {
+        console.log("hit inside line60");
         setUser({
           userInfo: {
             email: user.email,

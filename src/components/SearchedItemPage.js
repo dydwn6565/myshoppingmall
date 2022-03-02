@@ -3,7 +3,7 @@ import HeadAd from "./HeadAd";
 import MainPageSearch from "./MainPageSearch";
 
 import MainPageHeader from "./MainPageHeader";
-import MainPage from "./main/MainPage";
+
 import Side from "./Side";
 import SearchedItem from "./SearchedItem";
 

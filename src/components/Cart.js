@@ -13,24 +13,6 @@ function Cart() {
   const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
   const navigate = useNavigate();
 
-  // async function handleToken(token, addresses) {
-  //   const response = await fetch("http://localhost:3001/api/items/checkout", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "access-control-allow-origin": "*",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ token: token, product: product }),
-  //   });
-  //   if (response.status === 200) {
-  //     toast("Success Payment is completed", { type: "success" });
-  //   } else {
-  //     toast("Failure paymenet is not completed", { type: "error" });
-  //   }
-  //   console.log(response.status);
-  // }
-
   const checkBoxState = (index) => {
     if (checkBox[0] === undefined) {
       orderState.map((item, index) => (checkBox[index] = false));

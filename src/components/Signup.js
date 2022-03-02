@@ -3,7 +3,7 @@ import "./Signup.css";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "./firebase";
 import { UserContext } from "../Context";
 import { useNavigate } from "react-router-dom";

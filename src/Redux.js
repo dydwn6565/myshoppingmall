@@ -1,4 +1,3 @@
-import { combineReducers, createStore, applyMiddleware } from "redux";
 export const initialValues = {
   user: {
     userId: "",
@@ -33,11 +32,3 @@ export const rankingReducer = (state, action) => {
       return state;
   }
 };
-
-// const rootReducer = combineReducers({
-//   userLogin: userReducer,
-//   ranking: rankingReducer,
-// });
-
-// const store = createStore(rootReducer);
-// store.subscribe(() => console.log("Updated state", store.getState()));

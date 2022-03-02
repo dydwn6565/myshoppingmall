@@ -1,6 +1,6 @@
 import React from "react";
 import HeadAd from "../HeadAd";
-import Header from "../Header";
+
 import MyPageHeader from "./MyPageHeader";
 import MyPageSide from "./MyPageSide";
 import MainPageHeader from "../MainPageHeader";

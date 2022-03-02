@@ -29,7 +29,8 @@ function ConfirmPage() {
         memo: memo,
         item: orderState.orderState.map((item) => {
           return {
-            Qunatity: item.quantity,
+            quantity: item.quantity,
+            name: item.name,
             brand: item.brand,
             size: item.size.size,
             price: item.discounted_price,
@@ -43,7 +44,7 @@ function ConfirmPage() {
         order: order,
       }).catch((error) => alert(error));
     };
-    if (orderState) {
+    if (orderState && userLogin) {
       payment();
     }
   });

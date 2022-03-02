@@ -11,7 +11,7 @@ import Tog from "./components/terms/Tog";
 import ResetPw from "./components/ResetPw";
 import MyPage from "./components/mypage/MyPage";
 import RecentlyCheckedPage from "./components/mypage/RecentlyCheckedPage";
-// import Cart from "./components/Cart";
+
 import TractMyItem from "./components/TractMyItem";
 import Contact from "./components/Contact";
 import CartPage from "./components/CartPage";

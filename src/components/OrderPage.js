@@ -4,12 +4,13 @@ import HeadAd from "./HeadAd";
 import Side from "./Side";
 import MainPageHeader from "./MainPageHeader";
 import Order from "./Order";
+import MainPageSearch from "./MainPageSearch";
 function OrderPage() {
   return (
     <div className="orderpage">
-      <h1>OrderPagepage</h1>
       <HeadAd />
       <Header />
+      <MainPageSearch />
       <MainPageHeader />
       <Order />
       <Side />

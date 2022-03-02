@@ -6,13 +6,12 @@ import { SelectedItemContext } from "../../Context";
 
 function SidebarSearch({ itemBigTitle, itemSmallTitle }) {
   const [clicked, setClicked] = useState(true);
-  const { selectedItem, setSelectedItem } = useContext(SelectedItemContext);
+  const { setSelectedItem } = useContext(SelectedItemContext);
   const extendButton = () => {
     setClicked((preValue) => !preValue);
   };
 
   const sendItemListToItemCard = (target) => {
-    // console.log(target);
     setSelectedItem({
       target: target,
       itemBigTitle: itemBigTitle,

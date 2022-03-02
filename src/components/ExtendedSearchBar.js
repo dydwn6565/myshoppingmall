@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./ExtendedSearchBar.css";
-import { Container, Col, Row } from "react-grid-system";
+import { Container, Row } from "react-grid-system";
 import { RankContext } from "../Context";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -11,7 +11,7 @@ function ExtendedSearchBar({ setSearchItem }) {
   const [rankingItemLCP, setRankingItemLCP] = useState(0);
   const [recommendedItemLCP, setRecommendedItemLCP] = useState(0);
   const [recommendedItem, setRecommendedItem] = useState(null);
-  const { rank, setRank } = useContext(RankContext);
+  const { rank } = useContext(RankContext);
 
   const searchedItemPrev = () => {
     if (searchedItemLCP !== 0) {
