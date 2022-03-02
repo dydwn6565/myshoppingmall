@@ -12,6 +12,19 @@ import {
   serverTimestamp,
 } from "@firebase/firestore";
 import { v4 as uuid } from "uuid";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import StripeCheckout from "react-stripe-checkout";
+import {
+  CardElement,
+  useElements,
+  useStripe,
+  PaymentElement,
+  CardNumberElement,
+  PaymentRequestButtonElement,
+  FpxBankElement,
+  IdealBankElement,
+} from "@stripe/react-stripe-js";
 
 function Order() {
   const navigate = useNavigate();
@@ -20,34 +33,75 @@ function Order() {
   const [user, setUser] = useState("");
   const [recipient, setRecipient] = useState("");
   const [cellphoneNumber, setCellphoneNumber] = useState(0);
-  const [address, setAddress] = useState("");
+  const [addressone, setAddressone] = useState("");
+  const [addresstwo, setAddresstwo] = useState("");
   const [memo, setMemo] = useState("");
   const uniqueId = uuid();
+  const elements = useElements();
+  const stripe = useStripe();
 
-  useEffect(() => {
-    // getDoc(doc(db, "users", userLogin["uid"])).then((result) => {
-    //   console.log(result.data().userInfo);
-    //   setUser({
-    //     userInfo: {
-    //       email: result.data().userInfo.email,
-    //       userId: result.data().userInfo.userId,
-    //       coupon: result.data().userInfo.coupon,
-    //       order: result.data().userInfo.order,
-    //       userLevel: result.data().userInfo.userLevel,
-    //       signUpDate: result.data().userInfo.signupDate,
-    //       reward: result.data().userInfo.reward,
-    //       point: result.data().userInfo.point,
-    //     },
-    //   });
-    // });
-  }, []);
+  async function handleToken(e, addresses) {
+    // e.preventDefault();
+    if (!stripe || !elements) {
+      return;
+    }
+    console.log(state);
+    if (
+      recipient !== "" &&
+      cellphoneNumber !== "" &&
+      addressone !== "" &&
+      addresstwo !== ""
+    ) {
+      const response = await fetch("http://localhost:3001/api/items/checkout", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "access-control-allow-origin": "*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: state,
+        }),
+      })
+        .then((res) => {
+          if (res.ok) return res.json();
+          return res.json().then((json) => Promise.reject(json));
+        })
+        .then(({ url }) => {
+          console.log(url);
+          window.location = url;
+          localStorage.setItem(
+            "user_delivery_info",
+            JSON.stringify({
+              recipient: recipient,
+              cellphoneNumber: cellphoneNumber,
+              address: addressone + addresstwo,
+              memo: memo,
+              orderState: state,
+            })
+          );
+        })
+        .catch((e) => {
+          console.error(e.error);
+        });
+      console.log(response.status);
+    }
+
+    // if (response.status === 200) {
+    //   toast("Success Payment is completed", { type: "success" });
+    // } else {
+    //   toast("Failure paymenet is not completed", { type: "error" });
+    // }
+  }
+
+  useEffect(() => {}, []);
 
   const payment = async () => {
     localStorage.removeItem("orderItem");
     const order = {
       recipient: recipient,
       cellphoneNumber: cellphoneNumber,
-      address: address,
+      address: addressone + " " + addresstwo,
       memo: memo,
       item: state,
       orderState: "ready",
@@ -60,7 +114,6 @@ function Order() {
       .then(() => navigate("/confirm"))
       .catch((error) => alert(error));
   };
-  const order_address_form = () => {};
 
   return (
     <div className="order">
@@ -71,12 +124,13 @@ function Order() {
           <div className="recipient_info_head">Recipient Info</div>
           <div className="order_address">
             <hr />
-            <form className="order_address_form" action="handleAddress">
+            <form className="order_address_form">
               <div>
                 Recipient{" "}
                 <input
                   onChange={(e) => setRecipient(e.target.value)}
                   type="text"
+                  required
                 />
               </div>
               <div>
@@ -84,54 +138,67 @@ function Order() {
                 <input
                   onChange={(e) => setCellphoneNumber(e.target.value)}
                   type="number"
+                  required
                 />
               </div>
               <div>
-                Your address{" "}
+                Your address line one{" "}
                 <input
-                  onChange={(e) => setAddress(e.target.value)}
+                  onChange={(e) => setAddressone(e.target.value)}
                   type="text"
+                  required
                 />
               </div>
+              <div>
+                Your address line two{" "}
+                <input
+                  onChange={(e) => setAddresstwo(e.target.value)}
+                  type="text"
+                  required
+                />
+              </div>
+
               <div>
                 Memo{" "}
                 <input onChange={(e) => setMemo(e.target.value)} type="text" />
               </div>
-            </form>
 
-            <div className="item_list">
-              {state["orderState"].map((item, index) => (
-                <div className="order_item_description">
-                  <img src={`${item["image"]}`} alt="" />
-                  <div>
-                    <p>
-                      <span>Brand: </span>
-                      {item["brand"]}
-                    </p>
-                    <p>
-                      <span>Name: </span>
-                      {item["name"]}
-                    </p>
-                    <p>
-                      <span>Size: </span>
-                      {item["size"]["size"]}
-                    </p>
-                    <p>
-                      <span>Quantity: </span>
-                      {item["quantity"]}
-                    </p>
-                    <p>
-                      <span>Price: </span>
-                      {item["discounted_price"] * item["quantity"]}
-                    </p>
+              <div className="item_list">
+                {state["orderState"].map((item, index) => (
+                  <div className="order_item_description">
+                    <img src={`${item["image"]}`} alt="" />
+                    <div>
+                      <p>
+                        <span>Brand: </span>
+                        {item["brand"]}
+                      </p>
+                      <p>
+                        <span>Name: </span>
+                        {item["name"]}
+                      </p>
+                      <p>
+                        <span>Size: </span>
+                        {item["size"]["size"]}
+                      </p>
+                      <p>
+                        <span>Quantity: </span>
+                        {item["quantity"]}
+                      </p>
+                      <p>
+                        <span>Price: </span>
+                        {item["discounted_price"] * item["quantity"]}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-            <div className="order_page_total_price">
-              Total price: {state["totalPrice"] - state["discountedPrice"]}
-            </div>
-            <button onClick={payment}>Payment</button>
+                ))}
+              </div>
+              <div className="order_page_total_price">
+                Total price: {state["totalPrice"] - state["discountedPrice"]}
+              </div>
+              {/* <input type="submit" value="submit" /> */}
+              <div className="card_element"></div>
+            </form>
+            <button onClick={handleToken}>Payment</button>
           </div>
         </>
       ) : (

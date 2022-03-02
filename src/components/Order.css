@@ -1,7 +1,7 @@
 .order {
   border: 1px solid black;
   width: 1100px;
-  height: 1000px;
+  /* height: 1000px; */
   position: absolute;
   margin-left: 350px;
 }
@@ -81,4 +81,9 @@
 .order_item_description > div {
   display: flex;
   margin-top: 30px;
+}
+
+.card_element {
+  width: 350px;
+  height: 100px;
 }
