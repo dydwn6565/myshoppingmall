@@ -1,11 +1,11 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import "./MyPageMain.css";
-
+import Loading from "../Loading";
 function MyPageMain() {
-  const [userLogin, loading] = useAuthState(auth);
+  const [userLogin] = useAuthState(auth);
   const [orderState, setOrderState] = useState([]);
 
   useEffect(() => {
@@ -18,19 +18,13 @@ function MyPageMain() {
           )
           .then(() => setOrderState(orders))
           .catch((error) => alert(error));
-        // console.log("inside useEffect" + orders);
-        // setOrderState(orders);
       }
     };
     getOrders();
-
-    // return () => setOrderState(orders);
   }, [userLogin]);
 
   return (
     <div className="mypagemain">
-      {/* {console.log("MypageMain line25:" + orderState)}
-      {console.log("MypageMain line25:" + orderState)} */}
       <hr />
 
       <div className="order_info">
@@ -42,29 +36,29 @@ function MyPageMain() {
       </div>
       {console.log("line42" + orderState)}
       {
-        orderState[0] !== undefined &&
-          // convert &&
-          orderState.map((order) =>
-            order["order"]["item"]["orderState"].map((item) => (
-              <>
-                <div className="order_info_details">
-                  <p className="order_info_details_name">{item["name"]}</p>
-                  <p>
-                    {new Date(
-                      order["order"]["time"]["seconds"] * 1000
-                    ).toLocaleDateString()}
-                  </p>
-                  <p className="order_info_details_number">
-                    {order["order"]["orderNumber"]}
-                  </p>
-                  <p>{item["quantity"]}</p>
-                  <p>{order["order"]["orderState"]}</p>
-                </div>
-                {console.log(order["order"])}
-                {console.log(order["order"]["time"]["seconds"])}
-              </>
-            ))
-          )
+        orderState[0] !== undefined && userLogin
+          ? orderState.map((order) =>
+              order["order"]["item"]["orderState"].map((item) => (
+                <>
+                  <div className="order_info_details">
+                    <p className="order_info_details_name">{item["name"]}</p>
+                    <p>
+                      {new Date(
+                        order["order"]["time"]["seconds"] * 1000
+                      ).toLocaleDateString()}
+                    </p>
+                    <p className="order_info_details_number">
+                      {order["order"]["orderNumber"]}
+                    </p>
+                    <p>{item["quantity"]}</p>
+                    <p>{order["order"]["orderState"]}</p>
+                  </div>
+                  {console.log(order["order"])}
+                  {console.log(order["order"]["time"]["seconds"])}
+                </>
+              ))
+            )
+          : ""
         // : alert("loading")
       }
       <hr />

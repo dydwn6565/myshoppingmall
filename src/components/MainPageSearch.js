@@ -12,7 +12,7 @@ function MainPageSearch() {
   const [ranking, setRanking] = useState(null);
   const [index, setIndex] = useState(0);
   // const [searchedItem, setSearchedItem] = useState("");
-  const { rank, setRank } = useContext(RankContext);
+  const { setRank } = useContext(RankContext);
   const [extendbar, setExtendbar] = useState(false);
   const [searchItem, setSearchItem] = useState("");
   const navigate = useNavigate();

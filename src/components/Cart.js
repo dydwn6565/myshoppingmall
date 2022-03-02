@@ -5,9 +5,7 @@ import DragHandleIcon from "@mui/icons-material/DragHandle";
 import Grid from "@mui/material/Grid";
 import Checkbox from "@mui/material/Checkbox";
 import { useNavigate } from "react-router-dom";
-import StripeCheckout from "react-stripe-checkout";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 function Cart() {
   const [orderState, setOrderState] = useState([]);
   const [checkBox, setCheckBox] = useState({});
@@ -15,30 +13,23 @@ function Cart() {
   const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
   const navigate = useNavigate();
 
-  toast.configure();
-  const [product] = useState({
-    name: "Sample Game",
-    price: 200,
-    description: "This is a sample game",
-  });
-
-  async function handleToken(token, addresses) {
-    const response = await fetch("http://localhost:3001/api/items/checkout", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "access-control-allow-origin": "*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ token: token, product: product }),
-    });
-    if (response.status === 200) {
-      toast("Success Payment is completed", { type: "success" });
-    } else {
-      toast("Failure paymenet is not completed", { type: "error" });
-    }
-    console.log(response.status);
-  }
+  // async function handleToken(token, addresses) {
+  //   const response = await fetch("http://localhost:3001/api/items/checkout", {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "access-control-allow-origin": "*",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ token: token, product: product }),
+  //   });
+  //   if (response.status === 200) {
+  //     toast("Success Payment is completed", { type: "success" });
+  //   } else {
+  //     toast("Failure paymenet is not completed", { type: "error" });
+  //   }
+  //   console.log(response.status);
+  // }
 
   const checkBoxState = (index) => {
     if (checkBox[0] === undefined) {

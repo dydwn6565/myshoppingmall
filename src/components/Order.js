@@ -12,19 +12,8 @@ import {
   serverTimestamp,
 } from "@firebase/firestore";
 import { v4 as uuid } from "uuid";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import StripeCheckout from "react-stripe-checkout";
-import {
-  CardElement,
-  useElements,
-  useStripe,
-  PaymentElement,
-  CardNumberElement,
-  PaymentRequestButtonElement,
-  FpxBankElement,
-  IdealBankElement,
-} from "@stripe/react-stripe-js";
+
+import { useElements, useStripe } from "@stripe/react-stripe-js";
 
 function Order() {
   const navigate = useNavigate();
@@ -52,23 +41,27 @@ function Order() {
       addressone !== "" &&
       addresstwo !== ""
     ) {
-      const response = await fetch("http://localhost:3001/api/items/checkout", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "access-control-allow-origin": "*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          items: state,
-        }),
-      })
+      const clientSecret = await fetch(
+        "http://localhost:3001/api/items/checkout",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "access-control-allow-origin": "*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            items: state,
+            paymentMethodType: "card",
+            currency: "cad",
+          }),
+        }
+      )
         .then((res) => {
           if (res.ok) return res.json();
           return res.json().then((json) => Promise.reject(json));
         })
         .then(({ url }) => {
-          console.log(url);
           window.location = url;
           localStorage.setItem(
             "user_delivery_info",
@@ -84,17 +77,25 @@ function Order() {
         .catch((e) => {
           console.error(e.error);
         });
-      console.log(response.status);
-    }
 
-    // if (response.status === 200) {
-    //   toast("Success Payment is completed", { type: "success" });
-    // } else {
-    //   toast("Failure paymenet is not completed", { type: "error" });
-    // }
+      const results = await stripe
+        .confirmCardPayment({
+          //`Elements` instance that was used to create the Payment Element
+          clientSecret,
+        })
+        .then(function (result) {
+          if (result) {
+            console.log(result.error.message);
+          }
+        });
+    }
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (JSON.parse(localStorage?.getItem("user_delivery_info"))) {
+      localStorage.removeItem("user_delivery_info");
+    }
+  }, []);
 
   const payment = async () => {
     localStorage.removeItem("orderItem");
@@ -117,7 +118,7 @@ function Order() {
 
   return (
     <div className="order">
-      {userLogin ? (
+      {userLogin && state ? (
         <>
           <div className="order_payment_head">Order/Payment</div>
           <hr />
@@ -201,6 +202,8 @@ function Order() {
             <button onClick={handleToken}>Payment</button>
           </div>
         </>
+      ) : loading ? (
+        loading
       ) : (
         navigate("/login")
       )}
