@@ -64,7 +64,7 @@ function Member() {
                     reward: 50000,
                     point: 23000,
                     userId: user.user.email,
-                    coupon: { 1: "signup coupon" },
+                    coupon: [{ 1: "signup coupon" }],
                   },
                 });
 
@@ -76,7 +76,7 @@ function Member() {
                     reward: 50000,
                     point: 23000,
                     userId: user.user.email,
-                    coupon: { 1: "signup coupon" },
+                    coupon: [{ 1: "signup coupon" }],
                   },
                 });
               } else {

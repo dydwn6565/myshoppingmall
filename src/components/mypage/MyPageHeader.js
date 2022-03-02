@@ -14,7 +14,7 @@ import { getDoc, doc } from "firebase/firestore";
 function MyPageHeader() {
   const { user, setUser } = useContext(UserContext);
   const [userLogin] = useAuthState(auth);
-  const [setConverter] = useState(true);
+  const [converter, setConverter] = useState(true);
   useEffect(() => {
     const getUserData = () => {
       if (userLogin !== null) {

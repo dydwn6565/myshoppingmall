@@ -97,7 +97,7 @@ const Signin = () => {
             reward: 50000,
             point: 23000,
             userId: id,
-            coupon: { 1: "signup coupon" },
+            coupon: [{ 1: "signup coupon" }],
           },
         });
         setDoc(doc(db, "users", userAuth.user.uid), {
@@ -108,7 +108,7 @@ const Signin = () => {
             reward: 50000,
             point: 23000,
             userId: id,
-            coupon: { 1: "signup coupon" },
+            coupon: [{ 1: "signup coupon" }],
           },
         });
         // });

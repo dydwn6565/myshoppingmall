@@ -4,9 +4,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase";
 
-import { v4 as uuid } from "uuid";
-
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import MuiPhoneNumber from "material-ui-phone-number";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
+import Button from "@mui/material/Button";
+import AutoCompletePlace from "./AutoCompletePlace";
 
 function Order() {
   const navigate = useNavigate();
@@ -19,12 +22,44 @@ function Order() {
   const [addresstwo, setAddresstwo] = useState("");
   const [memo, setMemo] = useState("");
 
+  const [errors, setErrors] = useState({
+    recipient: "",
+    phone: "",
+    addressone: "",
+    addresstwo: "",
+  });
   const elements = useElements();
   const stripe = useStripe();
+
+  const checkInputValidation = () => {
+    if (recipient === "") {
+      setErrors({ recipient: "please type recipient" });
+    }
+    console.log(cellphoneNumber);
+
+    const phoneRegex = /\(\d{3}\)\s*\d{3}-\d{4}/;
+
+    // ).test(cellphoneNumber.phone);
+    console.log(phoneRegex.test(cellphoneNumber.phone));
+    if (!phoneRegex.test(cellphoneNumber.phone)) {
+      setErrors({ phone: "please type proper phone number" });
+    }
+
+    if (addressone === "") {
+      setErrors({ addressone: "Please type address one" });
+    }
+    if (addresstwo === "") {
+      setErrors({ addresstwo: "Please type address two" });
+    }
+  };
 
   async function handleToken(e) {
     if (!stripe || !elements) {
       return;
+    }
+    // e.preventDefault();
+    if (e) {
+      checkInputValidation();
     }
 
     if (
@@ -33,10 +68,8 @@ function Order() {
       addressone !== "" &&
       addresstwo !== ""
     ) {
-      e.preventDefault();
-      const clientSecret = await fetch(
-        "http://localhost:3001/api/items/checkout",
-        {
+      try {
+        await fetch("http://localhost:3001/api/items/checkout", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -48,30 +81,43 @@ function Order() {
             paymentMethodType: "card",
             currency: "cad",
           }),
-        }
-      )
-        .then((res) => {
-          if (res.ok) return res.json();
-          return res.json().then((json) => Promise.reject(json));
         })
-        .then(({ url }) => {
-          window.location = url;
-          localStorage.setItem(
-            "user_delivery_info",
-            JSON.stringify({
-              recipient: recipient,
-              cellphoneNumber: cellphoneNumber,
-              address: addressone + addresstwo,
-              memo: memo,
-              orderState: state,
-            })
-          );
-        })
-        .catch((e) => {
-          console.error(e.error);
-        });
+          .then((res) => {
+            if (res.ok) return res.json();
+            return res.json().then((json) => Promise.reject(json));
+          })
+          .then(({ url }) => {
+            window.location = url;
+            localStorage.setItem(
+              "user_delivery_info",
+              JSON.stringify({
+                recipient: recipient,
+                cellphoneNumber: cellphoneNumber,
+                address: addressone + addresstwo,
+                memo: memo,
+                orderState: state,
+              })
+            );
+          })
+          .catch((e) => {
+            console.error(e.error);
+          });
+      } catch (error) {
+        alert(error);
+      }
     }
   }
+  const handleOnChangePhoneNumber = (value) => {
+    setCellphoneNumber({
+      phone: value,
+    });
+
+    console.log(cellphoneNumber);
+  };
+
+  const handleOnChangeRecipients = (value) => {
+    setRecipient(value);
+  };
 
   useEffect(() => {
     if (JSON.parse(localStorage?.getItem("user_delivery_info"))) {
@@ -85,47 +131,70 @@ function Order() {
         <>
           <div className="order_payment_head">Order/Payment</div>
           <hr />
-          <div className="recipient_info_head">Recipient Info</div>
-          <div className="order_address">
-            <hr />
-            <form className="order_address_form" onSubmit={handleToken}>
-              <div>
-                Recipient{" "}
-                <input
-                  onChange={(e) => setRecipient(e.target.value)}
-                  type="text"
-                  required
-                />
-              </div>
-              <div>
-                Cellphone number{" "}
-                <input
-                  onChange={(e) => setCellphoneNumber(e.target.value)}
-                  type="number"
-                  required
-                />
-              </div>
-              <div>
-                Your address line one{" "}
-                <input
-                  onChange={(e) => setAddressone(e.target.value)}
-                  type="text"
-                  required
-                />
-              </div>
-              <div>
-                Your address line two{" "}
-                <input
-                  onChange={(e) => setAddresstwo(e.target.value)}
-                  type="text"
-                  required
-                />
-              </div>
 
-              <div>
-                Memo{" "}
-                <input onChange={(e) => setMemo(e.target.value)} type="text" />
-              </div>
+          <div className="order_address">
+            <div className="recipient_info_head">Recipient Info</div>
+            <hr />
+
+            <form
+              className="order_address_form"
+              // onSubmit={(e) => handleToken(e)}
+            >
+              <Box component="form" noValidate autoComplete="off">
+                <TextField
+                  id="outlined-basic"
+                  label="Recipient"
+                  variant="outlined"
+                  required
+                  error={errors?.recipient}
+                  helperText={errors.recipient}
+                  sx={{ m: 1, width: "25ch" }}
+                  onChange={(e) => handleOnChangeRecipients(e.target.value)}
+                />
+
+                <div>
+                  <MuiPhoneNumber
+                    defaultCountry={"ca"}
+                    onChange={handleOnChangePhoneNumber}
+                    required
+                    error={errors?.phone}
+                    helperText={errors.phone}
+                    sx={{ m: 1, width: "25ch", mt: "2ch", mb: "2ch" }}
+                  />
+                </div>
+                <div>
+                  <TextField
+                    id="outlined-basic"
+                    label="Your address line one"
+                    variant="outlined"
+                    required
+                    sx={{ m: 1, width: "52ch" }}
+                    onChange={(e) => setAddressone(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <TextField
+                    id="outlined-basic"
+                    label="Your address line two"
+                    variant="outlined"
+                    required
+                    sx={{ m: 1, width: "52ch" }}
+                    onChange={(e) => setAddresstwo(e.target.value)}
+                  />
+                </div>
+                {/* <AutoCompletePlace /> */}
+                <div>
+                  <TextField
+                    id="outlined-multiline-static"
+                    label="Memo"
+                    variant="outlined"
+                    rows={4}
+                    sx={{ m: 1, width: "52ch", mb: "2ch" }}
+                    multiline
+                    onChange={(e) => setMemo(e.target.value)}
+                  />
+                </div>
+              </Box>
 
               <div className="item_list">
                 {state["orderState"].map((item, index) => (
@@ -160,8 +229,11 @@ function Order() {
                 Total price: {state["totalPrice"] - state["discountedPrice"]}
               </div>
 
-              <div className="card_element"></div>
-              <button>Payment</button>
+              <div className="card_element">
+                <Button variant="contained" onClick={(e) => handleToken(e)}>
+                  Payment
+                </Button>
+              </div>
             </form>
           </div>
         </>
