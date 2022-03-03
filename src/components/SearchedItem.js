@@ -21,7 +21,6 @@ function SearchedItem() {
     };
 
     searchedItemData();
-    // setFilteredData(searchedItemData);
   }, [state]);
   return (
     <div className="searchedItem">

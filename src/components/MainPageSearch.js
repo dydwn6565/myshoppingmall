@@ -74,7 +74,7 @@ function MainPageSearch() {
   const removeExtendSearchBar = () => {
     setTimeout(() => {
       setExtendbar(false);
-    }, 10000);
+    }, 15000);
   };
   const moveToMain = () => {
     navigate("/");
@@ -102,7 +102,7 @@ function MainPageSearch() {
               </div>
             </>
           ) : (
-            <Loading />
+            ""
           )}
         </div>
       </div>

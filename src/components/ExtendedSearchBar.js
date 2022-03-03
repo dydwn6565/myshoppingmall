@@ -97,7 +97,7 @@ function ExtendedSearchBar({ setSearchItem }) {
               if (key < searchedItemLCP + 10 && key >= searchedItemLCP) {
                 return (
                   <div
-                    className="searched_rank"
+                    className="searched_item_list"
                     onClick={() => setSearchItem(searchedItemList[key])}
                   >
                     {item}
@@ -120,7 +120,7 @@ function ExtendedSearchBar({ setSearchItem }) {
             </div>
 
             {rank[0] === undefined
-              ? alert("hi")
+              ? ""
               : rank?.map((item, key) => {
                   if (key < rankingItemLCP + 10 && key >= rankingItemLCP) {
                     return (
@@ -158,7 +158,7 @@ function ExtendedSearchBar({ setSearchItem }) {
               if (key < recommendedItemLCP + 10 && key >= recommendedItemLCP) {
                 return (
                   <div
-                    className="searched_rank"
+                    className="recommended_item"
                     onClick={(e) => setSearchItem(recommendedItem[key])}
                   >
                     <span className="extended_search_bar_numbering">
