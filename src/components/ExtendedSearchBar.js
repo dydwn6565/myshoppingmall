@@ -69,7 +69,8 @@ function ExtendedSearchBar({ setSearchItem }) {
             console.log(result["2022/02/16"]);
 
             setRecommendedItem(result["2022/02/16"]);
-          });
+          })
+          .catch((error) => alert(error));
       };
       fetchRankingData();
     } catch (error) {

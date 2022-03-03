@@ -26,11 +26,15 @@ function MainPageSearch() {
             console.log(result["2022/02/16"]);
             setRanking(result["2022/02/16"]);
             setRank(result["2022/02/16"]);
+          })
+          .catch((error) => {
+            alert(error.message);
           });
       };
       fetchRankingData();
     } catch (error) {
       console.log(error);
+      alert(error.message);
     }
   }, []);
 
