@@ -116,36 +116,24 @@ const Signin = () => {
   };
   return (
     <div className="signin">
-      <h3 className="shopping_mall_name">Sign up Form</h3>
+      <h2 className="shopping_mall_name">Sign up Form</h2>
       <form onSubmit={formik.handleSubmit}>
         <div className="form_control">
-          {/* <label htmlFor="id">Id</label> */}
           <TextField
             required
             id="outlined-required"
             label="id"
             name="id"
             type="text"
-            // className="reset_password_input"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.id}
           />
-          {/* <input id="id" type="text" /> */}
-          {formik.errors.id ? (
-            <div className="error">{formik.errors.id}</div>
-          ) : null}{" "}
         </div>
+        {formik.errors.id ? (
+          <div className="error">{formik.errors.id}</div>
+        ) : null}{" "}
         <div className="form_control">
-          {/* <label htmlFor="password">Password</label> */}
-          {/* <input
-            id="password"
-            name="password"
-            type="password"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.password}
-          /> */}
           <TextField
             required
             id="outlined-required"
@@ -156,20 +144,11 @@ const Signin = () => {
             onBlur={formik.handleBlur}
             value={formik.values.password}
           />
-          {formik.errors.password ? (
-            <div className="error">{formik.errors.password}</div>
-          ) : null}
         </div>
+        {formik.errors.password ? (
+          <div className="error">{formik.errors.password}</div>
+        ) : null}
         <div className="form_control">
-          {/* <label htmlFor="confirmPassword">Confirm Password</label> */}
-          {/* <input
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.confirmPassword}
-          /> */}
           <TextField
             required
             id="outlined-required"
@@ -180,20 +159,11 @@ const Signin = () => {
             onBlur={formik.handleBlur}
             value={formik.values.confirmPassword}
           />
-          {formik.errors.confirmPassword ? (
-            <div className="error">{formik.errors.confirmPassword}</div>
-          ) : null}
         </div>
+        {formik.errors.confirmPassword ? (
+          <div className="error">{formik.errors.confirmPassword}</div>
+        ) : null}
         <div className="form_control">
-          {/* <label htmlFor="email">Email Address</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
-          /> */}
           <TextField
             required
             id="outlined-required"
@@ -204,113 +174,116 @@ const Signin = () => {
             onBlur={formik.handleBlur}
             value={formik.values.email}
           />
-          {formik.errors.email ? (
-            <div className="error">{formik.errors.email}</div>
-          ) : null}
         </div>
-        <div className="form_control">
-          <input
-            type="radio"
-            name="radio_all"
-            id="radio_all"
-            checked={radioState.All}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            onClick={selectAll}
-          />
-          <label htmlFor="selelct_all">Select All</label>
-        </div>
-
-        <div className="form_control">
-          <input
-            type="radio"
-            name="radio_toa"
-            id="radio_toa"
-            checked={radioState.Toa}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            onClick={() =>
-              setRadioState({
-                All: radioState.All,
-                Toa: !radioState.Toa,
-                Aypi: radioState.Aypi,
-                Aous: radioState.Aous,
-                Aora: radioState.Aora,
-              })
-            }
-          />
-          <div className="term_of_agree">
-            Term of Agreemenet <Link to="/signin/tog">Term</Link>
+        {formik.errors.email ? (
+          <div className="error">{formik.errors.email}</div>
+        ) : null}
+        <div className="radio_button_container">
+          <div className="form_control_radio_button">
+            <input
+              type="radio"
+              name="radio_all"
+              id="radio_all"
+              checked={radioState.All}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              onClick={selectAll}
+            />
+            <label htmlFor="selelct_all"> Select All</label>
           </div>
-        </div>
-
-        <div className="form_control">
-          <input
-            type="radio"
-            name="radio_aypi"
-            id="radio_aypi"
-            checked={radioState.Aypi}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            onClick={() =>
-              setRadioState({
-                All: radioState.All,
-                Toa: radioState.Toa,
-                Aypi: !radioState.Aypi,
-                Aous: radioState.Aous,
-                Aora: radioState.Aora,
-              })
-            }
-          />
-          <label htmlFor="agree_your_info">
-            Agreement of using your personal info{" "}
-            <Link to="/signin/aypi">Term</Link>
-          </label>
-        </div>
-        <div className="form_control">
-          <input
-            type="radio"
-            name="radio_aous"
-            id="radio_aous"
-            checked={radioState.Aous}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            onClick={() =>
-              setRadioState({
-                All: radioState.All,
-                Toa: radioState.Toa,
-                Aypi: radioState.Aypi,
-                Aous: !radioState.Aous,
-                Aora: radioState.Aora,
-              })
-            }
-          />
-          <label htmlFor="agree_of_using_store">
-            Agreement of using the store <Link to="/signin/aous">Term</Link>
-          </label>
-        </div>
-
-        <div className="form_control">
-          <input
-            type="radio"
-            name="radio_aora"
-            id="radio_aora"
-            checked={radioState.Aora}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            onClick={() =>
-              setRadioState({
-                All: radioState.All,
-                Toa: radioState.Toa,
-                Aypi: radioState.Aypi,
-                Aous: radioState.Aous,
-                Aora: !radioState.Aora,
-              })
-            }
-          />
-          <label htmlFor="agree_of_receiving_ad">
-            Agreement of receiving Ad <Link to="/signin/aora">Term</Link>
-          </label>
+          <div className="form_control_radio_button">
+            <input
+              type="radio"
+              name="radio_toa"
+              id="radio_toa"
+              checked={radioState.Toa}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              onClick={() =>
+                setRadioState({
+                  All: radioState.All,
+                  Toa: !radioState.Toa,
+                  Aypi: radioState.Aypi,
+                  Aous: radioState.Aous,
+                  Aora: radioState.Aora,
+                })
+              }
+            />
+            <label className="term_of_agree">
+              {" "}
+              Term of Agreemenet <Link to="/signin/tog">Term</Link>
+            </label>
+          </div>
+          <div className="form_control_radio_button">
+            <input
+              type="radio"
+              name="radio_aypi"
+              id="radio_aypi"
+              checked={radioState.Aypi}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              onClick={() =>
+                setRadioState({
+                  All: radioState.All,
+                  Toa: radioState.Toa,
+                  Aypi: !radioState.Aypi,
+                  Aous: radioState.Aous,
+                  Aora: radioState.Aora,
+                })
+              }
+            />
+            <label htmlFor="agree_your_info">
+              {" "}
+              Agreement of using your personal info{" "}
+              <Link to="/signin/aypi">Term</Link>
+            </label>
+          </div>
+          <div className="form_control_radio_button">
+            <input
+              type="radio"
+              name="radio_aous"
+              id="radio_aous"
+              checked={radioState.Aous}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              onClick={() =>
+                setRadioState({
+                  All: radioState.All,
+                  Toa: radioState.Toa,
+                  Aypi: radioState.Aypi,
+                  Aous: !radioState.Aous,
+                  Aora: radioState.Aora,
+                })
+              }
+            />
+            <label htmlFor="agree_of_using_store">
+              {" "}
+              Agreement of using the store <Link to="/signin/aous">Term</Link>
+            </label>
+          </div>
+          <div className="form_control_radio_button">
+            <input
+              type="radio"
+              name="radio_aora"
+              id="radio_aora"
+              checked={radioState.Aora}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              onClick={() =>
+                setRadioState({
+                  All: radioState.All,
+                  Toa: radioState.Toa,
+                  Aypi: radioState.Aypi,
+                  Aous: radioState.Aous,
+                  Aora: !radioState.Aora,
+                })
+              }
+            />
+            <label htmlFor="agree_of_receiving_ad">
+              {" "}
+              Agreement of receiving Ad <Link to="/signin/aora">Term</Link>
+            </label>
+          </div>
         </div>
         {radioState.Toa && radioState.Aypi && radioState.Aora ? (
           <Button className="sign_up_button" type="submit">

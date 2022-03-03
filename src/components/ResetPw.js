@@ -49,11 +49,6 @@ function ResetPw() {
     <div className="find_id_pw">
       <h2>Reset Password </h2>
 
-      {/* <input
-        type="email"
-        placeholder="type your email"
-        onChange={(e) => setUserEmail(e.target.value)}
-      /> */}
       <div className="reset_password_container">
         <TextField
           required

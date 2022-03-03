@@ -30,6 +30,8 @@
 
 .reset_pw_alert_message {
   margin-top: 15px;
+  display: flex;
+  justify-content: center;
 }
 .fade_in {
   transition: opacity 1s ease;
