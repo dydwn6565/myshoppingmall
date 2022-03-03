@@ -152,7 +152,7 @@ function Cart() {
                   {item["name"]}
                 </Grid>
                 <Grid xs={1.7} md={1.7} item className="order_item_price">
-                  {item["original_price"] * item["quantity"]}
+                  $ {item["original_price"] * item["quantity"]}
                 </Grid>
                 <Grid xs={1.7} md={1.7} item>
                   {(item["original_price"] - item["discounted_price"]) *
@@ -209,11 +209,11 @@ function Cart() {
       </div>
 
       <div className="total_price">
-        <span>product price: {totalProductPrice}</span>
+        <span>product price: $ {totalProductPrice}</span>
         <RemoveIcon className="svg_icons" />
-        <span>total discount: {totalDiscountPrice}</span>
+        <span>total discount: $ {totalDiscountPrice}</span>
         <DragHandleIcon className="svg_icons" />
-        <span>Total price: {totalProductPrice - totalDiscountPrice}</span>
+        <span>Total price: $ {totalProductPrice - totalDiscountPrice}</span>
       </div>
       <button className="order_button" onClick={order}>
         Order

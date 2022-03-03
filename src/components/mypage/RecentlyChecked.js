@@ -35,14 +35,14 @@ function RecentlyChecked() {
                   <h5>
                     Original Price:{" "}
                     <span className="original_price">
-                      <s>{item["original_price"]}</s>
+                      <s>${item["original_price"]}</s>
                     </span>
                   </h5>
                 </div>
                 <h5>
                   Discounted Price:{" "}
                   <span className="discounted_price">
-                    {item["discounted_price"]}
+                    ${item["discounted_price"]}
                   </span>
                 </h5>
               </div>

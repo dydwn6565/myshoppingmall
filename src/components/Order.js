@@ -177,142 +177,142 @@ function Order() {
             <div className="recipient_info_head">Recipient Info</div>
             <hr />
 
-            {/* <form className="order_address_form"> */}
-            <Box component="form" noValidate autoComplete="off">
-              <TextField
-                id="outlined-basic"
-                label="Recipient"
-                variant="outlined"
-                required
-                error={errorsRecipient}
-                helperText={errorsRecipient}
-                sx={{ m: 1, width: "25ch" }}
-                onChange={(e) => handleOnChangeRecipients(e.target.value)}
-              />
-
-              <div>
-                <MuiPhoneNumber
-                  defaultCountry={"ca"}
-                  onChange={handleOnChangePhoneNumber}
-                  required
-                  error={errorsCellphone}
-                  helperText={errorsCellphone}
-                  sx={{ m: 1, width: "25ch", mt: "2ch", mb: "2ch" }}
-                />
-              </div>
-              <div>
+            <div className="order_address_form">
+              <Box component="form" noValidate autoComplete="off">
                 <TextField
                   id="outlined-basic"
-                  label="Your address line one"
+                  label="Recipient"
                   variant="outlined"
                   required
-                  error={errorsAddressone}
-                  helperText={errorsAddressone}
-                  sx={{ m: 1, width: "52ch" }}
-                  onChange={(e) => setAddressone(e.target.value)}
+                  error={errorsRecipient}
+                  helperText={errorsRecipient}
+                  sx={{ m: 1, width: "25ch" }}
+                  onChange={(e) => handleOnChangeRecipients(e.target.value)}
                 />
-              </div>
-              <div>
-                <TextField
-                  id="outlined-basic"
-                  label="Your address line two"
-                  variant="outlined"
-                  required
-                  error={errorsAddresstwo}
-                  helperText={errorsAddresstwo}
-                  sx={{ m: 1, width: "52ch" }}
-                  onChange={(e) => setAddresstwo(e.target.value)}
-                />
-              </div>
-              {/* <AutoCompletePlace /> */}
-              <TextField
-                id="outlined-multiline-static"
-                label="Nationality"
-                variant="outlined"
-                error={errorsNationality}
-                helperText={errorsNationality}
-                sx={{ m: 1, width: "25ch", mb: "2ch" }}
-                multiline
-                onChange={(e) => setNationality(e.target.value)}
-              />
-              <TextField
-                id="outlined-multiline-static"
-                label="Province"
-                variant="outlined"
-                error={errorsProvince}
-                helperText={errorsProvince}
-                sx={{ m: 1, width: "25ch", mb: "2ch" }}
-                multiline
-                onChange={(e) => setProvince(e.target.value)}
-              />
-              <div>
-                <TextField
-                  id="outlined-multiline-static"
-                  label="City"
-                  variant="outlined"
-                  error={errorsCity}
-                  helperText={errorsCity}
-                  sx={{ m: 1, width: "25ch", mb: "2ch" }}
-                  multiline
-                  onChange={(e) => setCity(e.target.value)}
-                />
-                <TextField
-                  id="outlined-multiline-static"
-                  label="Postal Code"
-                  variant="outlined"
-                  error={errorsPostalcode}
-                  helperText={errorsPostalcode}
-                  sx={{ m: 1, width: "25ch", mb: "2ch" }}
-                  multiline
-                  onChange={(e) => setPostalcode(e.target.value)}
-                />
-              </div>
-              <div>
-                <TextField
-                  id="outlined-multiline-static"
-                  label="Memo"
-                  variant="outlined"
-                  rows={4}
-                  sx={{ m: 1, width: "52ch", mb: "2ch" }}
-                  multiline
-                  onChange={(e) => setMemo(e.target.value)}
-                />
-              </div>
-            </Box>
 
-            <div className="item_list">
-              {state["orderState"].map((item, index) => (
-                <div className="order_item_description">
-                  <img src={`${item["image"]}`} alt="" />
-                  <div>
-                    <p>
-                      <span>Brand: </span>
-                      {item["brand"]}
-                    </p>
-                    <p>
-                      <span>Name: </span>
-                      {item["name"]}
-                    </p>
-                    <p>
-                      <span>Size: </span>
-                      {item["size"]["size"]}
-                    </p>
-                    <p>
-                      <span>Quantity: </span>
-                      {item["quantity"]}
-                    </p>
-                    <p>
-                      <span>Price: </span>
-                      {item["discounted_price"] * item["quantity"]}
-                    </p>
-                  </div>
+                <div>
+                  <MuiPhoneNumber
+                    defaultCountry={"ca"}
+                    onChange={handleOnChangePhoneNumber}
+                    required
+                    error={errorsCellphone}
+                    helperText={errorsCellphone}
+                    sx={{ m: 1, width: "25ch", mt: "2ch", mb: "2ch" }}
+                  />
                 </div>
-              ))}
+                <div>
+                  <TextField
+                    id="outlined-basic"
+                    label="Your address line one"
+                    variant="outlined"
+                    required
+                    error={errorsAddressone}
+                    helperText={errorsAddressone}
+                    sx={{ m: 1, width: "52ch" }}
+                    onChange={(e) => setAddressone(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <TextField
+                    id="outlined-basic"
+                    label="Your address line two"
+                    variant="outlined"
+                    required
+                    error={errorsAddresstwo}
+                    helperText={errorsAddresstwo}
+                    sx={{ m: 1, width: "52ch" }}
+                    onChange={(e) => setAddresstwo(e.target.value)}
+                  />
+                </div>
+                {/* <AutoCompletePlace /> */}
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Nationality"
+                  variant="outlined"
+                  error={errorsNationality}
+                  helperText={errorsNationality}
+                  sx={{ m: 1, width: "25ch", mb: "2ch" }}
+                  multiline
+                  onChange={(e) => setNationality(e.target.value)}
+                />
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Province"
+                  variant="outlined"
+                  error={errorsProvince}
+                  helperText={errorsProvince}
+                  sx={{ m: 1, width: "25ch", mb: "2ch" }}
+                  multiline
+                  onChange={(e) => setProvince(e.target.value)}
+                />
+                <div>
+                  <TextField
+                    id="outlined-multiline-static"
+                    label="City"
+                    variant="outlined"
+                    error={errorsCity}
+                    helperText={errorsCity}
+                    sx={{ m: 1, width: "25ch", mb: "2ch" }}
+                    multiline
+                    onChange={(e) => setCity(e.target.value)}
+                  />
+                  <TextField
+                    id="outlined-multiline-static"
+                    label="Postal Code"
+                    variant="outlined"
+                    error={errorsPostalcode}
+                    helperText={errorsPostalcode}
+                    sx={{ m: 1, width: "25ch", mb: "2ch" }}
+                    multiline
+                    onChange={(e) => setPostalcode(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <TextField
+                    id="outlined-multiline-static"
+                    label="Memo"
+                    variant="outlined"
+                    rows={4}
+                    sx={{ m: 1, width: "52ch", mb: "2ch" }}
+                    multiline
+                    onChange={(e) => setMemo(e.target.value)}
+                  />
+                </div>
+              </Box>
+
+              <div className="item_list">
+                {state["orderState"].map((item, index) => (
+                  <div className="order_item_description">
+                    <img src={`${item["image"]}`} alt="" />
+                    <div>
+                      <p>
+                        <span>Brand: </span>
+                        {item["brand"]}
+                      </p>
+                      <p>
+                        <span>Name: </span>
+                        {item["name"]}
+                      </p>
+                      <p>
+                        <span>Size: </span>
+                        {item["size"]["size"]}
+                      </p>
+                      <p>
+                        <span>Quantity: </span>
+                        {item["quantity"]}
+                      </p>
+                      <p>
+                        <span>Price: </span>${" "}
+                        {item["discounted_price"] * item["quantity"]}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="order_page_total_price">
+                Total price: $ {state["totalPrice"] - state["discountedPrice"]}
+              </div>
             </div>
-            <div className="order_page_total_price">
-              Total price: {state["totalPrice"] - state["discountedPrice"]}
-            </div>
-            {/* </form> */}
             <div className="card_element">
               <Button variant="contained" onClick={(e) => handleToken(e)}>
                 Payment
