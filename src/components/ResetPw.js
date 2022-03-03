@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { ErrorAlerts, SuccessAlert } from "./Alert";
-
+import TextField from "@mui/material/TextField";
 import "./ResetPw.css";
 
 function ResetPw() {
@@ -49,14 +49,32 @@ function ResetPw() {
     <div className="find_id_pw">
       <h2>Reset Password </h2>
 
-      <input
+      {/* <input
         type="email"
         placeholder="type your email"
         onChange={(e) => setUserEmail(e.target.value)}
-      />
+      /> */}
+      <div className="reset_password_container">
+        <TextField
+          required
+          id="outlined-required"
+          label="email"
+          className="reset_password_input"
+          onChange={(e) => setUserEmail(e.target.value)}
+          placeholder="example@example.com"
+        />
+      </div>
       <div>
-        <Button onClick={resetPw}>Reset Password</Button>
-        <Button onClick={moveToLoginPage}>back to login page</Button>
+        <div>
+          <Button color="success" onClick={resetPw}>
+            Reset Password
+          </Button>
+        </div>
+        <div>
+          <Button color="success" onClick={moveToLoginPage}>
+            back to login page
+          </Button>
+        </div>
         <div className="reset_pw_alert_message">
           {errorAlert ? (
             <div className={fadeProp}>

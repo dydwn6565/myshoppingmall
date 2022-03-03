@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./Member.css";
+
 import { useNavigate } from "react-router-dom";
 import {
   signInWithEmailAndPassword,
@@ -10,12 +11,27 @@ import { auth, db } from "./firebase";
 import { UserContext } from "../Context";
 import { getDoc, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Button from "@mui/material/Button";
+import { IconButton } from "@material-ui/core";
+import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import Box from "@mui/material/Box";
+import LockIcon from "@mui/icons-material/Lock";
+import InputAdornment from "@mui/material/InputAdornment";
+import EmailIcon from "@mui/icons-material/Email";
+import TextField from "@mui/material/TextField";
+import Alert from "@mui/material/Alert";
 
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 function Member() {
   const { setUser } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [alerts, setAlerts] = useState("");
   const navigate = useNavigate();
   const [userLogin] = useAuthState(auth);
 
@@ -43,9 +59,20 @@ function Member() {
           .then((e) => {
             navigate("/");
           })
-          .catch((error) => alert(error));
+          .catch((error) => (
+            <>
+              {setAlerts(error.message)} {handleClickOpen()}
+            </>
+          ));
       })
-      .catch((error) => alert(error));
+      .catch((error) => (
+        <>
+          {setAlerts(
+            "Email/Password is invalid Please try different Email/Password"
+          )}{" "}
+          {handleClickOpen()}
+        </>
+      ));
   };
 
   const signInWithGoogle = async (googleProvider) => {
@@ -113,36 +140,92 @@ function Member() {
   const resetPw = () => {
     navigate("/login/resetPw");
   };
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <>
       {!userLogin ? (
         <div className="member">
           <form>
-            <input
-              type="email"
-              placeholder="Please type the email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Please type the password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button className="member_login_button" onClick={login}>
+            <Box sx={{ "& > :not(style)": { m: 1 } }}>
+              <TextField
+                id="input-with-icon-textfield"
+                label="Email"
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <EmailIcon />
+                    </InputAdornment>
+                  ),
+                }}
+                variant="standard"
+              />
+              <TextField
+                id="input-with-icon-textfield"
+                label="Password"
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LockIcon />
+                    </InputAdornment>
+                  ),
+                }}
+                variant="standard"
+              />
+            </Box>
+
+            <Button
+              variant="contained"
+              className="member_login_button"
+              onClick={login}
+            >
               Login{" "}
-            </button>
+            </Button>
           </form>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                {alerts}
+              </DialogContentText>
+            </DialogContent>
+          </Dialog>
+
           <div className="login_extra_features">
             <span onClick={resetPw} className="find_pw">
               Reset password
             </span>
           </div>
-          <button onClick={loginWithGoogle} className="login_with_google">
-            Login with google
-          </button>
+          <div className="login_with_google">
+            <Button onClick={loginWithGoogle}>Login with google</Button>
+          </div>
           <div className="sign_up">
             <span>Get 15% discount when you sign up</span>
-            <button onClick={signUp}>Sign up</button>
+            {/* <Button>Sign up</Button> */}
+            <IconButton
+              onClick={signUp}
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+            >
+              <GroupAddIcon />
+            </IconButton>
           </div>
         </div>
       ) : (
