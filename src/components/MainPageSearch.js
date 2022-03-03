@@ -5,7 +5,7 @@ import PageviewSharpIcon from "@mui/icons-material/PageviewSharp";
 import { RankContext } from "../Context";
 import ExtendedSearchBar from "./ExtendedSearchBar";
 import { useNavigate } from "react-router-dom";
-import Loading from "../components/Loading";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
 const delay = 4000;
 function MainPageSearch() {
@@ -98,7 +98,11 @@ function MainPageSearch() {
             <>
               <div className="rankingslideshowSlider">
                 <span>{index + 1}</span>{" "}
-                <div className="rankingslide">{ranking[index]}</div>
+                <div className="rankingslide">
+                  {ranking[index]}
+
+                  <ArrowDropUpIcon className="arrow_drow_sgv" />
+                </div>
               </div>
             </>
           ) : (

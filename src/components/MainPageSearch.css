@@ -45,5 +45,15 @@
   display: inline-block;
   height: 50px;
   width: 100%;
+  margin-left: 15px;
+  font-size: 15px;
+
   border-radius: 40px;
+}
+
+.arrow_drow_sgv {
+  transform: scale(1.5);
+  margin-left: 25px;
+  color: red;
+  margin-bottom: -7px;
 }
