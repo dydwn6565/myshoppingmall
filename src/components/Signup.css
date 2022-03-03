@@ -16,7 +16,7 @@
 .form_control {
   margin-bottom: 20px;
   text-align: left;
-  margin-left: 30%;
+  margin-left: 20%;
 }
 .form_control > label {
   display: block;
@@ -49,9 +49,9 @@
   margin-right: 2%;
 }
 
-.sign_in_button {
-  width: 40%;
+.sign_up_button {
+  width: 50%;
   background-color: white !important;
 
-  border: 1px solid black !important;
+  /* border: 1px solid black !important; */
 }

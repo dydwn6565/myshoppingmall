@@ -8,7 +8,7 @@ import { auth, db } from "./firebase";
 import { UserContext } from "../Context";
 import { useNavigate } from "react-router-dom";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-
+import TextField from "@mui/material/TextField";
 const validate = (values) => {
   const errors = {};
 
@@ -111,32 +111,45 @@ const Signin = () => {
             coupon: [{ 1: "signup coupon" }],
           },
         });
-        // });
       })
       .catch((error) => alert(error));
   };
   return (
     <div className="signin">
-      <h3 className="shopping_mall_name">Yongju mall</h3>
+      <h3 className="shopping_mall_name">Sign up Form</h3>
       <form onSubmit={formik.handleSubmit}>
         <div className="form_control">
-          <label htmlFor="id">Id</label>
-          <input
-            id="id"
+          {/* <label htmlFor="id">Id</label> */}
+          <TextField
+            required
+            id="outlined-required"
+            label="id"
             name="id"
             type="text"
+            // className="reset_password_input"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.id}
           />
+          {/* <input id="id" type="text" /> */}
           {formik.errors.id ? (
             <div className="error">{formik.errors.id}</div>
           ) : null}{" "}
         </div>
         <div className="form_control">
-          <label htmlFor="password">Password</label>
-          <input
+          {/* <label htmlFor="password">Password</label> */}
+          {/* <input
             id="password"
+            name="password"
+            type="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+          /> */}
+          <TextField
+            required
+            id="outlined-required"
+            label="password"
             name="password"
             type="password"
             onChange={formik.handleChange}
@@ -148,9 +161,19 @@ const Signin = () => {
           ) : null}
         </div>
         <div className="form_control">
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
+          {/* <label htmlFor="confirmPassword">Confirm Password</label> */}
+          {/* <input
             id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.confirmPassword}
+          /> */}
+          <TextField
+            required
+            id="outlined-required"
+            label="confirmPassword"
             name="confirmPassword"
             type="password"
             onChange={formik.handleChange}
@@ -162,9 +185,19 @@ const Signin = () => {
           ) : null}
         </div>
         <div className="form_control">
-          <label htmlFor="email">Email Address</label>
+          {/* <label htmlFor="email">Email Address</label>
           <input
             id="email"
+            name="email"
+            type="email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+          /> */}
+          <TextField
+            required
+            id="outlined-required"
+            label="email"
             name="email"
             type="email"
             onChange={formik.handleChange}
@@ -280,11 +313,11 @@ const Signin = () => {
           </label>
         </div>
         {radioState.Toa && radioState.Aypi && radioState.Aora ? (
-          <Button className="sign_in_button" type="submit">
+          <Button className="sign_up_button" type="submit">
             Submit
           </Button>
         ) : (
-          <Button className="sign_in_button" disabled type="submit">
+          <Button className="sign_up_button" disabled type="submit">
             Submit
           </Button>
         )}
