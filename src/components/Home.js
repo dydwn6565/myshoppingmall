@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import HeadAd from "./HeadAd";
 
 import MainPageHeader from "./MainPageHeader";
@@ -6,12 +6,7 @@ import MainPage from "./main/MainPage";
 import Side from "./Side";
 import MainPageSearch from "./MainPageSearch";
 
-import {
-  ItemContext,
-  // RankContext,
-  SelectedItemContext,
-  UserContext,
-} from "../Context";
+import { ItemContext, SelectedItemContext } from "../Context";
 
 function Home() {
   const { setItem } = useContext(ItemContext);

@@ -9,7 +9,6 @@ import TextField from "@mui/material/TextField";
 import MuiPhoneNumber from "material-ui-phone-number";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import Button from "@mui/material/Button";
-import AutoCompletePlace from "./AutoCompletePlace";
 
 function Order() {
   const navigate = useNavigate();
@@ -224,7 +223,7 @@ function Order() {
                     onChange={(e) => setAddresstwo(e.target.value)}
                   />
                 </div>
-                {/* <AutoCompletePlace /> */}
+
                 <TextField
                   id="outlined-multiline-static"
                   label="Nationality"

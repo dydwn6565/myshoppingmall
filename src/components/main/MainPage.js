@@ -4,7 +4,6 @@ import ClothesCard from "./ClothesCard";
 import Loading from "../Loading";
 import "./MainPage.css";
 function MainPage() {
-  const handlesubmit = () => {};
   const { selectedItem, setSelectedItem } = useContext(SelectedItemContext);
   const { item, setItem } = useContext(ItemContext);
 

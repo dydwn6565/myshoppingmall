@@ -19,13 +19,12 @@ import LockIcon from "@mui/icons-material/Lock";
 import InputAdornment from "@mui/material/InputAdornment";
 import EmailIcon from "@mui/icons-material/Email";
 import TextField from "@mui/material/TextField";
-import Alert from "@mui/material/Alert";
 
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
+
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+
 function Member() {
   const { setUser } = useContext(UserContext);
 
@@ -37,42 +36,46 @@ function Member() {
 
   const login = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userAuth) => {
-        getDoc(doc(db, "users", userAuth.user.uid))
-          .then((result) => {
-            console.log(result.data().userInfo);
-            setUser({
-              userInfo: {
-                email: result.data().userInfo.email,
+    try {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userAuth) => {
+          getDoc(doc(db, "users", userAuth.user.uid))
+            .then((result) => {
+              console.log(result.data().userInfo);
+              setUser({
+                userInfo: {
+                  email: result.data().userInfo.email,
 
-                userId: result.data().userInfo.userId,
-                coupon: result.data().userInfo.coupon,
+                  userId: result.data().userInfo.userId,
+                  coupon: result.data().userInfo.coupon,
 
-                userLevel: result.data().userInfo.userLevel,
-                signUpDate: result.data().userInfo.signupDate,
-                reward: result.data().userInfo.reward,
-                point: result.data().userInfo.point,
-              },
-            });
-          })
-          .then((e) => {
-            navigate("/");
-          })
-          .catch((error) => (
-            <>
-              {setAlerts(error.message)} {handleClickOpen()}
-            </>
-          ));
-      })
-      .catch((error) => (
-        <>
-          {setAlerts(
-            "Email/Password is invalid Please try different Email/Password"
-          )}{" "}
-          {handleClickOpen()}
-        </>
-      ));
+                  userLevel: result.data().userInfo.userLevel,
+                  signUpDate: result.data().userInfo.signupDate,
+                  reward: result.data().userInfo.reward,
+                  point: result.data().userInfo.point,
+                },
+              });
+            })
+            .then((e) => {
+              navigate("/");
+            })
+            .catch((error) => (
+              <>
+                {setAlerts(error.message)} {handleClickOpen()}
+              </>
+            ));
+        })
+        .catch((error) => (
+          <>
+            {setAlerts(
+              "Email/Password is invalid Please try different Email/Password"
+            )}{" "}
+            {handleClickOpen()}
+          </>
+        ));
+    } catch (error) {
+      alert(error);
+    }
   };
 
   const signInWithGoogle = async (googleProvider) => {
@@ -217,7 +220,7 @@ function Member() {
           </div>
           <div className="sign_up">
             <span>Get 15% discount when you sign up</span>
-            {/* <Button>Sign up</Button> */}
+
             <IconButton
               onClick={signUp}
               color="primary"

@@ -1,9 +1,7 @@
 import React from "react";
 import "./SidebarItems.css";
 import OnlyHear from "./sidebarItems/OnlyHear";
-import Ranking from "./sidebarItems/Ranking";
-import Sale from "./sidebarItems/Sale";
-import Update from "./sidebarItems/Update";
+
 function SidebarItems() {
   return (
     <div className="sidebar_items">
