@@ -32,6 +32,7 @@
   margin-right: 10px;
 }
 .find_pw {
+  cursor: pointer;
   margin-left: 10px;
 }
 

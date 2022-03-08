@@ -17,8 +17,15 @@ function ResetPw() {
   const showAlert = (option) => {
     if (option === "error") {
       setErrorAlert(true);
-    } else {
+      setTimeout(() => {
+        setErrorAlert(false);
+      }, 3000);
+    }
+    if (option === "success") {
       setSuccessAlert(true);
+      setTimeout(() => {
+        setSuccessAlert(false);
+      }, 3000);
     }
     setTimeout(() => {
       setFadeProp("fade_out");
@@ -26,20 +33,23 @@ function ResetPw() {
   };
 
   const resetPw = () => {
-    sendPasswordResetEmail(auth, userEmail)
-      .then((result) => {
-        console.log("line31" + result);
-        setFadeProp("fade_in");
-        showAlert("success");
-        console.log("hit");
-      })
-      .catch((error) => {
-        setFadeProp("fade_in");
+    try {
+      sendPasswordResetEmail(auth, userEmail)
+        .then((result) => {
+          setFadeProp("fade_in");
+          showAlert("success");
+          console.log("hit");
+        })
+        .catch((error) => {
+          setFadeProp("fade_in");
 
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        showAlert("error");
-      });
+          const errorMessage = error.message;
+          console.log(errorMessage);
+          showAlert("error");
+        });
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   const moveToLoginPage = () => {

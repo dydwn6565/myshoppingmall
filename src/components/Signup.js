@@ -286,13 +286,15 @@ const Signin = () => {
           </div>
         </div>
         {radioState.Toa && radioState.Aypi && radioState.Aora ? (
-          <Button className="sign_up_button" type="submit">
-            Submit
-          </Button>
+          <div className="sign_up_button">
+            <Button type="submit">Submit</Button>
+          </div>
         ) : (
-          <Button className="sign_up_button" disabled type="submit">
-            Submit
-          </Button>
+          <div className="sign_up_button">
+            <Button disabled type="submit">
+              Submit
+            </Button>
+          </div>
         )}
       </form>{" "}
     </div>

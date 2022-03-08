@@ -60,6 +60,12 @@
 }
 
 .sign_up_button {
-  width: 50% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30vw !important;
+  height: 40px;
+  margin-left: 15vw;
+  margin-top: 15px;
   background-color: beige !important;
 }
