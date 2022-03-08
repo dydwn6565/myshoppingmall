@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./DetailPage.css";
 import Rating from "@mui/material/Rating";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import { Dropdown } from "rsuite";
+
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";

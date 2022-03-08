@@ -6,9 +6,7 @@ import { v4 as uuid } from "uuid";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import HeadAd from "./HeadAd";
-import Header from "./Header";
-import Order from "./Order";
-import Side from "./Side";
+
 import MainPageHeader from "./MainPageHeader";
 import MainPageSearch from "./MainPageSearch";
 
@@ -60,7 +58,6 @@ function ConfirmPage() {
           <MainPageSearch />
           <MainPageHeader />
           <h1>Thank you for your payment</h1>
-          {/* <Side /> */}
         </div>
       ) : (
         navigate("/login")

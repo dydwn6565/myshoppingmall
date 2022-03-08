@@ -105,6 +105,7 @@ function ExtendedSearchBar({ setSearchItem }) {
                   </div>
                 );
               }
+              return "";
             })}
           </div>
           <div>
@@ -138,6 +139,7 @@ function ExtendedSearchBar({ setSearchItem }) {
                       </>
                     );
                   }
+                  return "";
                 })}
           </div>
           <div>
@@ -169,6 +171,7 @@ function ExtendedSearchBar({ setSearchItem }) {
                   </div>
                 );
               }
+              return "";
             })}
           </div>
         </Row>

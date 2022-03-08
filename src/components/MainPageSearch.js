@@ -7,11 +7,11 @@ import ExtendedSearchBar from "./ExtendedSearchBar";
 import { useNavigate } from "react-router-dom";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
-const delay = 4000;
+const delay = 3000;
 function MainPageSearch() {
   const [ranking, setRanking] = useState(null);
   const [index, setIndex] = useState(0);
-  // const [searchedItem, setSearchedItem] = useState("");
+
   const { setRank } = useContext(RankContext);
   const [extendbar, setExtendbar] = useState(false);
   const [searchItem, setSearchItem] = useState("");
@@ -56,7 +56,7 @@ function MainPageSearch() {
   const search = (e) => {
     e.preventDefault();
 
-    if (e !== "") {
+    if (searchItem !== "") {
       if (!localStorage.getItem("searchItem")) {
         localStorage.setItem("searchItem", JSON.stringify([searchItem]));
       } else {
