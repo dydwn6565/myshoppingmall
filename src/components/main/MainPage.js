@@ -4,7 +4,6 @@ import ClothesCard from "./ClothesCard";
 import Loading from "../Loading";
 import "./MainPage.css";
 function MainPage() {
-  const handlesubmit = () => {};
   const { selectedItem, setSelectedItem } = useContext(SelectedItemContext);
   const { item, setItem } = useContext(ItemContext);
 
@@ -50,12 +49,6 @@ function MainPage() {
       </div>
       <hr />
 
-      <form onSubmit={handlesubmit}>
-        <label>Search</label>
-        <input type="text" />
-        <input type="submit" />
-      </form>
-      <hr />
       <div className="card_collection">
         <div className="card">
           {selectedItem["target"] !== undefined &&

@@ -6,11 +6,23 @@
   margin-left: 350px;
 }
 
+.cart > h3 {
+  margin-left: 15px;
+  padding: 5px;
+}
+.cart_title {
+  padding: 5px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+}
+
 .cart_empty_container {
   display: flex;
   align-items: center;
   justify-content: center;
   color: gray;
+  padding: 15px;
 }
 .order_container {
   width: 1000px;
@@ -31,13 +43,16 @@
 }
 
 .delete_order_list {
-  margin-left: 5%;
+  margin-right: 650px;
+  margin-top: -2px;
+
+  transform: scale(0.75);
 }
 
 .order_details {
   font-size: 12px;
   padding: 5px;
-  margin-top: 10%;
+  margin-top: 20px;
   margin-left: 5%;
 }
 

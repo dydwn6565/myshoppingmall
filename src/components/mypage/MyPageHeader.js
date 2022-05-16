@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./MyPageHeader.css";
 import Avatar from "@mui/material/Avatar";
-import { Container, Row, Col } from "react-grid-system";
+
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import StarsRoundedIcon from "@mui/icons-material/StarsRounded";
@@ -13,17 +13,13 @@ import { auth, db } from "../firebase";
 import { getDoc, doc } from "firebase/firestore";
 function MyPageHeader() {
   const { user, setUser } = useContext(UserContext);
-  const [userLogin, loading] = useAuthState(auth);
+  const [userLogin] = useAuthState(auth);
   const [converter, setConverter] = useState(true);
   useEffect(() => {
-    // const getuserData = () => {
-    // console.log(userLogin);
-    // console.log(!loading);
     const getUserData = () => {
       if (userLogin !== null) {
         getDoc(doc(db, "users", userLogin["uid"]))
           .then((result) => {
-            // console.log(result.data().userInfo);
             setUser({
               userInfo: {
                 email: result.data().userInfo.email,
@@ -111,8 +107,6 @@ function MyPageHeader() {
               <h2>0</h2>
             </div>
           </div>
-          {/* </Row>
-          </Container> */}
         </>
       ) : (
         <div className="not_login">Please log in</div>

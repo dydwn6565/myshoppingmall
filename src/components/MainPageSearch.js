@@ -5,14 +5,14 @@ import PageviewSharpIcon from "@mui/icons-material/PageviewSharp";
 import { RankContext } from "../Context";
 import ExtendedSearchBar from "./ExtendedSearchBar";
 import { useNavigate } from "react-router-dom";
-import Loading from "../components/Loading";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
-const delay = 4000;
+const delay = 3000;
 function MainPageSearch() {
   const [ranking, setRanking] = useState(null);
   const [index, setIndex] = useState(0);
-  // const [searchedItem, setSearchedItem] = useState("");
-  const { rank, setRank } = useContext(RankContext);
+
+  const { setRank } = useContext(RankContext);
   const [extendbar, setExtendbar] = useState(false);
   const [searchItem, setSearchItem] = useState("");
   const navigate = useNavigate();
@@ -26,11 +26,15 @@ function MainPageSearch() {
             console.log(result["2022/02/16"]);
             setRanking(result["2022/02/16"]);
             setRank(result["2022/02/16"]);
+          })
+          .catch((error) => {
+            alert(error.message);
           });
       };
       fetchRankingData();
     } catch (error) {
       console.log(error);
+      alert(error.message);
     }
   }, []);
 
@@ -52,7 +56,7 @@ function MainPageSearch() {
   const search = (e) => {
     e.preventDefault();
 
-    if (e !== "") {
+    if (searchItem !== "") {
       if (!localStorage.getItem("searchItem")) {
         localStorage.setItem("searchItem", JSON.stringify([searchItem]));
       } else {
@@ -74,7 +78,7 @@ function MainPageSearch() {
   const removeExtendSearchBar = () => {
     setTimeout(() => {
       setExtendbar(false);
-    }, 10000);
+    }, 15000);
   };
   const moveToMain = () => {
     navigate("/");
@@ -98,11 +102,15 @@ function MainPageSearch() {
             <>
               <div className="rankingslideshowSlider">
                 <span>{index + 1}</span>{" "}
-                <div className="rankingslide">{ranking[index]}</div>
+                <div className="rankingslide">
+                  {ranking[index]}
+
+                  <ArrowDropUpIcon className="arrow_drow_sgv" />
+                </div>
               </div>
             </>
           ) : (
-            <Loading />
+            ""
           )}
         </div>
       </div>

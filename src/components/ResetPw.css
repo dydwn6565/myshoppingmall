@@ -10,7 +10,7 @@
   margin: auto;
   margin-top: 5%;
 
-  background-color: gray;
+  background-color: #f0fff0;
 }
 
 .find_id_pw > input {
@@ -19,15 +19,19 @@
   padding: 5px;
 }
 
-.find_id_pw > div > Button {
+.find_id_pw > div > div > Button {
   margin-top: 35px;
-
-  width: 55%;
-  background-color: white;
+  height: 50px;
+  width: 50%;
+  background-color: #ffebcd;
+  /* color: green; */
+  border-radius: 5%;
 }
 
 .reset_pw_alert_message {
   margin-top: 15px;
+  display: flex;
+  justify-content: center;
 }
 .fade_in {
   transition: opacity 1s ease;
@@ -36,4 +40,14 @@
 .fade_out {
   opacity: 0;
   transition: opacity 1s ease;
+}
+
+.reset_password_container {
+  margin-top: 50px;
+}
+
+.reset_password_input {
+  width: 50%;
+  background-color: white;
+  color: blue;
 }

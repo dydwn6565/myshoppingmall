@@ -3,12 +3,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./DetailPage.css";
 import Rating from "@mui/material/Rating";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import { Dropdown } from "rsuite";
+
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+
 function DetailPage(props) {
   const { state } = useLocation();
 
@@ -59,13 +60,12 @@ function DetailPage(props) {
           <div className="detailpage_original_price">
             <h4>
               <span>Original Price: </span>
-              <s className="original_price">{state["original_price"]}</s>
+              <s className="original_price">${state["original_price"]}</s>
             </h4>
           </div>
           <div className="detailpage_discounted_price">
             <h4>
-              <span>Discounted Price: </span>
-              {state["discounted_price"]}
+              <span>Discounted Price: </span>${state["discounted_price"]}
             </h4>
           </div>
           <div className="detail_page_like_container">

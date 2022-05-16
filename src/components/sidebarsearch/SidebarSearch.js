@@ -3,16 +3,18 @@ import "./SidebarSearch.css";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { SelectedItemContext } from "../../Context";
+import { useNavigate } from "react-router-dom";
 
 function SidebarSearch({ itemBigTitle, itemSmallTitle }) {
   const [clicked, setClicked] = useState(true);
-  const { selectedItem, setSelectedItem } = useContext(SelectedItemContext);
+  const { setSelectedItem } = useContext(SelectedItemContext);
+  const navigate = useNavigate();
   const extendButton = () => {
     setClicked((preValue) => !preValue);
   };
 
   const sendItemListToItemCard = (target) => {
-    // console.log(target);
+    navigate("/");
     setSelectedItem({
       target: target,
       itemBigTitle: itemBigTitle,

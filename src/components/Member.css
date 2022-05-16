@@ -1,10 +1,14 @@
+.member > form {
+  margin-top: 20px;
+}
+
 .member > form > input {
   display: block;
   margin: auto;
   width: 60%;
   height: 40px;
   margin-top: 4%;
-  border: 1px solid black;
+  border: 1px solid #000000;
   border-radius: 7px;
 }
 
@@ -28,12 +32,20 @@
   margin-right: 10px;
 }
 .find_pw {
+  cursor: pointer;
   margin-left: 10px;
 }
 
 .login_with_google {
   background-color: white !important;
+  color: black;
+  margin-top: 10px;
+  margin-left: 20%;
+}
+.login_with_google > button {
+  background-color: white !important;
   color: black !important;
+  margin-top: 8px;
 }
 
 .sign_up {

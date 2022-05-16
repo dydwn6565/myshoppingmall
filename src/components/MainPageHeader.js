@@ -1,15 +1,15 @@
 import Button from "@mui/material/Button";
-import React, { useContext } from "react";
+import React from "react";
 import "./MainPageHeader.css";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { UserContext } from "../Context";
+
 function MyPageHeader() {
   const navigate = useNavigate();
   const [userLogin] = useAuthState(auth);
-  const { user, setUser } = useContext(UserContext);
+
   const moveLoginPage = () => {
     navigate("/login");
   };

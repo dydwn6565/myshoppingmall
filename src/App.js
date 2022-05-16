@@ -11,7 +11,7 @@ import Tog from "./components/terms/Tog";
 import ResetPw from "./components/ResetPw";
 import MyPage from "./components/mypage/MyPage";
 import RecentlyCheckedPage from "./components/mypage/RecentlyCheckedPage";
-// import Cart from "./components/Cart";
+
 import TractMyItem from "./components/TractMyItem";
 import Contact from "./components/Contact";
 import CartPage from "./components/CartPage";
@@ -26,7 +26,12 @@ import DetailPage from "./components/DetailPage";
 import OrderPage from "./components/OrderPage";
 import ConfirmPage from "./components/ConfirmPage";
 import SearchedItemPage from "./components/SearchedItemPage";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
+const stripePromise = loadStripe(
+  "pk_test_51KWFQPG6LrFQPHnXH7WOTGL81dl0Xy6UheSB0SzaktLPmviFLlb4AFCPK6wB97i4jQZPc4VOO3Fl9CSothI5WYz9003qUxR8AV"
+);
 function App() {
   const [user, setUser] = useState({});
   const [rank, setRank] = useState({});
@@ -47,32 +52,36 @@ function App() {
           <ItemContext.Provider value={itemInfo}>
             <RankContext.Provider value={rankInfo}>
               <SelectedItemContext.Provider value={selectedItemInfo}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/signup" element={<Signup />} />
-                  <Route path="/signin/aora" element={<Aora />} />
-                  <Route path="/signin/aous" element={<Aous />} />
-                  <Route path="/signin/aypi" element={<Aypi />} />
-                  <Route path="/signin/tog" element={<Tog />} />
-                  <Route path="/login/resetPw" element={<ResetPw />} />
-                  <Route path="/myPage" element={<MyPage />} />
-                  <Route path="/order" element={<OrderPage />} />
-                  <Route path="/confirm" element={<ConfirmPage />} />
-                  <Route
-                    path="/recentlyChecked"
-                    element={<RecentlyCheckedPage />}
-                  />
-                  <Route path="/cart" element={<CartPage />} />
-                  <Route path="/contact" element={<Contact />} />
+                <Elements stripe={stripePromise}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/signin/aora" element={<Aora />} />
+                    <Route path="/signin/aous" element={<Aous />} />
+                    <Route path="/signin/aypi" element={<Aypi />} />
+                    <Route path="/signin/tog" element={<Tog />} />
+                    <Route path="/login/resetPw" element={<ResetPw />} />
+                    <Route path="/myPage" element={<MyPage />} />
 
-                  <Route path="/tractMyItem" element={<TractMyItem />} />
-                  <Route path="/detailpage/:id" element={<DetailPage />} />
-                  <Route
-                    path="/searchedItempage/:id"
-                    element={<SearchedItemPage />}
-                  />
-                </Routes>
+                    <Route path="/order" element={<OrderPage />} />
+
+                    <Route path="/confirm" element={<ConfirmPage />} />
+                    <Route
+                      path="/recentlyChecked"
+                      element={<RecentlyCheckedPage />}
+                    />
+                    <Route path="/cart" element={<CartPage />} />
+                    <Route path="/contact" element={<Contact />} />
+
+                    <Route path="/tractMyItem" element={<TractMyItem />} />
+                    <Route path="/detailpage/:id" element={<DetailPage />} />
+                    <Route
+                      path="/searchedItempage/:id"
+                      element={<SearchedItemPage />}
+                    />
+                  </Routes>
+                </Elements>
               </SelectedItemContext.Provider>
             </RankContext.Provider>
           </ItemContext.Provider>

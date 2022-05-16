@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./ExtendedSearchBar.css";
-import { Container, Col, Row } from "react-grid-system";
+import { Container, Row } from "react-grid-system";
 import { RankContext } from "../Context";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -11,7 +11,7 @@ function ExtendedSearchBar({ setSearchItem }) {
   const [rankingItemLCP, setRankingItemLCP] = useState(0);
   const [recommendedItemLCP, setRecommendedItemLCP] = useState(0);
   const [recommendedItem, setRecommendedItem] = useState(null);
-  const { rank, setRank } = useContext(RankContext);
+  const { rank } = useContext(RankContext);
 
   const searchedItemPrev = () => {
     if (searchedItemLCP !== 0) {
@@ -69,7 +69,8 @@ function ExtendedSearchBar({ setSearchItem }) {
             console.log(result["2022/02/16"]);
 
             setRecommendedItem(result["2022/02/16"]);
-          });
+          })
+          .catch((error) => alert(error));
       };
       fetchRankingData();
     } catch (error) {
@@ -97,13 +98,14 @@ function ExtendedSearchBar({ setSearchItem }) {
               if (key < searchedItemLCP + 10 && key >= searchedItemLCP) {
                 return (
                   <div
-                    className="searched_rank"
+                    className="searched_item_list"
                     onClick={() => setSearchItem(searchedItemList[key])}
                   >
                     {item}
                   </div>
                 );
               }
+              return "";
             })}
           </div>
           <div>
@@ -120,7 +122,7 @@ function ExtendedSearchBar({ setSearchItem }) {
             </div>
 
             {rank[0] === undefined
-              ? alert("hi")
+              ? ""
               : rank?.map((item, key) => {
                   if (key < rankingItemLCP + 10 && key >= rankingItemLCP) {
                     return (
@@ -137,6 +139,7 @@ function ExtendedSearchBar({ setSearchItem }) {
                       </>
                     );
                   }
+                  return "";
                 })}
           </div>
           <div>
@@ -158,7 +161,7 @@ function ExtendedSearchBar({ setSearchItem }) {
               if (key < recommendedItemLCP + 10 && key >= recommendedItemLCP) {
                 return (
                   <div
-                    className="searched_rank"
+                    className="recommended_item"
                     onClick={(e) => setSearchItem(recommendedItem[key])}
                   >
                     <span className="extended_search_bar_numbering">
@@ -168,6 +171,7 @@ function ExtendedSearchBar({ setSearchItem }) {
                   </div>
                 );
               }
+              return "";
             })}
           </div>
         </Row>

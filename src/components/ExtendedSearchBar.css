@@ -11,10 +11,11 @@
 }
 
 .recently_searched {
-  background-color: gray;
-  width: 180px;
+  background-color: #dcdcdc;
+  width: 179px;
   height: 40px;
-  /* padding: 3px; */
+  border-left: 0.1px solid gray;
+  /* border-bottom: 0.1px solid gray; */
 }
 
 .recently_searched > p {
@@ -30,11 +31,25 @@
   border-right: 0.1px solid gray;
   border-bottom: 0.1px solid gray;
   border-left: 0.1px solid gray;
-  border-width: thin;
+
+  padding: 5.1px;
+}
+
+.searched_item_list {
+  border-bottom: 0.1px solid gray;
+  border-right: 0.1px solid gray;
+  padding: 5.1px;
 }
 
 .searched_rank:hover {
   background-color: lightgray;
+}
+
+.recommended_item {
+  border-bottom: 0.1px solid gray;
+  border-right: 0.1px solid gray;
+
+  padding: 5.1px;
 }
 .extended_search_bar_numbering {
   margin-right: 10px;
@@ -53,13 +68,9 @@
   margin-left: -8px;
 }
 .recommend_item {
-  margin-left: 50px;
+  margin-left: 51.5px;
 }
 .arrow_back_icon {
   border: 1px solid black;
   transform: scale(0.7);
-}
-
-.searched_rank {
-  padding: 5px;
 }

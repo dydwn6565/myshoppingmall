@@ -5,6 +5,9 @@ import DragHandleIcon from "@mui/icons-material/DragHandle";
 import Grid from "@mui/material/Grid";
 import Checkbox from "@mui/material/Checkbox";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 function Cart() {
   const [orderState, setOrderState] = useState([]);
   const [checkBox, setCheckBox] = useState({});
@@ -119,7 +122,9 @@ function Cart() {
     <div className="cart">
       <h3>Order /Payment</h3>
       <hr />
-      <h3>Delivery</h3>
+      <div className="cart_title">
+        <h3>Delivery Infomation</h3>
+      </div>
       <div className="order_container">
         <div className="order_container_title">
           <p>total item</p>
@@ -147,9 +152,10 @@ function Cart() {
                   {item["name"]}
                 </Grid>
                 <Grid xs={1.7} md={1.7} item className="order_item_price">
-                  {item["original_price"] * item["quantity"]}
+                  $ {item["original_price"] * item["quantity"]}
                 </Grid>
                 <Grid xs={1.7} md={1.7} item>
+                  ${" "}
                   {(item["original_price"] - item["discounted_price"]) *
                     item["quantity"]}
                 </Grid>
@@ -178,9 +184,16 @@ function Cart() {
           </>
         )}
       </div>
-      <button className="delete_order_list" onClick={deleteItemList}>
-        dt a pt
-      </button>
+      <div className="delete_order_list">
+        <Button
+          variant="outlined"
+          startIcon={<DeleteIcon />}
+          onClick={deleteItemList}
+        >
+          delect
+        </Button>
+      </div>
+
       <div className="order_details">
         <p>It is all free delivery</p>
         <p>
@@ -197,11 +210,11 @@ function Cart() {
       </div>
 
       <div className="total_price">
-        <span>product price: {totalProductPrice}</span>
+        <span>product price: $ {totalProductPrice}</span>
         <RemoveIcon className="svg_icons" />
-        <span>total discount: {totalDiscountPrice}</span>
+        <span>total discount: $ {totalDiscountPrice}</span>
         <DragHandleIcon className="svg_icons" />
-        <span>Total price: {totalProductPrice - totalDiscountPrice}</span>
+        <span>Total price: $ {totalProductPrice - totalDiscountPrice}</span>
       </div>
       <button className="order_button" onClick={order}>
         Order
