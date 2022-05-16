@@ -156,7 +156,7 @@ function Cart() {
                 </Grid>
                 <Grid xs={1.7} md={1.7} item>
                   ${" "}
-                  {(item["original_price"] - item["discounted_price"])}
+                  {parseFloat((item["original_price"] - item["discounted_price"])).toFixed(1)}
                   
                 </Grid>
                 <Grid xs={1.5} md={1.5} item>
