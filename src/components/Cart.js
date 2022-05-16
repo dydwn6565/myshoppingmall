@@ -152,12 +152,12 @@ function Cart() {
                   {item["name"]}
                 </Grid>
                 <Grid xs={1.7} md={1.7} item className="order_item_price">
-                  $ {item["original_price"] * item["quantity"]}
+                  $ {item["original_price"] }
                 </Grid>
                 <Grid xs={1.7} md={1.7} item>
                   ${" "}
-                  {(item["original_price"] - item["discounted_price"]) *
-                    item["quantity"]}
+                  {(item["original_price"] - item["discounted_price"])}
+                  
                 </Grid>
                 <Grid xs={1.5} md={1.5} item>
                   {item["quantity"]}
