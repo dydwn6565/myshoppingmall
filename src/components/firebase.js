@@ -12,6 +12,7 @@ import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyARbmI-x_yYOJ_6N4XqshZqYttaRlIQZBs",
   authDomain: "shoppingm-a466b.firebaseapp.com",
+  databaseURL: "https://shoppingm-a466b-default-rtdb.firebaseio.com",
   projectId: "shoppingm-a466b",
   storageBucket: "shoppingm-a466b.appspot.com",
   messagingSenderId: "869394763586",

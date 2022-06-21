@@ -152,12 +152,13 @@ function Cart() {
                   {item["name"]}
                 </Grid>
                 <Grid xs={1.7} md={1.7} item className="order_item_price">
-                  $ {item["original_price"] }
+                  $ {item["original_price"]}
                 </Grid>
                 <Grid xs={1.7} md={1.7} item>
                   ${" "}
-                  {parseFloat((item["original_price"] - item["discounted_price"])).toFixed(1)}
-                  
+                  {parseFloat(
+                    item["original_price"] - item["discounted_price"]
+                  ).toFixed(1)}
                 </Grid>
                 <Grid xs={1.5} md={1.5} item>
                   {item["quantity"]}
@@ -212,9 +213,13 @@ function Cart() {
       <div className="total_price">
         <span>product price: $ {totalProductPrice}</span>
         <RemoveIcon className="svg_icons" />
-        <span>total discount: $ {totalDiscountPrice}</span>
+        <span>
+          total discount: $ {parseFloat(totalDiscountPrice).toFixed(1)}
+        </span>
         <DragHandleIcon className="svg_icons" />
-        <span>Total price: $ {totalProductPrice - totalDiscountPrice}</span>
+        <span>
+          Total price: $ {parseFloat(totalProductPrice - totalDiscountPrice).toFixed(1)}
+        </span>
       </div>
       <button className="order_button" onClick={order}>
         Order

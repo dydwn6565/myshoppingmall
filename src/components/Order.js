@@ -302,14 +302,14 @@ function Order() {
                       </p>
                       <p>
                         <span>Price: </span>${" "}
-                        {item["discounted_price"] * item["quantity"]}
+                        {parseFloat(item["discounted_price"] * item["quantity"]).toFixed(1)}
                       </p>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="order_page_total_price">
-                Total price: $ {state["totalPrice"] - state["discountedPrice"]}
+                Total price: $ {parseFloat(state["totalPrice"] - state["discountedPrice"]).toFixed(1)}
               </div>
             </div>
             <div className="card_element">

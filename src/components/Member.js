@@ -12,7 +12,7 @@ import { UserContext } from "../Context";
 import { getDoc, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Button from "@mui/material/Button";
-import { IconButton } from "@material-ui/core";
+import  IconButton  from "@material-ui/core/IconButton";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import Box from "@mui/material/Box";
 import LockIcon from "@mui/icons-material/Lock";
