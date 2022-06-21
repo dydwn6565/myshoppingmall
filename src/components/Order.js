@@ -107,14 +107,14 @@ function Order() {
     ) {
       try {
         await fetch(
-          "https://vercel.com/dydwn6565/clothes-api/api/items/checkout",
+          "https://vercel.com/dydwn6565/clothes/api/items/checkout",
           {
             method: "POST",
             headers: {
               Accept: "application/json",
               "Access-Control-Allow-Origin": "*",
               "Access-Control-Allow-Headers":
-                "Origin, Content-Type, X-Auth-Token",
+                " Content-Type, X-Auth-Token",
               "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT",
               "Content-Type": "application/json",
             },
