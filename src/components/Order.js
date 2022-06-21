@@ -106,25 +106,21 @@ function Order() {
       phoneRegex.test(cellphoneNumber.phone)
     ) {
       try {
-        await fetch(
-          "https://vercel.com/dydwn6565/clothes/api/items/checkout",
-          {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers":
-                " Content-Type, X-Auth-Token",
-              "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              items: state,
-              paymentMethodType: "card",
-              currency: "cad",
-            }),
-          }
-        )
+        await fetch("https://clothes-api.vercel.app/api/items/checkout", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": " Content-Type, X-Auth-Token",
+            "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            items: state,
+            paymentMethodType: "card",
+            currency: "cad",
+          }),
+        })
           .then((res) => {
             if (res.ok) return res.json();
             return res.json().then((json) => Promise.reject(json));
