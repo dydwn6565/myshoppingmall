@@ -113,7 +113,9 @@ function Order() {
             headers: {
               Accept: "application/json",
               "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers":"*",
+              "Access-Control-Allow-Headers":
+                "Origin, Content-Type, X-Auth-Token",
+              "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT",
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
