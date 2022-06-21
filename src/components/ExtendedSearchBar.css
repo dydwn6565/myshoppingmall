@@ -1,6 +1,6 @@
 .extendedsearchbar {
   width: 540px;
-  height: 365px;
+  height: 362px;
   border: 1px solid gray;
   position: absolute;
   margin-top: -34px;
@@ -39,6 +39,7 @@
   border-bottom: 0.1px solid gray;
   border-right: 0.1px solid gray;
   padding: 5.1px;
+  
 }
 
 .searched_rank:hover {
@@ -47,7 +48,7 @@
 
 .recommended_item {
   border-bottom: 0.1px solid gray;
-  border-right: 0.1px solid gray;
+  border-left: 0.1px solid gray;
 
   padding: 5.1px;
 }
