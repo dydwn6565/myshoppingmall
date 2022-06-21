@@ -112,7 +112,7 @@ function Order() {
             method: "POST",
             headers: {
               Accept: "application/json",
-              "access-control-allow-origin": "*",
+              "Access-Control-Allow-Origin": "*",
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
