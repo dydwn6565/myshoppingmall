@@ -11,13 +11,15 @@ import { getFirestore } from "firebase/firestore";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCC2-cnprUIBLNNmHLdVqkNfYcFlkO_0as",
-  authDomain: "shoppingmall-728f7.firebaseapp.com",
-  projectId: "shoppingmall-728f7",
-  storageBucket: "shoppingmall-728f7.appspot.com",
-  messagingSenderId: "588377441686",
-  appId: "1:588377441686:web:7a91f1d2cb79c5a0b489b7",
-  measurementId: "G-75CZYJNRZ0"
+  
+  apiKey: "AIzaSyCcmrUkAvpZOfVJgxiakhJfbhbc31IbLVE",
+  authDomain: "shoppingmall-47709.firebaseapp.com",
+  projectId: "shoppingmall-47709",
+  storageBucket: "shoppingmall-47709.appspot.com",
+  messagingSenderId: "480055279744",
+  appId: "1:480055279744:web:5f57e2f92a8a2caf5fa665",
+  measurementId: "G-QNB3L5CCGL"
+
 };
 
 // Initialize Firebase
