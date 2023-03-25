@@ -31,7 +31,7 @@
   border-right: 0.1px solid gray;
   border-bottom: 0.1px solid gray;
   border-left: 0.1px solid gray;
-
+cursor: pointer;
   padding: 5.1px;
 }
 
@@ -39,18 +39,23 @@
   border-bottom: 0.1px solid gray;
   border-right: 0.1px solid gray;
   padding: 5.1px;
+  cursor: pointer;
   
 }
 
-.searched_rank:hover {
+.searched_rank:hover, .searched_item_list:hover {
   background-color: lightgray;
 }
 
 .recommended_item {
   border-bottom: 0.1px solid gray;
   border-left: 0.1px solid gray;
-
+  cursor: pointer;
   padding: 5.1px;
+}
+
+.recommended_item:hover{
+  background-color: lightgrey;
 }
 .extended_search_bar_numbering {
   margin-right: 10px;
@@ -63,6 +68,7 @@
 }
 .arrow_forward_icon {
   transform: scale(0.7);
+  cursor: pointer;
 
   border: 1px solid black;
 
@@ -74,4 +80,5 @@
 .arrow_back_icon {
   border: 1px solid black;
   transform: scale(0.7);
+  cursor: pointer;
 }

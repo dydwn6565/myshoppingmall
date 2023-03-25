@@ -12,8 +12,8 @@ import ResetPw from "./components/ResetPw";
 import MyPage from "./components/mypage/MyPage";
 import RecentlyCheckedPage from "./components/mypage/RecentlyCheckedPage";
 
-import TractMyItem from "./components/TractMyItem";
-import Contact from "./components/Contact";
+// import TractMyItem from "./components/TractMyItem";
+// import Contact from "./components/Contact";
 import CartPage from "./components/CartPage";
 import {
   ItemContext,
@@ -72,9 +72,9 @@ function App() {
                       element={<RecentlyCheckedPage />}
                     />
                     <Route path="/cart" element={<CartPage />} />
-                    <Route path="/contact" element={<Contact />} />
+                    {/* <Route path="/contact" element={<Contact />} /> */}
 
-                    <Route path="/tractMyItem" element={<TractMyItem />} />
+                    {/* <Route path="/tractMyItem" element={<TractMyItem />} /> */}
                     <Route path="/detailpage/:id" element={<DetailPage />} />
                     <Route
                       path="/searchedItempage/:id"

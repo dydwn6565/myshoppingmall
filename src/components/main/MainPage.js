@@ -47,14 +47,26 @@ function MainPage() {
           )}
         </div>
       </div>
-      <hr />
 
       <div className="card_collection">
         <div className="card">
           {selectedItem["target"] !== undefined &&
           item !== "" &&
           item !== undefined ? (
-            item.map((clothe, index) => <ClothesCard clothe={clothe} />)
+            item.map((clothe, index) =>
+              item.length > 6 && index + 6 < item.length ? (
+                
+                  
+                  <ClothesCard clothe={clothe} noBorder={"bottom"} />
+                
+              ) : item.length > 6 && index % 5 == 0 ? (
+                
+                  <ClothesCard clothe={clothe} noBorder={"right"} />
+                
+              ) : (
+                <ClothesCard clothe={clothe} />
+              )
+            )
           ) : (
             <Loading />
           )}

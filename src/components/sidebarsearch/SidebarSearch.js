@@ -23,37 +23,39 @@ function SidebarSearch({ itemBigTitle, itemSmallTitle }) {
   };
   return (
     <div className="sidebarsearch">
-      <table className="sidebar_table">
+      <div className="sidebar_table">
         {clicked ? (
           <>
-            <th onClick={extendButton} className="sidebar_table_th">
-              {itemBigTitle}
-            </th>
+            <div className="sidebar_top">
+              <div onClick={extendButton} className="sidebar_table_th">
+                {itemBigTitle}
+              </div>
+              <AddIcon onClick={extendButton} className="plus_button" />
+            </div>
 
-            <AddIcon onClick={extendButton} className="plus_button" />
-            <tbody className="sidebar_table_body">
-              <tr className="sidebar_table_body_tr">
+            <div className="sidebar_table_body">
+              <div className="sidebar_table_body_tr">
                 {itemSmallTitle.map((item) => (
-                  <td
+                  <div
                     className="sidebar_table_body_td"
                     onClick={() => sendItemListToItemCard(item)}
                   >
                     {item}
-                  </td>
+                  </div>
                 ))}
-              </tr>
-            </tbody>
+              </div>
+            </div>
           </>
         ) : (
           <>
-            <th onClick={extendButton} className="sidebar_table_th">
+            <div onClick={extendButton} className="sidebar_table_th">
               {itemBigTitle}
-            </th>
+            </div>
             <RemoveIcon onClick={extendButton} className="remove_button" />
-            <tbody className="sidebar_table_body clicked"></tbody>
+            <div className="sidebar_table_body clicked"></div>
           </>
         )}
-      </table>
+      </div>
     </div>
   );
 }

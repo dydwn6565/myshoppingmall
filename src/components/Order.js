@@ -152,6 +152,7 @@ function Order() {
   }
 
   const handleOnChangePhoneNumber = (value) => {
+    
     setCellphoneNumber({
       phone: value,
     });
@@ -160,7 +161,18 @@ function Order() {
   const handleOnChangeRecipients = (value) => {
     setRecipient(value);
   };
-
+  const autoComplete =() =>{
+    setRecipient("Yong")
+    // setCellphoneNumber({ phone: "+1 (778) 870-6252" });
+    setAddressone("111 Main St")
+    setAddresstwo(".")
+    setNationality("Canada")
+    setProvince("BC")
+    setCity("Vancouver")
+    setPostalcode("E2X 3O2")
+    setMemo("Please deliver safely")
+    console.log(cellphoneNumber)
+  }
   useEffect(() => {
     if (JSON.parse(localStorage?.getItem("user_delivery_info"))) {
       localStorage.removeItem("user_delivery_info");
@@ -183,8 +195,9 @@ function Order() {
                 <TextField
                   id="outlined-basic"
                   label="Recipient"
-                  variant="outlined"
+                  variant="filled"
                   required
+                  value={recipient}
                   error={errorsRecipient}
                   helperText={errorsRecipient}
                   sx={{ m: 1, width: "25ch" }}
@@ -196,6 +209,7 @@ function Order() {
                     defaultCountry={"ca"}
                     onChange={handleOnChangePhoneNumber}
                     required
+                    value={"+1 (778) 870-6251"}
                     error={errorsCellphone}
                     helperText={errorsCellphone}
                     sx={{ m: 1, width: "25ch", mt: "2ch", mb: "2ch" }}
@@ -205,9 +219,10 @@ function Order() {
                   <TextField
                     id="outlined-basic"
                     label="Your address line one"
-                    variant="outlined"
+                    variant="filled"
                     required
                     error={errorsAddressone}
+                    value={addressone}
                     helperText={errorsAddressone}
                     sx={{ m: 1, width: "52ch" }}
                     onChange={(e) => setAddressone(e.target.value)}
@@ -217,8 +232,9 @@ function Order() {
                   <TextField
                     id="outlined-basic"
                     label="Your address line two"
-                    variant="outlined"
+                    variant="filled"
                     required
+                    value={addresstwo}
                     error={errorsAddresstwo}
                     helperText={errorsAddresstwo}
                     sx={{ m: 1, width: "52ch" }}
@@ -229,8 +245,10 @@ function Order() {
                 <TextField
                   id="outlined-multiline-static"
                   label="Nationality"
-                  variant="outlined"
+                  placeholder="Nationality"
+                  variant="filled"
                   error={errorsNationality}
+                  value={nationality}
                   helperText={errorsNationality}
                   sx={{ m: 1, width: "25ch", mb: "2ch" }}
                   multiline
@@ -239,8 +257,9 @@ function Order() {
                 <TextField
                   id="outlined-multiline-static"
                   label="Province"
-                  variant="outlined"
+                  variant="filled"
                   error={errorsProvince}
+                  value={province}
                   helperText={errorsProvince}
                   sx={{ m: 1, width: "25ch", mb: "2ch" }}
                   multiline
@@ -250,8 +269,9 @@ function Order() {
                   <TextField
                     id="outlined-multiline-static"
                     label="City"
-                    variant="outlined"
+                    variant="filled"
                     error={errorsCity}
+                    value={city}
                     helperText={errorsCity}
                     sx={{ m: 1, width: "25ch", mb: "2ch" }}
                     multiline
@@ -260,7 +280,8 @@ function Order() {
                   <TextField
                     id="outlined-multiline-static"
                     label="Postal Code"
-                    variant="outlined"
+                    variant="filled"
+                    value={postalcode}
                     error={errorsPostalcode}
                     helperText={errorsPostalcode}
                     sx={{ m: 1, width: "25ch", mb: "2ch" }}
@@ -272,7 +293,8 @@ function Order() {
                   <TextField
                     id="outlined-multiline-static"
                     label="Memo"
-                    variant="outlined"
+                    variant="filled"
+                    value={memo}
                     rows={4}
                     sx={{ m: 1, width: "52ch", mb: "2ch" }}
                     multiline
@@ -318,6 +340,7 @@ function Order() {
               <Button variant="contained" onClick={(e) => handleToken(e)}>
                 Payment
               </Button>
+              <Button onClick={autoComplete}>Auto complete </Button>
             </div>
           </div>
         </>

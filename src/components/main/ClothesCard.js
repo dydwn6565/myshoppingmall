@@ -4,14 +4,14 @@ import Rating from "@mui/material/Rating";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import { useNavigate } from "react-router-dom";
 
-function ClothesCard({ clothe }) {
+function ClothesCard({ clothe,noBorder }) {
   const [value, setValue] = useState(5);
   const navigate = useNavigate();
   const linkToDetailPage = () => {
     if (localStorage.getItem("recentlyCheckedItem") === null) {
       localStorage.setItem("recentlyCheckedItem", JSON.stringify([clothe]));
     } else {
-      console.log("hit 17 inside recentlycheckedItem");
+      
 
       const localStorageData = JSON.parse(
         localStorage.getItem("recentlyCheckedItem")
@@ -31,7 +31,7 @@ function ClothesCard({ clothe }) {
     }
   };
   return (
-    <div className="clothescard">
+    <div className={`clothescard ${noBorder}`}>
       <img src={`${clothe["image"]}`} alt="pants" onClick={linkToDetailPage} />
       <div className="card_script">
         <p>{clothe["brand"]}</p>

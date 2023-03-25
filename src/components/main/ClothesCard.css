@@ -1,13 +1,22 @@
 .clothescard {
-  width: 198.4px;
+  width: 199.5px;
   height: 350px;
   border: 0.2px ridge black;
+  border-left:none;
+}
+
+.right{
+  border-right: none;
+}
+.bottom{
+  border-bottom: none;
 }
 
 .clothescard > img {
   display: block;
   margin: auto;
   margin-top: 15px;
+  cursor: pointer;
 }
 .card_script {
   margin-left: 10px;
