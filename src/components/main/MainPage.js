@@ -54,12 +54,12 @@ function MainPage() {
           item !== "" &&
           item !== undefined ? (
             item.map((clothe, index) =>
-              item.length > 6 && index + 6 < item.length ? (
+              index >=6 ? (
                 
                   
-                  <ClothesCard clothe={clothe} noBorder={"bottom"} />
+                  <ClothesCard clothe={clothe} noBorder={"top"} />
                 
-              ) : item.length > 6 && index % 5 == 0 ? (
+              ) : item.length > 6 && index % 5 === 0 && index !=0 ? (
                 
                   <ClothesCard clothe={clothe} noBorder={"right"} />
                 
