@@ -90,11 +90,11 @@ function MyPageHeader() {
                 Coupon
                 <ChevronRightIcon />
               </h3>
-              {user?.userInfo.coupon.length <= 0 ? (
+              {user?.userInfo?.coupon?.length <= 0 ? (
                 <h2>0</h2>
               ) : (
                 <>
-                  <h2>{user?.userInfo.coupon.length}</h2>
+                  <h2>{user?.userInfo?.coupon?.length}</h2>
                 </>
               )}
             </div>

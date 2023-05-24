@@ -24,7 +24,7 @@ function RecentlyChecked() {
       <hr />
       <div className="recentlychecked_container">
         {checkedItem !== null &&
-          checkedItem.map((item) => (
+          checkedItem?.map((item) => (
             <>
               <div className="recentlychecked_card">
                 <img src={item["image"]} />
