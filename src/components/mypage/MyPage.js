@@ -10,7 +10,7 @@ import MainPageSearch from "../MainPageSearch";
 function MyPage() {
   return (
     <div className="mypage">
-      <HeadAd />
+      {/* <HeadAd /> */}
       <MainPageSearch />
 
       <MainPageHeader />
