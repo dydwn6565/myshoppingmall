@@ -8,7 +8,7 @@ import Side from "./Side";
 function CartPage() {
   return (
     <div>
-      <HeadAd />
+      {/* <HeadAd /> */}
       <MainPageSearch />
       <MainPageHeader />
       <Cart />

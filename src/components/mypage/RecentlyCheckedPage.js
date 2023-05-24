@@ -10,7 +10,7 @@ import MainPageSearch from "../MainPageSearch";
 function RecentlyCheckedPage() {
   return (
     <div className="recentlycheckedpage">
-      <HeadAd />
+      {/* <HeadAd /> */}
       <MainPageSearch />
 
       <MainPageHeader />

@@ -53,7 +53,7 @@ function ConfirmPage() {
     <>
       {userLogin ? (
         <div>
-          <HeadAd />
+          {/* <HeadAd /> */}
 
           <MainPageSearch />
           <MainPageHeader />

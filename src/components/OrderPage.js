@@ -8,7 +8,7 @@ import MainPageSearch from "./MainPageSearch";
 function OrderPage() {
   return (
     <div className="orderpage">
-      <HeadAd />
+      {/* <HeadAd /> */}
       <Header />
       <MainPageSearch />
       <MainPageHeader />
