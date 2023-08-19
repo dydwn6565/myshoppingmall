@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 1600px;
+  
 }
 
 .my_page_header > .my_page_header_login {
@@ -15,7 +15,29 @@
 
 .my_page_header > p {
   cursor: pointer;
-  height: 30px;
+  /* height: 30px; */
   
   margin:10px 30px 10px 50px;
+}
+
+
+@media only screen and (max-width: 900px) {
+  .my_page_header>p{
+    font-size:90%;
+    margin:2%;
+  }
+.my_page_header>.my_page_header_login {
+  margin-left: 1%;
+  font-size: 90%;
+}
+}
+
+@media only screen and (max-width: 500px) {
+  .my_page_header>p {
+    font-size:70%;
+  }
+.my_page_header>.my_page_header_login {
+  margin-left: 1%;
+  font-size: 70%;
+}
 }

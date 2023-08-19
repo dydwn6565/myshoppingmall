@@ -16,9 +16,11 @@ function MyPage() {
       <MainPageHeader />
       <MyPageHeader />
 
-      <MyPageSide />
+      <div className="mypage-container">
+        <MyPageSide />
 
-      <MyPageMain />
+        <MyPageMain />
+      </div>
     </div>
   );
 }

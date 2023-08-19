@@ -1,9 +1,7 @@
 .mypagemain {
-  width: 1300px;
   height: 700px;
 
-  position: absolute;
-  margin-left: 300px;
+  margin-right: 200px;
   margin-top: 10px;
 }
 
@@ -36,4 +34,9 @@
 
 .order_info_details_number {
   margin-left: -70px;
+}
+
+.mypage-container{
+  display: flex;
+  justify-content: space-between;
 }

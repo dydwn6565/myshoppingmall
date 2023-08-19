@@ -1,10 +1,12 @@
 .mypageside {
-  width: 200px;
+  
   height: 700px;
   border: 1px solid black;
   margin-top: 5px;
   padding: 12px;
-  position: absolute;
+  
+  border-bottom:none ;
+  border-top:none;
 }
 
 .mypageside > h3 {

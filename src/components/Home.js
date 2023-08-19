@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import HeadAd from "./HeadAd";
-
+import "./Home.css"
 import MainPageHeader from "./MainPageHeader";
 import MainPage from "./main/MainPage";
 import Side from "./Side";
@@ -32,8 +32,10 @@ function Home() {
       <MainPageSearch />
 
       <MainPageHeader />
-      <MainPage />
-      <Side />
+      <div className="main-side-and-main-card">
+        <Side />
+        <MainPage />
+      </div>
     </div>
   );
 }

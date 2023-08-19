@@ -1,9 +1,6 @@
 .cart {
   border: 1px solid black;
-  width: 1100px;
-
-  position: absolute;
-  margin-left: 350px;
+  
 }
 
 .cart > h3 {
@@ -25,11 +22,9 @@
   padding: 15px;
 }
 .order_container {
-  width: 1000px;
-
   margin-top: 3%;
-  margin-left: 5%;
-  border: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 .order_container_title {
   display: flex;
@@ -43,7 +38,7 @@
 }
 
 .delete_order_list {
-  margin-right: 650px;
+  
   margin-top: -2px;
 
   transform: scale(0.75);
@@ -68,7 +63,7 @@
   font-weight: bold;
   justify-content: center;
   position: relative;
-  margin-left: 500px;
+  
 
   margin-bottom: 5%;
 }

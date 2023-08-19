@@ -1,7 +1,7 @@
 import React from "react";
 import Cart from "./Cart";
 import HeadAd from "./HeadAd";
-
+import "./CartPage.css"
 import MainPageHeader from "./MainPageHeader";
 import MainPageSearch from "./MainPageSearch";
 import Side from "./Side";
@@ -11,8 +11,10 @@ function CartPage() {
       {/* <HeadAd /> */}
       <MainPageSearch />
       <MainPageHeader />
-      <Cart />
-      <Side />
+      <div className="cart-page">
+        <Side />
+        <Cart />
+      </div>
     </div>
   );
 }
