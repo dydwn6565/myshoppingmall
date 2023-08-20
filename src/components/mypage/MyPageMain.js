@@ -34,7 +34,7 @@ function MyPageMain() {
         <p>Order quntity</p>
         <p>Order statue</p>
       </div>
-      {console.log(orderState)}
+      
       {orderState[0] !== undefined && userLogin
         ? orderState.map((order) =>
             order["order"]["item"].map((itemDetails) => {

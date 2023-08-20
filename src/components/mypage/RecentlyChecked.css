@@ -1,10 +1,11 @@
 .recentlychecked {
-  margin-left: 300px;
+  
   margin-top: 10px;
+  
 }
 
 .recentlychecked_container {
-  width: 1300px;
+  
   display: flex;
 
   flex-direction: row;
@@ -41,4 +42,18 @@
   margin-top: 10px;
   border-top: 2px solid black;
   margin-bottom: 10px;
+}
+
+
+@media only screen and (max-width: 1025px) {
+
+  .recentlychecked>h2{
+    font-size:13px;
+  }
+}
+
+@media only screen and (max-width: 870px) {
+  .recentlychecked {
+    border-top:2px solid black;
+  }
 }

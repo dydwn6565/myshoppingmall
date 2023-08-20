@@ -1,0 +1,17 @@
+.recentlycheckedpage{
+    display: flex;
+}
+
+.recentlycheckedpage-left {
+    flex: 1;
+}
+
+.recentlycheckedpage-right {
+    flex: 5;
+}
+
+@media only screen and (max-width: 870px) {
+    .recentlycheckedpage{
+        display: unset;
+    }
+}

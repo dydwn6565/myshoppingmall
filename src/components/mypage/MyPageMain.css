@@ -1,7 +1,5 @@
 .mypagemain {
   height: 700px;
-
-  margin-right: 200px;
   margin-top: 10px;
 }
 
@@ -38,5 +36,36 @@
 
 .mypage-container{
   display: flex;
-  justify-content: space-between;
+  
 }
+
+.mypage-left{
+  flex:1;
+}
+
+.mypage-right{
+  flex:5;
+}
+
+@media only screen and (max-width: 1025px) {
+  .mypageside>h4, .mypageside>h3{
+    font-size:10px;
+    margin-left:unset;
+  }
+    .order_info>p {
+      font-size:10px;
+    }
+
+}
+
+
+@media only screen and (max-width: 870px) {
+  .mypage-container{
+    display: unset;
+  }
+    .mypageside{
+      height: unset;
+      border: unset;
+    }
+  }
+        

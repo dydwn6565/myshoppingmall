@@ -1,6 +1,4 @@
 import React from "react";
-import HeadAd from "../HeadAd";
-
 import MyPageHeader from "./MyPageHeader";
 import MyPageSide from "./MyPageSide";
 import MainPageHeader from "../MainPageHeader";
@@ -17,9 +15,12 @@ function MyPage() {
       <MyPageHeader />
 
       <div className="mypage-container">
-        <MyPageSide />
-
-        <MyPageMain />
+        <div className="mypage-left">
+          <MyPageSide />
+        </div>
+        <div className="mypage-right">
+          <MyPageMain />
+        </div>
       </div>
     </div>
   );

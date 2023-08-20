@@ -1,6 +1,4 @@
 import React from "react";
-import HeadAd from "../HeadAd";
-
 import MyPageHeader from "./MyPageHeader";
 import MainPageHeader from "../MainPageHeader";
 import "./RecentlyCheckedPage.css";
@@ -9,14 +7,19 @@ import RecentlyChecked from "./RecentlyChecked";
 import MainPageSearch from "../MainPageSearch";
 function RecentlyCheckedPage() {
   return (
-    <div className="recentlycheckedpage">
-      {/* <HeadAd /> */}
+    <div>
       <MainPageSearch />
 
       <MainPageHeader />
       <MyPageHeader />
-      <MyPageSide />
-      <RecentlyChecked />
+      <div className="recentlycheckedpage">
+        <div className="recentlycheckedpage-left">
+          <MyPageSide />
+        </div>
+        <div className="recentlycheckedpage-right">
+          <RecentlyChecked />
+        </div>
+      </div>
     </div>
   );
 }
