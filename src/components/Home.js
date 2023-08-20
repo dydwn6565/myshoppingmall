@@ -28,7 +28,7 @@ function Home() {
 
   return (
     <div>
-      {/* <HeadAd /> */}
+      
       <MainPageSearch />
 
       <MainPageHeader />

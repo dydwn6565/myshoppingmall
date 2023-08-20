@@ -2,16 +2,14 @@
   background-color: black;
   color: white;
   padding: 10px;
-  position: relative;
-  /* width: 1580px; */
-  
+  display: flex;
+  align-items: center;
 }
 .mainpagesearch > span {
   cursor: pointer;
-  margin-left:40px;
+  margin-left: 40px;
   font-size: 25px;
   font-weight: bold;
-  margin-top:10px;
 }
 
 .mainpagesearch > [type="text"] {
@@ -20,35 +18,28 @@
   height: 20px;
 }
 
-.mainpagesearch > [type="text"]:hover {
-}
-
 
 .searchIcon {
   transform: scale(1.5);
-  position: absolute;
-  margin-top: 11px;
+  
   margin-left: 5px;
   cursor: pointer;
 }
 
 .rankingslideshow {
-  margin: 0 auto;
+  
   overflow: hidden;
   max-width: 300px;
   display: inline-flex;
 }
 
 .rankingslideshowSlider {
-  white-space: nowrap;
-
   margin-left: 50px;
 }
 .rankingslide {
   display: inline-block;
-  height: 50px;
-  width: 100%;
-  margin-left: 15px;
+
+  margin-left: 25px;
   font-size: 15px;
 
   border-radius: 40px;
@@ -59,4 +50,35 @@
   margin-left: 25px;
   color: red;
   margin-bottom: -7px;
+}
+
+@media only screen and (max-width: 700px) {
+  .mainpagesearch > span {
+    font-size: 15px;
+  }
+  .mainpagesearch > [type="text"] {
+    margin: unset;
+  }
+  .mainpagesearch > span {
+    margin: 10px;
+  }
+  .rankingslideshowSlider {
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+.mainpagesearch>[type="text"]{
+  width:100px;
+}
+.rankingslideshowSlider{
+  font-size: 10px;
+  
+}
+.rankingslide{
+  font-size: 10px;
+}
+.mainpagesearch>span{
+  margin-left:5px;
+}
 }

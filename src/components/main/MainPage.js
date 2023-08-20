@@ -54,17 +54,23 @@ function MainPage() {
           item !== "" &&
           item !== undefined ? (
             item.map((clothe, index) =>
-              index >=6 ? (
-                
+              index >= 6 ? (
+                <ClothesCard
                   
-                  <ClothesCard clothe={clothe} noBorder={"top"} />
-                
-              ) : item.length > 6 && index % 5 === 0 && index !=0 ? (
-                
-                  <ClothesCard clothe={clothe} noBorder={"right"} />
-                
+                  clothe={clothe}
+                  
+                />
+              ) : item.length > 6 && index % 5 === 0 && index != 0 ? (
+                <ClothesCard
+                  
+                  clothe={clothe}
+                  
+                />
               ) : (
-                <ClothesCard clothe={clothe} />
+                <ClothesCard
+                  
+                  clothe={clothe}
+                />
               )
             )
           ) : (

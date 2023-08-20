@@ -97,24 +97,22 @@ function MainPageSearch() {
           onChange={(e) => setSearchItem(e.target.value)}
         />
         <PageviewSharpIcon className="searchIcon" onClick={search} />
-        <div className="rankingslideshow">
-          {ranking !== null ? (
-            <>
-              <div className="rankingslideshowSlider">
-                <span>{index + 1}</span>{" "}
-                <div className="rankingslide">
-                  {ranking[index]}
 
-                  <ArrowDropUpIcon className="arrow_drow_sgv" />
-                </div>
+        {ranking !== null ? (
+          <>
+            <div className="rankingslideshowSlider">
+              <span>{index + 1}</span>{" "}
+              <div className="rankingslide">
+                {ranking[index]}
+
+                <ArrowDropUpIcon className="arrow_drow_sgv" />
               </div>
-            </>
-          ) : (
-            ""
-          )}
-        </div>
+            </div>
+          </>
+        ) : (
+          ""
+        )}
       </div>
-      {extendbar && <ExtendedSearchBar setSearchItem={setSearchItem} />}
     </>
   );
 }

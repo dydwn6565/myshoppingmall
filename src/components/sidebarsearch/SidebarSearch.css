@@ -1,15 +1,12 @@
-
 .sidebar_table {
-  /* padding: 1%; */
-  width: 430px;
   display: flex;
+  flex-direction: column;
 }
 
-
-.sidebar_top{
+.sidebar_top {
   display: flex;
-  justify-content: space-between;
-  margin:10px 0px 20px 0px;
+
+  margin: 10px 0px 20px 0px;
   font-size: 25px;
   font-weight: 700;
 }
@@ -17,37 +14,44 @@
 .plus_button,
 .remove_button {
   transform: scale(1.2);
-  margin-top:12px;
-  float:right;
-  margin-right:-100px;
+  margin-top: 12px;
+
+  margin-left: 50px;
 }
 
-.sidebar_table_th{
-  
-  float:left;
-  margin-left:50px;
-  font-size:30px;
+.sidebar_table_th {
+  margin-left: 50px;
+  font-size: 30px;
 }
 .sidebar_table_body_td {
   cursor: pointer;
-  /* display: flex; */
-  /* display:inline-block; */
-  /* justify-content: space-evenly; */
-  /* margin-left:48px; */
-  
+  margin-left: 20px;
 }
-.sidebar_table_body_tr{
+.sidebar_table_body_tr {
   display: flex;
-  justify-content: space-between;
 }
 
-.sidebar_table_body{
-  width:250px;
-  margin-top:60px;
-  /* display: flex;
-  justify-content: space-between; */
-  /* margin-left:50px; */
+.sidebar_table_body {
+  margin-left: 30px;
 }
 .sidebar_table_body_td:hover {
   font-weight: bold;
+}
+
+@media only screen and (max-width: 1000px) {
+  .sidebar_table_th {
+    font-size: 20px;
+  }
+  .sidebar_top {
+    margin: none;
+  }
+  .companycontact {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .sidebar_table{
+    margin-left:-20px;
+  }
 }

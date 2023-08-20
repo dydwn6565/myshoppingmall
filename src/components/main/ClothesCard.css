@@ -1,14 +1,14 @@
 .clothescard {
-  width: 199.1px;
+  width: 200px;
   height: 350px;
+  margin: 12px;
   border: 0.2px ridge black;
-  border-left:none;
 }
 
-.right{
+.right {
   border-right: none;
 }
-.top{
+.top {
   border-top: none;
 }
 
@@ -40,7 +40,6 @@
   margin-top: 10px;
 }
 .card_script_reviewer_number {
-  /* margin-top: 12px; */
   font-size: 14px;
   margin-left: 4px;
   margin-top: 2px;
@@ -57,4 +56,21 @@
   margin-left: 5px;
   margin-top: 1px;
   font-size: 13px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .clothescard {
+    width: 130px;
+  }
+  .card_script > p {
+    font-size: 11px;
+  }
+  .card_script_reviewer {
+    transform: scale(0.7);
+    margin-left: -25px;
+  }
+  .like_icon_container {
+    transform: scale(0.7);
+    margin-left: -25px;
+  }
 }

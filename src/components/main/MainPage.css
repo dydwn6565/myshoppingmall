@@ -1,8 +1,6 @@
 .mainpage {
   border: 1px solid #000000;
-  /* margin-left: 400px; */
-
-  /* position: absolute; */
+  
 }
 
 .mainpage > hr {
@@ -11,9 +9,11 @@
 }
 .mainpage > h1 {
   margin-left: 10px;
+  font-size:25px;
 }
 .medium_clfc {
   display: flex;
+  font-size:20px;
 }
 
 .medium_clfc_head {
@@ -48,10 +48,25 @@
 }
 
 .card {
-  width: 1200px;
+  
   display: flex;
-
-  flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 1000px) {
+  .mainpage{
+    
+    border:unset;
+  }
+  
+}
+
+
+@media only screen and (max-width: 450px) {
+  .medium_clfc_head>p{
+
+    display: none;
+  }
+
 }

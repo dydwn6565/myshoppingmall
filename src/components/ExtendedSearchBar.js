@@ -79,7 +79,7 @@ function ExtendedSearchBar({ setSearchItem }) {
   }, []);
   return (
     <div className="extendedsearchbar">
-      <Container>
+      {/* <Container>
         <Row>
           <div>
             <div className="recently_searched">
@@ -175,7 +175,7 @@ function ExtendedSearchBar({ setSearchItem }) {
             })}
           </div>
         </Row>
-      </Container>
+      </Container> */}
     </div>
   );
 }
