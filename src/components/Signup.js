@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./Signup.css";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "./firebase";
@@ -211,7 +210,7 @@ const Signin = () => {
             />
             <label className="term_of_agree">
               {" "}
-              Term of Agreemenet <Link to="/signin/tog">Term</Link>
+              Term of Agreemenet 
             </label>
           </div>
           <div className="form_control_radio_button">
@@ -235,7 +234,7 @@ const Signin = () => {
             <label htmlFor="agree_your_info">
               {" "}
               Agreement of using your personal info{" "}
-              <Link to="/signin/aypi">Term</Link>
+              
             </label>
           </div>
           <div className="form_control_radio_button">
@@ -258,7 +257,7 @@ const Signin = () => {
             />
             <label htmlFor="agree_of_using_store">
               {" "}
-              Agreement of using the store <Link to="/signin/aous">Term</Link>
+              Agreement of using the store 
             </label>
           </div>
           <div className="form_control_radio_button">
@@ -281,7 +280,7 @@ const Signin = () => {
             />
             <label htmlFor="agree_of_receiving_ad">
               {" "}
-              Agreement of receiving Ad <Link to="/signin/aora">Term</Link>
+              Agreement of receiving Ad 
             </label>
           </div>
         </div>

@@ -44,9 +44,7 @@ function Order() {
     } else {
       setErrorsRecipient("");
     }
-    console.log(cellphoneNumber);
-
-    console.log(phoneRegex.test(cellphoneNumber.phone));
+    
     if (!phoneRegex.test(cellphoneNumber.phone)) {
       console.log(cellphoneNumber);
 
@@ -152,7 +150,6 @@ function Order() {
   }
 
   const handleOnChangePhoneNumber = (value) => {
-    
     setCellphoneNumber({
       phone: value,
     });
@@ -161,18 +158,17 @@ function Order() {
   const handleOnChangeRecipients = (value) => {
     setRecipient(value);
   };
-  const autoComplete =() =>{
-    setRecipient("Yong")
-    // setCellphoneNumber({ phone: "+1 (778) 870-6252" });
-    setAddressone("111 Main St")
-    setAddresstwo(".")
-    setNationality("Canada")
-    setProvince("BC")
-    setCity("Vancouver")
-    setPostalcode("E2X 3O2")
-    setMemo("Please deliver safely")
-    console.log(cellphoneNumber)
-  }
+  const autoComplete = () => {
+    setRecipient("Yong");
+    setAddressone("111 Main St");
+    setAddresstwo(".");
+    setNationality("Canada");
+    setProvince("BC");
+    setCity("Vancouver");
+    setPostalcode("E2X 3O2");
+    setMemo("Please deliver safely");
+    console.log(cellphoneNumber);
+  };
   useEffect(() => {
     if (JSON.parse(localStorage?.getItem("user_delivery_info"))) {
       localStorage.removeItem("user_delivery_info");
@@ -187,10 +183,7 @@ function Order() {
           <hr />
 
           <div className="order_address">
-            <div className="recipient_info_head">Recipient Info</div>
-            <hr />
-
-            <div className="order_address_form">
+            <div className=" ">
               <Box component="form" noValidate autoComplete="off">
                 <TextField
                   id="outlined-basic"
@@ -200,7 +193,7 @@ function Order() {
                   value={recipient}
                   error={errorsRecipient}
                   helperText={errorsRecipient}
-                  sx={{ m: 1, width: "25ch" }}
+                  sx={{ m: 1, width: "215px"  }}
                   onChange={(e) => handleOnChangeRecipients(e.target.value)}
                 />
 
@@ -212,7 +205,7 @@ function Order() {
                     value={"+1 (778) 870-6251"}
                     error={errorsCellphone}
                     helperText={errorsCellphone}
-                    sx={{ m: 1, width: "25ch", mt: "2ch", mb: "2ch" }}
+                    sx={{ m: 1 }}
                   />
                 </div>
                 <div>
@@ -224,7 +217,7 @@ function Order() {
                     error={errorsAddressone}
                     value={addressone}
                     helperText={errorsAddressone}
-                    sx={{ m: 1, width: "52ch" }}
+                    sx={{ m: 1, width: { sm: "215px", md: "450px" } }}
                     onChange={(e) => setAddressone(e.target.value)}
                   />
                 </div>
@@ -237,7 +230,7 @@ function Order() {
                     value={addresstwo}
                     error={errorsAddresstwo}
                     helperText={errorsAddresstwo}
-                    sx={{ m: 1, width: "52ch" }}
+                    sx={{ m: 1, width: { xs: "215px", md: "450px" } }}
                     onChange={(e) => setAddresstwo(e.target.value)}
                   />
                 </div>
@@ -296,7 +289,7 @@ function Order() {
                     variant="filled"
                     value={memo}
                     rows={4}
-                    sx={{ m: 1, width: "52ch", mb: "2ch" }}
+                    sx={{ m: 1, width: { xs: "215px", md: "450px" } }}
                     multiline
                     onChange={(e) => setMemo(e.target.value)}
                   />
@@ -326,14 +319,19 @@ function Order() {
                       </p>
                       <p>
                         <span>Price: </span>${" "}
-                        {parseFloat(item["discounted_price"] * item["quantity"]).toFixed(1)}
+                        {parseFloat(
+                          item["discounted_price"] * item["quantity"]
+                        ).toFixed(1)}
                       </p>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="order_page_total_price">
-                Total price: $ {parseFloat(state["totalPrice"] - state["discountedPrice"]).toFixed(1)}
+                Total price: ${" "}
+                {parseFloat(
+                  state["totalPrice"] - state["discountedPrice"]
+                ).toFixed(1)}
               </div>
             </div>
             <div className="card_element">

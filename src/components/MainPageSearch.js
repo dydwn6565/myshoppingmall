@@ -3,7 +3,7 @@ import "./MainPageSearch.css";
 import PageviewSharpIcon from "@mui/icons-material/PageviewSharp";
 
 import { RankContext } from "../Context";
-import ExtendedSearchBar from "./ExtendedSearchBar";
+
 import { useNavigate } from "react-router-dom";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
@@ -23,7 +23,7 @@ function MainPageSearch() {
         await fetch("https://clothes-api.vercel.app/api/items/ranking")
           .then((response) => response.json())
           .then((result) => {
-            console.log(result["2022/02/16"]);
+            
             setRanking(result["2022/02/16"]);
             setRank(result["2022/02/16"]);
           })

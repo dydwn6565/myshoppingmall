@@ -12,8 +12,12 @@ function CartPage() {
       <MainPageSearch />
       <MainPageHeader />
       <div className="cart-page">
-        <Side />
-        <Cart />
+        <div className="cart-page-side">
+          <Side />
+        </div>
+        <div className="cart-page-main">
+          <Cart />
+        </div >
       </div>
     </div>
   );

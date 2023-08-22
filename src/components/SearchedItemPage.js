@@ -10,7 +10,7 @@ import SearchedItem from "./SearchedItem";
 function SearchedItemPage() {
   return (
     <div>
-      {/* <HeadAd /> */}
+      
       <MainPageSearch />
       <MainPageHeader />
       <SearchedItem />

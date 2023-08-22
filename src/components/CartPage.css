@@ -1,3 +1,18 @@
 .cart-page{
     display: flex;
 }
+.cart-page-side{
+    flex:1.5;
+}
+.cart-page-main{
+    flex:4;
+    margin-right:30px;
+}
+@media only screen and (max-width: 1000px) {
+    .cart-page {
+        display: unset;
+    }
+        .cart-page-main{
+            margin-right: unset;
+        }
+}

@@ -47,7 +47,7 @@ function MyPageHeader() {
         <>
           <h3>My page</h3>
           <div className="my_page_header_container">
-            <div>
+            <div className="userAvatar-container">
               <Avatar className="userAvatar">H</Avatar>
             </div>
 
@@ -58,7 +58,7 @@ function MyPageHeader() {
               <h6>you only left 42,298 score to upgarde your level</h6>
             </div>
 
-            <div>
+            <div className="mypage-user-reward">
               <MonetizationOnIcon />
               <h3>
                 reward <ChevronRightIcon />
@@ -71,7 +71,7 @@ function MyPageHeader() {
                 </>
               )}
             </div>
-            <div>
+            <div className="mypage-user-point">
               <StarsRoundedIcon />
               <h3>
                 Point <ChevronRightIcon />
@@ -84,7 +84,7 @@ function MyPageHeader() {
                 </>
               )}
             </div>
-            <div>
+            <div className="mypage-user-coupon">
               <CardMembershipIcon />
               <h3>
                 Coupon
@@ -99,7 +99,7 @@ function MyPageHeader() {
               )}
             </div>
 
-            <div>
+            <div className="mypage-user-review">
               <RateReviewIcon />
               <h3>
                 Review <ChevronRightIcon />

@@ -1,5 +1,4 @@
 .mypageheader {
-  
   height: 300px;
   border: 1px solid black;
   background-color: black;
@@ -22,8 +21,6 @@
 }
 
 .mypage_user_info {
-  width: 170px;
-
   padding: 3px;
   margin-right: 50px;
 }
@@ -44,9 +41,31 @@
   font-size: 50px;
 }
 
-
-@media only screen and (max-width: 360px) {
-.not_login {
-    font-size:30px;
+@media only screen and (max-width: 890px) {
+  .mypage_user_info > h2,.mypage_user_info>h3,.mypage-user-reward>h2,.mypage-user-reward>h3,.mypage-user-point>h2 ,.mypage-user-point>h3,.mypage-user-coupon>h2,.mypage-user-coupon>h3,.mypage-user-review>h2,.mypage-user-review>h3{
+    font-size: 15px;
   }
+ 
+  .mypage_user_info > h6 {
+    font-size: 12px;
+  }
+   
+}
+
+@media only screen and (max-width: 620px) {
+  .userAvatar-container{
+    display: none;
+  }
+.mypage_user_info>h2,.mypage-user-reward>h2,.mypage-user-reward>h3,.mypage-user-point>h2, .mypage-user-point>h3, .mypage-user-coupon>h2,.mypage-user-coupon>h3, .mypage-user-review>h2,.mypage-user-review>h3{
+    font-size: 12px;
+  }
+
+  .mypage_user_info>h3 {
+    font-size: 10px;
+  }
+
+  .mypage_user_info>h6 {
+    font-size: 9px;
+  }
+
 }

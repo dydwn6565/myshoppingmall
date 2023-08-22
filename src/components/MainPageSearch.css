@@ -77,8 +77,12 @@
 }
 .rankingslide{
   font-size: 10px;
+  margin-left:5px;
 }
 .mainpagesearch>span{
+  margin-left:5px;
+}
+.arrow_drow_sgv{
   margin-left:5px;
 }
 }

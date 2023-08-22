@@ -84,7 +84,7 @@ function Member() {
         .then((user) => {
           getDoc(doc(db, "users", user.user.uid))
             .then((docs) => {
-              console.log(docs.data());
+              
               if (docs.data() === undefined) {
                 setUser({
                   userInfo: {

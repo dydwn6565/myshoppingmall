@@ -136,49 +136,48 @@ function Cart() {
         </div>
         <hr />
         {orderState[0] !== undefined ? (
-          <Grid container className="cart_details">
+          <div container className="cart_details">
             {orderState.map((item, index) => (
               <>
                 <Checkbox
-                  xs={2}
-                  md={2}
+                  
                   onClick={() => checkBoxState(index)}
                   className="cart_item_checkbox"
                 />
-                <Grid item xs={0.5} md={0.5} className="cart_item_number">
+                <div item  className="cart_item_number">
                   {index + 1}
-                </Grid>
-                <Grid item xs={2.5} md={2.5} className="order_item_name">
+                </div>
+                <div item className="order_item_name">
                   {item["name"]}
-                </Grid>
-                <Grid xs={1.7} md={1.7} item className="order_item_price">
+                </div>
+                <div  item className="order_item_price">
                   $ {item["original_price"]}
-                </Grid>
-                <Grid xs={1.7} md={1.7} item>
+                </div>
+                <div item className="order_item_discount">
                   ${" "}
                   {parseFloat(
                     item["original_price"] - item["discounted_price"]
                   ).toFixed(1)}
-                </Grid>
-                <Grid xs={1.5} md={1.5} item>
+                </div>
+                <div  item className="order_item_quantity">
                   {item["quantity"]}
-                </Grid>
-                <Grid xs={1.5} md={1.5} item>
+                </div>
+                <div  item className="order_item_delivery">
                   Free
-                </Grid>
+                </div>
               </>
             ))}
-          </Grid>
+          </div>
         ) : (
           <>
-            <Grid container className="cart_details">
-              <Grid item xs={0.5} md={0.5} className="cart_item_number"></Grid>
-              <Grid item xs={2.5} md={2.5} className="order_item_name"></Grid>
-              <Grid xs={1.7} md={1.7} item className="order_item_price"></Grid>
-              <Grid xs={1.7} md={1.7} item></Grid>
-              <Grid xs={1.5} md={1.5} item></Grid>
-              <Grid xs={1.5} md={1.5} item></Grid>
-            </Grid>
+            <div container className="cart_details">
+              <div item  className="cart_item_number"></div>
+              <div item  className="order_item_name"></div>
+              <div  item className="order_item_price"></div>
+              <div  item></div>
+              <div  item></div>
+              <div  item></div>
+            </div>
             <div className="cart_empty_container">
               <h3>There is no more items in the cart</h3>
             </div>
@@ -218,12 +217,15 @@ function Cart() {
         </span>
         <DragHandleIcon className="svg_icons" />
         <span>
-          Total price: $ {parseFloat(totalProductPrice - totalDiscountPrice).toFixed(1)}
+          Total price: ${" "}
+          {parseFloat(totalProductPrice - totalDiscountPrice).toFixed(1)}
         </span>
       </div>
-      <button className="order_button" onClick={order}>
-        Order
-      </button>
+      <div className="order-button-container">
+        <button className="order_button" onClick={order}>
+          Order
+        </button>
+      </div>
     </div>
   );
 }

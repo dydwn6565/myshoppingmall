@@ -1,6 +1,6 @@
 import React from "react";
 import CompanyContact from "./sidebarsearch/CompanyContact";
-// import SidebarItems from "./sidebarsearch/SidebarItems";
+
 import SidebarSearch from "./sidebarsearch/SidebarSearch";
 import "./Side.css";
 
@@ -16,7 +16,6 @@ function Side() {
         itemSmallTitle={["denim pants", "slacks"]}
       />
 
-      {/* <SidebarItems /> */}
       <CompanyContact />
     </div>
   );

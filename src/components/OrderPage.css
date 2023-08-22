@@ -1,0 +1,17 @@
+.orderpage{
+    display: flex;
+}
+
+.orderpage-side{
+flex:1.5;
+}
+
+.orderpage-main{
+    flex:4;
+}
+
+@media only screen and (max-width: 1000px) {
+    .orderpage {
+        display: unset;
+    }
+}

@@ -38,7 +38,7 @@
 
 .delete_order_list {
   margin-top: -2px;
-
+  margin-left: -70px;
   transform: scale(0.75);
 }
 
@@ -46,7 +46,7 @@
   font-size: 12px;
   padding: 5px;
   margin-top: 20px;
-  margin-left: 5%;
+  margin-left: 40px;
 }
 
 .order_details > p {
@@ -60,9 +60,10 @@
   color: white;
   font-weight: bold;
   justify-content: center;
-  position: relative;
 
-  margin-bottom: 5%;
+  margin: auto;
+  margin-right: auto;
+  cursor: pointer;
 }
 
 .total_price {
@@ -82,16 +83,55 @@
 
 .cart_details {
   font-size: 10px;
+  display: flex;
+  align-items: center;
 }
-
+.cart_item_checkbox {
+  width: unset;
+  flex:0.7;
+}
 .cart_item_number {
-  margin-left: 85px !important;
+  flex: 0.7;
+}
+.order_item_price{
+  flex:1;
 }
 .order_item_name {
-  margin-left: 60px !important;
+  flex: 1.7;
+}
+
+.order_item_discount {
+  flex: 1.1;
+}
+.order_item_quantity {
+  flex: 0.95;
+}
+
+.order_item_delivery {
+  flex: 1.1;
 }
 
 .cart_item_checkbox {
   transform: scale(0.7);
-  margin-top: -10px !important;
+  
+}
+.order-button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 150px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .total_price > span {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .total_price > span {
+    font-size: 12px;
+  }
+  .delete_order_list {
+    margin-left: unset;
+  }
 }
