@@ -5,8 +5,6 @@ import { auth, db } from "./firebase";
 import { v4 as uuid } from "uuid";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import HeadAd from "./HeadAd";
-
 import MainPageHeader from "./MainPageHeader";
 import MainPageSearch from "./MainPageSearch";
 

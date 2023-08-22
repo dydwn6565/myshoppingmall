@@ -47,7 +47,6 @@ function MyPageHeader() {
     <div className="my_page_header">
       {userLogin ? (
         <>
-          
           <p onClick={moveToMyPage}>My page</p>
           <p onClick={moveToRecentlyCheckedPage}>Recently checked item list</p>
           <p onClick={moveToMyCartPage}>My shopping bag</p>

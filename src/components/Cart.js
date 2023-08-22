@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Cart.css";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
-import Grid from "@mui/material/Grid";
 import Checkbox from "@mui/material/Checkbox";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import HeadAd from "./HeadAd";
-import "./Home.css"
+import "./Home.css";
 import MainPageHeader from "./MainPageHeader";
 import MainPage from "./main/MainPage";
 import Side from "./Side";
@@ -28,7 +27,6 @@ function Home() {
 
   return (
     <div>
-      
       <MainPageSearch />
 
       <MainPageHeader />
